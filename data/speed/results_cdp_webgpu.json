@@ -1,0 +1,41 @@
+[
+  {
+    "modelId": "onnx-community/gte-multilingual-base",
+    "dtype": "fp32",
+    "device": "webgpu",
+    "actualDevice": "webgpu",
+    "loadMs": 245512.69999998808,
+    "warmMsPerPost": 10.484999999403954,
+    "batchMs": 209.69999998807907,
+    "dim": 768,
+    "ok": true,
+    "error": null,
+    "adapter": "nvidia"
+  },
+  {
+    "modelId": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+    "dtype": "fp32",
+    "device": "webgpu",
+    "actualDevice": "webgpu",
+    "loadMs": 95726.60000002384,
+    "warmMsPerPost": 6.275,
+    "batchMs": 125.5,
+    "dim": 384,
+    "ok": true,
+    "error": null,
+    "adapter": "nvidia"
+  },
+  {
+    "modelId": "hotchpotch/bekko-embedding-v1-a8m",
+    "dtype": "fp32",
+    "device": "webgpu",
+    "actualDevice": "webgpu",
+    "loadMs": 32274.69999998808,
+    "warmMsPerPost": 2.5650000005960463,
+    "batchMs": 51.30000001192093,
+    "dim": 384,
+    "ok": true,
+    "error": null,
+    "adapter": "nvidia"
+  }
+]

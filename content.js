@@ -77,3 +77,22 @@ window.addEventListener('message', (event) => {
     })
   }
 }, false)
+// ---------------------------------------------------------------------------
+// Semantic dedup (added by this fork).
+//
+// Dynamic import, not a static one: this module pulls in the embedder and cluster
+// store, and none of that should be evaluated when the feature is off. It also lives
+// entirely in the isolated world -- CPFT's own script.js runs in the MAIN world and is
+// left completely untouched, so upstream rebases stay clean.
+// ---------------------------------------------------------------------------
+if (localStorage.cpftDupEnabled !== 'false') {
+  import(chrome.runtime.getURL('dedup/observer.js'))
+    .then((mod) => {
+      const api = mod.start({
+        enabled: true,
+        debugScores: localStorage.cpftDupDebug === 'true',
+      })
+      window.__cpftDup = api      // handy for manual poking in devtools
+    })
+    .catch((err) => console.error('[cpft-dedup] failed to start', err))
+}

@@ -1,0 +1,63 @@
+{
+  "n_stories": 343,
+  "iters": 20000,
+  "macro_auc": {
+    "bekko-a8m": 0.9834,
+    "gte-ml-base": 0.9831,
+    "granite-97m": 0.9755,
+    "harrier-270m": 0.9714
+  },
+  "pairs": {
+    "bekko-a8m-gte-ml-base": {
+      "delta": 0.0003,
+      "ci95": [
+        -0.0024,
+        0.0032
+      ],
+      "p_better": 0.594,
+      "significant": false
+    },
+    "gte-ml-base-granite-97m": {
+      "delta": 0.0076,
+      "ci95": [
+        0.0037,
+        0.0114
+      ],
+      "p_better": 1.0,
+      "significant": true
+    },
+    "granite-97m-harrier-270m": {
+      "delta": 0.0041,
+      "ci95": [
+        0.0003,
+        0.0077
+      ],
+      "p_better": 0.982,
+      "significant": true
+    },
+    "bekko-a8m-vs-gte-ml-base": {
+      "delta": 0.0003,
+      "ci95": [
+        -0.0024,
+        0.0032
+      ],
+      "significant": false
+    },
+    "bekko-a8m-vs-granite-97m": {
+      "delta": 0.008,
+      "ci95": [
+        0.0046,
+        0.0114
+      ],
+      "significant": true
+    },
+    "bekko-a8m-vs-harrier-270m": {
+      "delta": 0.012,
+      "ci95": [
+        0.0081,
+        0.0159
+      ],
+      "significant": true
+    }
+  }
+}

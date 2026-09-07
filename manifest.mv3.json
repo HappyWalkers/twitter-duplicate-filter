@@ -28,7 +28,10 @@
       "js": [
         "content.js"
       ],
-      "run_at": "document_start"
+      "run_at": "document_start",
+      "css": [
+        "dedup.css"
+      ]
     }
   ],
   "web_accessible_resources": [
@@ -40,6 +43,9 @@
         "https://mobile.x.com/*"
       ],
       "resources": [
+        "dedup/*.js",
+        "dedup/dedup-worker.bundle.js",
+        "dedup/ort/*",
         "script.js"
       ]
     }
@@ -52,6 +58,15 @@
     "default_popup": "browser_action.html"
   },
   "permissions": [
+    "offscreen",
     "storage"
-  ]
+  ],
+  "host_permissions": [
+    "https://huggingface.co/*",
+    "https://*.huggingface.co/*",
+    "https://*.hf.co/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  }
 }

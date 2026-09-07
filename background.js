@@ -43,3 +43,62 @@ chrome.storage.local.onChanged.addListener((changes) => {
     updateToolbarIcon(changes.enabled.newValue)
   }
 })
+// ---------------------------------------------------------------------------
+// Semantic dedup: offscreen inference host.
+//
+// A content script cannot create or address an offscreen document -- only the service
+// worker can -- so this relays embed requests. The offscreen document is required
+// because x.com's CSP sets connect-src WITHOUT huggingface.co, so a worker running on
+// the page origin can start and then never fetch the model weights. On the extension's
+// own origin that restriction does not apply, and WebGPU is available too.
+// ---------------------------------------------------------------------------
+
+const CPFTDUP_OFFSCREEN = 'offscreen.html'
+let cpftDupOffscreenReady = null
+
+async function cpftDupEnsureOffscreen() {
+  if (cpftDupOffscreenReady) return cpftDupOffscreenReady
+  cpftDupOffscreenReady = (async () => {
+    // hasDocument() is not available on every channel; fall back to getContexts.
+    try {
+      if (chrome.offscreen.hasDocument && await chrome.offscreen.hasDocument()) return
+      if (chrome.runtime.getContexts) {
+        const ctx = await chrome.runtime.getContexts({ contextTypes: ['OFFSCREEN_DOCUMENT'] })
+        if (ctx.length) return
+      }
+    } catch {}
+    try {
+      await chrome.offscreen.createDocument({
+        url: CPFTDUP_OFFSCREEN,
+        reasons: ['WORKERS'],
+        justification: 'Runs the local sentence-embedding model used to collapse '
+          + 'near-duplicate posts. Kept off the page origin because x.com CSP blocks '
+          + 'fetching the model there.',
+      })
+    } catch (err) {
+      // A concurrent createDocument loses this race; that is fine, the document exists.
+      if (!String(err).includes('Only a single offscreen')) {
+        cpftDupOffscreenReady = null
+        throw err
+      }
+    }
+  })()
+  return cpftDupOffscreenReady
+}
+
+chrome.runtime.onMessage.addListener((msg, sender, respond) => {
+  if (msg?.type !== 'cpftdup-embed') return
+  ;(async () => {
+    try {
+      await cpftDupEnsureOffscreen()
+      const resp = await chrome.runtime.sendMessage({
+        type: 'cpftdup-offscreen-embed', texts: msg.texts,
+      })
+      respond(resp || { ok: false, error: 'no response from offscreen' })
+    } catch (err) {
+      cpftDupOffscreenReady = null      // rebuild it on the next attempt
+      respond({ ok: false, error: String(err?.message || err) })
+    }
+  })()
+  return true                            // async reply
+})

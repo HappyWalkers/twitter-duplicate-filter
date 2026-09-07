@@ -1,0 +1,30 @@
+[
+  {
+    "model": "onnx-community/harrier-oss-v1-270m-ONNX",
+    "modelId": "onnx-community/harrier-oss-v1-270m-ONNX",
+    "dtype": "fp32",
+    "device": "webgpu",
+    "actualDevice": "webgpu",
+    "dim": null,
+    "loadMs": null,
+    "loadSec": null,
+    "batchMs": null,
+    "warmMsPerPost": null,
+    "ok": false,
+    "error": "Cannot read properties of undefined (reading 'data')"
+  },
+  {
+    "model": "onnx-community/gte-multilingual-base",
+    "modelId": "onnx-community/gte-multilingual-base",
+    "dtype": "q8",
+    "device": "webgpu",
+    "actualDevice": "webgpu",
+    "dim": 768,
+    "loadMs": 143931.30000001192,
+    "loadSec": 143.93,
+    "batchMs": 26785.200000047684,
+    "warmMsPerPost": 1339.26,
+    "ok": true,
+    "error": null
+  }
+]

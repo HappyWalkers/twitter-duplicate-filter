@@ -1,0 +1,2757 @@
+{
+  "tier1": {
+    "precision": 0.7143,
+    "recall": 0.0076,
+    "f1": 0.015,
+    "pairs_caught": 50,
+    "false_pairs": 20
+  },
+  "n_posts": 1497,
+  "n_pairs": 1119756,
+  "models": {
+    "granite-97m:fp32": {
+      "model": "ibm-granite/granite-embedding-97m-multilingual-r2",
+      "dtype": "fp32",
+      "file": "onnx/model.onnx",
+      "dim": 384,
+      "pooling": "cls",
+      "prompt": "",
+      "auc": 0.963,
+      "best": {
+        "tau": 0.84,
+        "precision": 0.3632,
+        "recall": 0.522,
+        "f1": 0.4284,
+        "pair_fold_rate": 0.0085
+      },
+      "greedy_ari": 0.2659,
+      "cpu_embed_secs": 24.4,
+      "note": "non-standard q8 filename (model_quint8_avx2) -> fp32 only",
+      "sweep": [
+        {
+          "tau": 0.5,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0117,
+          "pair_fold_rate": 1.0
+        },
+        {
+          "tau": 0.51,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0117,
+          "pair_fold_rate": 1.0
+        },
+        {
+          "tau": 0.52,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0117,
+          "pair_fold_rate": 1.0
+        },
+        {
+          "tau": 0.53,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0117,
+          "pair_fold_rate": 1.0
+        },
+        {
+          "tau": 0.54,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0117,
+          "pair_fold_rate": 1.0
+        },
+        {
+          "tau": 0.55,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0117,
+          "pair_fold_rate": 1.0
+        },
+        {
+          "tau": 0.56,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0117,
+          "pair_fold_rate": 1.0
+        },
+        {
+          "tau": 0.57,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0117,
+          "pair_fold_rate": 1.0
+        },
+        {
+          "tau": 0.58,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0117,
+          "pair_fold_rate": 1.0
+        },
+        {
+          "tau": 0.59,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0117,
+          "pair_fold_rate": 1.0
+        },
+        {
+          "tau": 0.6,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0117,
+          "pair_fold_rate": 1.0
+        },
+        {
+          "tau": 0.61,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0117,
+          "pair_fold_rate": 0.9999
+        },
+        {
+          "tau": 0.62,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0117,
+          "pair_fold_rate": 0.9998
+        },
+        {
+          "tau": 0.63,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0117,
+          "pair_fold_rate": 0.9993
+        },
+        {
+          "tau": 0.64,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0117,
+          "pair_fold_rate": 0.9981
+        },
+        {
+          "tau": 0.65,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0118,
+          "pair_fold_rate": 0.9954
+        },
+        {
+          "tau": 0.66,
+          "precision": 0.006,
+          "recall": 1.0,
+          "f1": 0.0119,
+          "pair_fold_rate": 0.9893
+        },
+        {
+          "tau": 0.67,
+          "precision": 0.006,
+          "recall": 0.9998,
+          "f1": 0.012,
+          "pair_fold_rate": 0.9774
+        },
+        {
+          "tau": 0.68,
+          "precision": 0.0062,
+          "recall": 0.9998,
+          "f1": 0.0123,
+          "pair_fold_rate": 0.9559
+        },
+        {
+          "tau": 0.69,
+          "precision": 0.0064,
+          "recall": 0.9997,
+          "f1": 0.0127,
+          "pair_fold_rate": 0.9208
+        },
+        {
+          "tau": 0.7,
+          "precision": 0.0068,
+          "recall": 0.9991,
+          "f1": 0.0135,
+          "pair_fold_rate": 0.868
+        },
+        {
+          "tau": 0.71,
+          "precision": 0.0074,
+          "recall": 0.9982,
+          "f1": 0.0147,
+          "pair_fold_rate": 0.7954
+        },
+        {
+          "tau": 0.72,
+          "precision": 0.0084,
+          "recall": 0.997,
+          "f1": 0.0166,
+          "pair_fold_rate": 0.7038
+        },
+        {
+          "tau": 0.73,
+          "precision": 0.0098,
+          "recall": 0.9932,
+          "f1": 0.0194,
+          "pair_fold_rate": 0.598
+        },
+        {
+          "tau": 0.74,
+          "precision": 0.012,
+          "recall": 0.9891,
+          "f1": 0.0238,
+          "pair_fold_rate": 0.485
+        },
+        {
+          "tau": 0.75,
+          "precision": 0.0155,
+          "recall": 0.9818,
+          "f1": 0.0304,
+          "pair_fold_rate": 0.3744
+        },
+        {
+          "tau": 0.76,
+          "precision": 0.0207,
+          "recall": 0.9665,
+          "f1": 0.0406,
+          "pair_fold_rate": 0.2749
+        },
+        {
+          "tau": 0.77,
+          "precision": 0.0291,
+          "recall": 0.9456,
+          "f1": 0.0564,
+          "pair_fold_rate": 0.1917
+        },
+        {
+          "tau": 0.78,
+          "precision": 0.0425,
+          "recall": 0.9163,
+          "f1": 0.0812,
+          "pair_fold_rate": 0.1272
+        },
+        {
+          "tau": 0.79,
+          "precision": 0.064,
+          "recall": 0.8769,
+          "f1": 0.1193,
+          "pair_fold_rate": 0.0808
+        },
+        {
+          "tau": 0.8,
+          "precision": 0.0979,
+          "recall": 0.8313,
+          "f1": 0.1751,
+          "pair_fold_rate": 0.0501
+        },
+        {
+          "tau": 0.81,
+          "precision": 0.1473,
+          "recall": 0.7709,
+          "f1": 0.2473,
+          "pair_fold_rate": 0.0309
+        },
+        {
+          "tau": 0.82,
+          "precision": 0.2128,
+          "recall": 0.6954,
+          "f1": 0.3259,
+          "pair_fold_rate": 0.0193
+        },
+        {
+          "tau": 0.83,
+          "precision": 0.2894,
+          "recall": 0.6114,
+          "f1": 0.3928,
+          "pair_fold_rate": 0.0125
+        },
+        {
+          "tau": 0.84,
+          "precision": 0.3632,
+          "recall": 0.522,
+          "f1": 0.4284,
+          "pair_fold_rate": 0.0085
+        },
+        {
+          "tau": 0.85,
+          "precision": 0.4306,
+          "recall": 0.4259,
+          "f1": 0.4282,
+          "pair_fold_rate": 0.0058
+        },
+        {
+          "tau": 0.86,
+          "precision": 0.4762,
+          "recall": 0.3271,
+          "f1": 0.3878,
+          "pair_fold_rate": 0.0041
+        },
+        {
+          "tau": 0.87,
+          "precision": 0.5099,
+          "recall": 0.2387,
+          "f1": 0.3251,
+          "pair_fold_rate": 0.0028
+        },
+        {
+          "tau": 0.88,
+          "precision": 0.5264,
+          "recall": 0.1705,
+          "f1": 0.2576,
+          "pair_fold_rate": 0.0019
+        },
+        {
+          "tau": 0.89,
+          "precision": 0.5382,
+          "recall": 0.1153,
+          "f1": 0.1898,
+          "pair_fold_rate": 0.0013
+        },
+        {
+          "tau": 0.9,
+          "precision": 0.537,
+          "recall": 0.0736,
+          "f1": 0.1295,
+          "pair_fold_rate": 0.0008
+        },
+        {
+          "tau": 0.91,
+          "precision": 0.5391,
+          "recall": 0.0469,
+          "f1": 0.0864,
+          "pair_fold_rate": 0.0005
+        },
+        {
+          "tau": 0.92,
+          "precision": 0.5515,
+          "recall": 0.0317,
+          "f1": 0.0599,
+          "pair_fold_rate": 0.0003
+        },
+        {
+          "tau": 0.93,
+          "precision": 0.5725,
+          "recall": 0.0221,
+          "f1": 0.0426,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.94,
+          "precision": 0.5471,
+          "recall": 0.0141,
+          "f1": 0.0275,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.95,
+          "precision": 0.5738,
+          "recall": 0.0106,
+          "f1": 0.0208,
+          "pair_fold_rate": 0.0001
+        }
+      ]
+    },
+    "bekko-a8m:fp32": {
+      "model": "hotchpotch/bekko-embedding-v1-a8m",
+      "dtype": "fp32",
+      "file": "onnx/model.onnx",
+      "dim": 384,
+      "pooling": "mean",
+      "prompt": "",
+      "auc": 0.9777,
+      "best": {
+        "tau": 0.5,
+        "precision": 0.5297,
+        "recall": 0.2796,
+        "f1": 0.366,
+        "pair_fold_rate": 0.0031
+      },
+      "greedy_ari": 0.2953,
+      "cpu_embed_secs": 6.2,
+      "note": "non-standard q8 filenames -> fp32 only (130MB anyway)",
+      "sweep": [
+        {
+          "tau": 0.5,
+          "precision": 0.5297,
+          "recall": 0.2796,
+          "f1": 0.366,
+          "pair_fold_rate": 0.0031
+        },
+        {
+          "tau": 0.51,
+          "precision": 0.5371,
+          "recall": 0.2522,
+          "f1": 0.3432,
+          "pair_fold_rate": 0.0028
+        },
+        {
+          "tau": 0.52,
+          "precision": 0.5459,
+          "recall": 0.2278,
+          "f1": 0.3214,
+          "pair_fold_rate": 0.0025
+        },
+        {
+          "tau": 0.53,
+          "precision": 0.5559,
+          "recall": 0.2078,
+          "f1": 0.3025,
+          "pair_fold_rate": 0.0022
+        },
+        {
+          "tau": 0.54,
+          "precision": 0.564,
+          "recall": 0.1889,
+          "f1": 0.283,
+          "pair_fold_rate": 0.002
+        },
+        {
+          "tau": 0.55,
+          "precision": 0.569,
+          "recall": 0.1693,
+          "f1": 0.261,
+          "pair_fold_rate": 0.0018
+        },
+        {
+          "tau": 0.56,
+          "precision": 0.5704,
+          "recall": 0.1496,
+          "f1": 0.2371,
+          "pair_fold_rate": 0.0015
+        },
+        {
+          "tau": 0.57,
+          "precision": 0.5711,
+          "recall": 0.1325,
+          "f1": 0.2151,
+          "pair_fold_rate": 0.0014
+        },
+        {
+          "tau": 0.58,
+          "precision": 0.568,
+          "recall": 0.1183,
+          "f1": 0.1958,
+          "pair_fold_rate": 0.0012
+        },
+        {
+          "tau": 0.59,
+          "precision": 0.5626,
+          "recall": 0.1034,
+          "f1": 0.1747,
+          "pair_fold_rate": 0.0011
+        },
+        {
+          "tau": 0.6,
+          "precision": 0.5657,
+          "recall": 0.0939,
+          "f1": 0.1611,
+          "pair_fold_rate": 0.001
+        },
+        {
+          "tau": 0.61,
+          "precision": 0.5591,
+          "recall": 0.0816,
+          "f1": 0.1425,
+          "pair_fold_rate": 0.0009
+        },
+        {
+          "tau": 0.62,
+          "precision": 0.5572,
+          "recall": 0.073,
+          "f1": 0.1291,
+          "pair_fold_rate": 0.0008
+        },
+        {
+          "tau": 0.63,
+          "precision": 0.5671,
+          "recall": 0.0659,
+          "f1": 0.118,
+          "pair_fold_rate": 0.0007
+        },
+        {
+          "tau": 0.64,
+          "precision": 0.5796,
+          "recall": 0.0595,
+          "f1": 0.108,
+          "pair_fold_rate": 0.0006
+        },
+        {
+          "tau": 0.65,
+          "precision": 0.5806,
+          "recall": 0.0535,
+          "f1": 0.0979,
+          "pair_fold_rate": 0.0005
+        },
+        {
+          "tau": 0.66,
+          "precision": 0.5924,
+          "recall": 0.0471,
+          "f1": 0.0873,
+          "pair_fold_rate": 0.0005
+        },
+        {
+          "tau": 0.67,
+          "precision": 0.5906,
+          "recall": 0.042,
+          "f1": 0.0783,
+          "pair_fold_rate": 0.0004
+        },
+        {
+          "tau": 0.68,
+          "precision": 0.6063,
+          "recall": 0.038,
+          "f1": 0.0715,
+          "pair_fold_rate": 0.0004
+        },
+        {
+          "tau": 0.69,
+          "precision": 0.6233,
+          "recall": 0.0341,
+          "f1": 0.0646,
+          "pair_fold_rate": 0.0003
+        },
+        {
+          "tau": 0.7,
+          "precision": 0.6166,
+          "recall": 0.0292,
+          "f1": 0.0558,
+          "pair_fold_rate": 0.0003
+        },
+        {
+          "tau": 0.71,
+          "precision": 0.6078,
+          "recall": 0.026,
+          "f1": 0.05,
+          "pair_fold_rate": 0.0003
+        },
+        {
+          "tau": 0.72,
+          "precision": 0.5906,
+          "recall": 0.0227,
+          "f1": 0.0438,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.73,
+          "precision": 0.5983,
+          "recall": 0.0212,
+          "f1": 0.041,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.74,
+          "precision": 0.6063,
+          "recall": 0.0203,
+          "f1": 0.0393,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.75,
+          "precision": 0.6122,
+          "recall": 0.0182,
+          "f1": 0.0353,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.76,
+          "precision": 0.6201,
+          "recall": 0.0168,
+          "f1": 0.0327,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.77,
+          "precision": 0.622,
+          "recall": 0.0154,
+          "f1": 0.0301,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.78,
+          "precision": 0.6184,
+          "recall": 0.0142,
+          "f1": 0.0278,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.79,
+          "precision": 0.6222,
+          "recall": 0.0127,
+          "f1": 0.0249,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.8,
+          "precision": 0.6094,
+          "recall": 0.0118,
+          "f1": 0.0232,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.81,
+          "precision": 0.5948,
+          "recall": 0.0104,
+          "f1": 0.0205,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.82,
+          "precision": 0.5872,
+          "recall": 0.0097,
+          "f1": 0.0191,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.83,
+          "precision": 0.5962,
+          "recall": 0.0094,
+          "f1": 0.0185,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.84,
+          "precision": 0.5938,
+          "recall": 0.0086,
+          "f1": 0.017,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.85,
+          "precision": 0.5934,
+          "recall": 0.0082,
+          "f1": 0.0161,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.86,
+          "precision": 0.6071,
+          "recall": 0.0077,
+          "f1": 0.0153,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.87,
+          "precision": 0.6076,
+          "recall": 0.0073,
+          "f1": 0.0144,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.88,
+          "precision": 0.6026,
+          "recall": 0.0071,
+          "f1": 0.0141,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.89,
+          "precision": 0.6104,
+          "recall": 0.0071,
+          "f1": 0.0141,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.9,
+          "precision": 0.6164,
+          "recall": 0.0068,
+          "f1": 0.0135,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.91,
+          "precision": 0.6232,
+          "recall": 0.0065,
+          "f1": 0.0129,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.92,
+          "precision": 0.6119,
+          "recall": 0.0062,
+          "f1": 0.0123,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.93,
+          "precision": 0.6154,
+          "recall": 0.0061,
+          "f1": 0.012,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.94,
+          "precision": 0.6154,
+          "recall": 0.0061,
+          "f1": 0.012,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.95,
+          "precision": 0.6094,
+          "recall": 0.0059,
+          "f1": 0.0117,
+          "pair_fold_rate": 0.0001
+        }
+      ]
+    },
+    "mmini-l12:q8": {
+      "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+      "dtype": "q8",
+      "file": "onnx/model_quantized.onnx",
+      "dim": 384,
+      "pooling": "mean",
+      "prompt": "",
+      "auc": 0.9177,
+      "best": {
+        "tau": 0.51,
+        "precision": 0.182,
+        "recall": 0.2787,
+        "f1": 0.2202,
+        "pair_fold_rate": 0.009
+      },
+      "greedy_ari": 0.1578,
+      "cpu_embed_secs": 6.9,
+      "note": "CONTROL - the obvious/most-downloaded pick",
+      "sweep": [
+        {
+          "tau": 0.5,
+          "precision": 0.1715,
+          "recall": 0.2958,
+          "f1": 0.2171,
+          "pair_fold_rate": 0.0102
+        },
+        {
+          "tau": 0.51,
+          "precision": 0.182,
+          "recall": 0.2787,
+          "f1": 0.2202,
+          "pair_fold_rate": 0.009
+        },
+        {
+          "tau": 0.52,
+          "precision": 0.1895,
+          "recall": 0.2593,
+          "f1": 0.219,
+          "pair_fold_rate": 0.0081
+        },
+        {
+          "tau": 0.53,
+          "precision": 0.1976,
+          "recall": 0.2419,
+          "f1": 0.2175,
+          "pair_fold_rate": 0.0072
+        },
+        {
+          "tau": 0.54,
+          "precision": 0.2067,
+          "recall": 0.2254,
+          "f1": 0.2156,
+          "pair_fold_rate": 0.0064
+        },
+        {
+          "tau": 0.55,
+          "precision": 0.2134,
+          "recall": 0.2079,
+          "f1": 0.2106,
+          "pair_fold_rate": 0.0057
+        },
+        {
+          "tau": 0.56,
+          "precision": 0.2191,
+          "recall": 0.1904,
+          "f1": 0.2037,
+          "pair_fold_rate": 0.0051
+        },
+        {
+          "tau": 0.57,
+          "precision": 0.2222,
+          "recall": 0.1713,
+          "f1": 0.1935,
+          "pair_fold_rate": 0.0045
+        },
+        {
+          "tau": 0.58,
+          "precision": 0.2301,
+          "recall": 0.1577,
+          "f1": 0.1871,
+          "pair_fold_rate": 0.004
+        },
+        {
+          "tau": 0.59,
+          "precision": 0.238,
+          "recall": 0.1431,
+          "f1": 0.1788,
+          "pair_fold_rate": 0.0035
+        },
+        {
+          "tau": 0.6,
+          "precision": 0.2365,
+          "recall": 0.126,
+          "f1": 0.1644,
+          "pair_fold_rate": 0.0031
+        },
+        {
+          "tau": 0.61,
+          "precision": 0.2394,
+          "recall": 0.1118,
+          "f1": 0.1524,
+          "pair_fold_rate": 0.0028
+        },
+        {
+          "tau": 0.62,
+          "precision": 0.2399,
+          "recall": 0.0989,
+          "f1": 0.1401,
+          "pair_fold_rate": 0.0024
+        },
+        {
+          "tau": 0.63,
+          "precision": 0.24,
+          "recall": 0.0874,
+          "f1": 0.1281,
+          "pair_fold_rate": 0.0021
+        },
+        {
+          "tau": 0.64,
+          "precision": 0.2468,
+          "recall": 0.0788,
+          "f1": 0.1194,
+          "pair_fold_rate": 0.0019
+        },
+        {
+          "tau": 0.65,
+          "precision": 0.2503,
+          "recall": 0.0701,
+          "f1": 0.1095,
+          "pair_fold_rate": 0.0017
+        },
+        {
+          "tau": 0.66,
+          "precision": 0.2502,
+          "recall": 0.0618,
+          "f1": 0.0991,
+          "pair_fold_rate": 0.0015
+        },
+        {
+          "tau": 0.67,
+          "precision": 0.2493,
+          "recall": 0.0551,
+          "f1": 0.0903,
+          "pair_fold_rate": 0.0013
+        },
+        {
+          "tau": 0.68,
+          "precision": 0.2492,
+          "recall": 0.0468,
+          "f1": 0.0788,
+          "pair_fold_rate": 0.0011
+        },
+        {
+          "tau": 0.69,
+          "precision": 0.2546,
+          "recall": 0.0415,
+          "f1": 0.0714,
+          "pair_fold_rate": 0.001
+        },
+        {
+          "tau": 0.7,
+          "precision": 0.26,
+          "recall": 0.0376,
+          "f1": 0.0656,
+          "pair_fold_rate": 0.0009
+        },
+        {
+          "tau": 0.71,
+          "precision": 0.262,
+          "recall": 0.0339,
+          "f1": 0.0601,
+          "pair_fold_rate": 0.0008
+        },
+        {
+          "tau": 0.72,
+          "precision": 0.2696,
+          "recall": 0.0307,
+          "f1": 0.0552,
+          "pair_fold_rate": 0.0007
+        },
+        {
+          "tau": 0.73,
+          "precision": 0.2824,
+          "recall": 0.028,
+          "f1": 0.051,
+          "pair_fold_rate": 0.0006
+        },
+        {
+          "tau": 0.74,
+          "precision": 0.2845,
+          "recall": 0.0247,
+          "f1": 0.0454,
+          "pair_fold_rate": 0.0005
+        },
+        {
+          "tau": 0.75,
+          "precision": 0.2871,
+          "recall": 0.022,
+          "f1": 0.0408,
+          "pair_fold_rate": 0.0005
+        },
+        {
+          "tau": 0.76,
+          "precision": 0.287,
+          "recall": 0.0197,
+          "f1": 0.0368,
+          "pair_fold_rate": 0.0004
+        },
+        {
+          "tau": 0.77,
+          "precision": 0.3003,
+          "recall": 0.0179,
+          "f1": 0.0337,
+          "pair_fold_rate": 0.0004
+        },
+        {
+          "tau": 0.78,
+          "precision": 0.3109,
+          "recall": 0.0161,
+          "f1": 0.0305,
+          "pair_fold_rate": 0.0003
+        },
+        {
+          "tau": 0.79,
+          "precision": 0.3127,
+          "recall": 0.0145,
+          "f1": 0.0278,
+          "pair_fold_rate": 0.0003
+        },
+        {
+          "tau": 0.8,
+          "precision": 0.327,
+          "recall": 0.013,
+          "f1": 0.0251,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.81,
+          "precision": 0.3261,
+          "recall": 0.0114,
+          "f1": 0.022,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.82,
+          "precision": 0.3445,
+          "recall": 0.0109,
+          "f1": 0.0211,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.83,
+          "precision": 0.3529,
+          "recall": 0.01,
+          "f1": 0.0194,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.84,
+          "precision": 0.3588,
+          "recall": 0.0092,
+          "f1": 0.018,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.85,
+          "precision": 0.375,
+          "recall": 0.0086,
+          "f1": 0.0169,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.86,
+          "precision": 0.3897,
+          "recall": 0.008,
+          "f1": 0.0157,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.87,
+          "precision": 0.4228,
+          "recall": 0.0079,
+          "f1": 0.0155,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.88,
+          "precision": 0.4643,
+          "recall": 0.0079,
+          "f1": 0.0155,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.89,
+          "precision": 0.4762,
+          "recall": 0.0076,
+          "f1": 0.0149,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.9,
+          "precision": 0.4752,
+          "recall": 0.0073,
+          "f1": 0.0143,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.91,
+          "precision": 0.4731,
+          "recall": 0.0067,
+          "f1": 0.0131,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.92,
+          "precision": 0.5057,
+          "recall": 0.0067,
+          "f1": 0.0132,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.93,
+          "precision": 0.506,
+          "recall": 0.0064,
+          "f1": 0.0126,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.94,
+          "precision": 0.5256,
+          "recall": 0.0062,
+          "f1": 0.0123,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.95,
+          "precision": 0.5467,
+          "recall": 0.0062,
+          "f1": 0.0123,
+          "pair_fold_rate": 0.0001
+        }
+      ]
+    },
+    "f2llm-160m:q8": {
+      "model": "onnx-community/F2LLM-v2-160M-ONNX",
+      "dtype": "q8",
+      "file": "onnx/model_quantized.onnx",
+      "dim": 640,
+      "pooling": "lasttoken",
+      "prompt": "",
+      "auc": 0.9356,
+      "best": {
+        "tau": 0.5,
+        "precision": 0.3637,
+        "recall": 0.2276,
+        "f1": 0.28,
+        "pair_fold_rate": 0.0037
+      },
+      "greedy_ari": 0.1598,
+      "cpu_embed_secs": 45.9,
+      "note": "",
+      "sweep": [
+        {
+          "tau": 0.5,
+          "precision": 0.3637,
+          "recall": 0.2276,
+          "f1": 0.28,
+          "pair_fold_rate": 0.0037
+        },
+        {
+          "tau": 0.51,
+          "precision": 0.3814,
+          "recall": 0.206,
+          "f1": 0.2675,
+          "pair_fold_rate": 0.0032
+        },
+        {
+          "tau": 0.52,
+          "precision": 0.3992,
+          "recall": 0.1878,
+          "f1": 0.2554,
+          "pair_fold_rate": 0.0028
+        },
+        {
+          "tau": 0.53,
+          "precision": 0.4136,
+          "recall": 0.1708,
+          "f1": 0.2418,
+          "pair_fold_rate": 0.0024
+        },
+        {
+          "tau": 0.54,
+          "precision": 0.4258,
+          "recall": 0.1511,
+          "f1": 0.2231,
+          "pair_fold_rate": 0.0021
+        },
+        {
+          "tau": 0.55,
+          "precision": 0.4451,
+          "recall": 0.1381,
+          "f1": 0.2108,
+          "pair_fold_rate": 0.0018
+        },
+        {
+          "tau": 0.56,
+          "precision": 0.4535,
+          "recall": 0.1212,
+          "f1": 0.1912,
+          "pair_fold_rate": 0.0016
+        },
+        {
+          "tau": 0.57,
+          "precision": 0.4651,
+          "recall": 0.1069,
+          "f1": 0.1739,
+          "pair_fold_rate": 0.0014
+        },
+        {
+          "tau": 0.58,
+          "precision": 0.4749,
+          "recall": 0.0959,
+          "f1": 0.1595,
+          "pair_fold_rate": 0.0012
+        },
+        {
+          "tau": 0.59,
+          "precision": 0.488,
+          "recall": 0.086,
+          "f1": 0.1463,
+          "pair_fold_rate": 0.001
+        },
+        {
+          "tau": 0.6,
+          "precision": 0.4877,
+          "recall": 0.0748,
+          "f1": 0.1297,
+          "pair_fold_rate": 0.0009
+        },
+        {
+          "tau": 0.61,
+          "precision": 0.4882,
+          "recall": 0.0656,
+          "f1": 0.1156,
+          "pair_fold_rate": 0.0008
+        },
+        {
+          "tau": 0.62,
+          "precision": 0.4859,
+          "recall": 0.0575,
+          "f1": 0.1029,
+          "pair_fold_rate": 0.0007
+        },
+        {
+          "tau": 0.63,
+          "precision": 0.4948,
+          "recall": 0.0509,
+          "f1": 0.0923,
+          "pair_fold_rate": 0.0006
+        },
+        {
+          "tau": 0.64,
+          "precision": 0.4975,
+          "recall": 0.0444,
+          "f1": 0.0815,
+          "pair_fold_rate": 0.0005
+        },
+        {
+          "tau": 0.65,
+          "precision": 0.4909,
+          "recall": 0.037,
+          "f1": 0.0687,
+          "pair_fold_rate": 0.0004
+        },
+        {
+          "tau": 0.66,
+          "precision": 0.508,
+          "recall": 0.0336,
+          "f1": 0.0631,
+          "pair_fold_rate": 0.0004
+        },
+        {
+          "tau": 0.67,
+          "precision": 0.5159,
+          "recall": 0.0295,
+          "f1": 0.0559,
+          "pair_fold_rate": 0.0003
+        },
+        {
+          "tau": 0.68,
+          "precision": 0.5031,
+          "recall": 0.0244,
+          "f1": 0.0465,
+          "pair_fold_rate": 0.0003
+        },
+        {
+          "tau": 0.69,
+          "precision": 0.5072,
+          "recall": 0.0212,
+          "f1": 0.0407,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.7,
+          "precision": 0.5062,
+          "recall": 0.0185,
+          "f1": 0.0357,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.71,
+          "precision": 0.5142,
+          "recall": 0.0165,
+          "f1": 0.032,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.72,
+          "precision": 0.5304,
+          "recall": 0.0145,
+          "f1": 0.0283,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.73,
+          "precision": 0.5432,
+          "recall": 0.0133,
+          "f1": 0.026,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.74,
+          "precision": 0.5625,
+          "recall": 0.0123,
+          "f1": 0.024,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.75,
+          "precision": 0.5615,
+          "recall": 0.0111,
+          "f1": 0.0217,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.76,
+          "precision": 0.5424,
+          "recall": 0.0097,
+          "f1": 0.019,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.77,
+          "precision": 0.5333,
+          "recall": 0.0085,
+          "f1": 0.0167,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.78,
+          "precision": 0.551,
+          "recall": 0.0082,
+          "f1": 0.0161,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.79,
+          "precision": 0.5368,
+          "recall": 0.0077,
+          "f1": 0.0152,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.8,
+          "precision": 0.5543,
+          "recall": 0.0077,
+          "f1": 0.0152,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.81,
+          "precision": 0.5568,
+          "recall": 0.0074,
+          "f1": 0.0146,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.82,
+          "precision": 0.5595,
+          "recall": 0.0071,
+          "f1": 0.0141,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.83,
+          "precision": 0.5595,
+          "recall": 0.0071,
+          "f1": 0.0141,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.84,
+          "precision": 0.5696,
+          "recall": 0.0068,
+          "f1": 0.0135,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.85,
+          "precision": 0.589,
+          "recall": 0.0065,
+          "f1": 0.0129,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.86,
+          "precision": 0.6,
+          "recall": 0.0064,
+          "f1": 0.0126,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.87,
+          "precision": 0.6,
+          "recall": 0.0064,
+          "f1": 0.0126,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.88,
+          "precision": 0.5942,
+          "recall": 0.0062,
+          "f1": 0.0123,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.89,
+          "precision": 0.6029,
+          "recall": 0.0062,
+          "f1": 0.0123,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.9,
+          "precision": 0.6212,
+          "recall": 0.0062,
+          "f1": 0.0123,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.91,
+          "precision": 0.6212,
+          "recall": 0.0062,
+          "f1": 0.0123,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.92,
+          "precision": 0.619,
+          "recall": 0.0059,
+          "f1": 0.0117,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.93,
+          "precision": 0.623,
+          "recall": 0.0058,
+          "f1": 0.0114,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.94,
+          "precision": 0.5965,
+          "recall": 0.0051,
+          "f1": 0.0102,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.95,
+          "precision": 0.5849,
+          "recall": 0.0047,
+          "f1": 0.0093,
+          "pair_fold_rate": 0.0
+        }
+      ]
+    },
+    "jina-v5-nano-clu:q8": {
+      "model": "jinaai/jina-embeddings-v5-text-nano-clustering",
+      "dtype": "q8",
+      "file": "onnx/model_quantized.onnx",
+      "dim": 768,
+      "pooling": "lasttoken",
+      "prompt": "Document: ",
+      "auc": 0.9426,
+      "best": {
+        "tau": 0.82,
+        "precision": 0.1835,
+        "recall": 0.3632,
+        "f1": 0.2438,
+        "pair_fold_rate": 0.0117
+      },
+      "greedy_ari": 0.1723,
+      "cpu_embed_secs": 90.4,
+      "note": "cc-by-nc-4.0 - UPPER BOUND REFERENCE ONLY, cannot ship",
+      "sweep": [
+        {
+          "tau": 0.5,
+          "precision": 0.0224,
+          "recall": 0.9447,
+          "f1": 0.0437,
+          "pair_fold_rate": 0.2492
+        },
+        {
+          "tau": 0.51,
+          "precision": 0.024,
+          "recall": 0.939,
+          "f1": 0.0468,
+          "pair_fold_rate": 0.2309
+        },
+        {
+          "tau": 0.52,
+          "precision": 0.0256,
+          "recall": 0.9288,
+          "f1": 0.0499,
+          "pair_fold_rate": 0.2137
+        },
+        {
+          "tau": 0.53,
+          "precision": 0.0275,
+          "recall": 0.9194,
+          "f1": 0.0534,
+          "pair_fold_rate": 0.1972
+        },
+        {
+          "tau": 0.54,
+          "precision": 0.0296,
+          "recall": 0.9113,
+          "f1": 0.0573,
+          "pair_fold_rate": 0.1817
+        },
+        {
+          "tau": 0.55,
+          "precision": 0.0317,
+          "recall": 0.8997,
+          "f1": 0.0613,
+          "pair_fold_rate": 0.1672
+        },
+        {
+          "tau": 0.56,
+          "precision": 0.0341,
+          "recall": 0.886,
+          "f1": 0.0656,
+          "pair_fold_rate": 0.1534
+        },
+        {
+          "tau": 0.57,
+          "precision": 0.0367,
+          "recall": 0.8746,
+          "f1": 0.0704,
+          "pair_fold_rate": 0.1405
+        },
+        {
+          "tau": 0.58,
+          "precision": 0.0396,
+          "recall": 0.8596,
+          "f1": 0.0757,
+          "pair_fold_rate": 0.1281
+        },
+        {
+          "tau": 0.59,
+          "precision": 0.0427,
+          "recall": 0.842,
+          "f1": 0.0813,
+          "pair_fold_rate": 0.1163
+        },
+        {
+          "tau": 0.6,
+          "precision": 0.0461,
+          "recall": 0.8258,
+          "f1": 0.0874,
+          "pair_fold_rate": 0.1056
+        },
+        {
+          "tau": 0.61,
+          "precision": 0.05,
+          "recall": 0.8107,
+          "f1": 0.0943,
+          "pair_fold_rate": 0.0955
+        },
+        {
+          "tau": 0.62,
+          "precision": 0.0543,
+          "recall": 0.7934,
+          "f1": 0.1016,
+          "pair_fold_rate": 0.0862
+        },
+        {
+          "tau": 0.63,
+          "precision": 0.059,
+          "recall": 0.7769,
+          "f1": 0.1097,
+          "pair_fold_rate": 0.0777
+        },
+        {
+          "tau": 0.64,
+          "precision": 0.0642,
+          "recall": 0.7594,
+          "f1": 0.1184,
+          "pair_fold_rate": 0.0697
+        },
+        {
+          "tau": 0.65,
+          "precision": 0.0698,
+          "recall": 0.7401,
+          "f1": 0.1276,
+          "pair_fold_rate": 0.0625
+        },
+        {
+          "tau": 0.66,
+          "precision": 0.0757,
+          "recall": 0.7206,
+          "f1": 0.1371,
+          "pair_fold_rate": 0.0561
+        },
+        {
+          "tau": 0.67,
+          "precision": 0.0825,
+          "recall": 0.7026,
+          "f1": 0.1477,
+          "pair_fold_rate": 0.0502
+        },
+        {
+          "tau": 0.68,
+          "precision": 0.0893,
+          "recall": 0.6814,
+          "f1": 0.1579,
+          "pair_fold_rate": 0.045
+        },
+        {
+          "tau": 0.69,
+          "precision": 0.0961,
+          "recall": 0.6589,
+          "f1": 0.1677,
+          "pair_fold_rate": 0.0404
+        },
+        {
+          "tau": 0.7,
+          "precision": 0.1034,
+          "recall": 0.6373,
+          "f1": 0.1779,
+          "pair_fold_rate": 0.0363
+        },
+        {
+          "tau": 0.71,
+          "precision": 0.1106,
+          "recall": 0.6147,
+          "f1": 0.1875,
+          "pair_fold_rate": 0.0328
+        },
+        {
+          "tau": 0.72,
+          "precision": 0.1179,
+          "recall": 0.5929,
+          "f1": 0.1967,
+          "pair_fold_rate": 0.0297
+        },
+        {
+          "tau": 0.73,
+          "precision": 0.1254,
+          "recall": 0.5705,
+          "f1": 0.2057,
+          "pair_fold_rate": 0.0268
+        },
+        {
+          "tau": 0.74,
+          "precision": 0.1323,
+          "recall": 0.5461,
+          "f1": 0.213,
+          "pair_fold_rate": 0.0243
+        },
+        {
+          "tau": 0.75,
+          "precision": 0.1396,
+          "recall": 0.5248,
+          "f1": 0.2205,
+          "pair_fold_rate": 0.0222
+        },
+        {
+          "tau": 0.76,
+          "precision": 0.1469,
+          "recall": 0.5014,
+          "f1": 0.2272,
+          "pair_fold_rate": 0.0201
+        },
+        {
+          "tau": 0.77,
+          "precision": 0.1532,
+          "recall": 0.4757,
+          "f1": 0.2318,
+          "pair_fold_rate": 0.0183
+        },
+        {
+          "tau": 0.78,
+          "precision": 0.1595,
+          "recall": 0.4519,
+          "f1": 0.2358,
+          "pair_fold_rate": 0.0167
+        },
+        {
+          "tau": 0.79,
+          "precision": 0.1669,
+          "recall": 0.4318,
+          "f1": 0.2407,
+          "pair_fold_rate": 0.0153
+        },
+        {
+          "tau": 0.8,
+          "precision": 0.1722,
+          "recall": 0.4056,
+          "f1": 0.2418,
+          "pair_fold_rate": 0.0139
+        },
+        {
+          "tau": 0.81,
+          "precision": 0.1773,
+          "recall": 0.3823,
+          "f1": 0.2422,
+          "pair_fold_rate": 0.0127
+        },
+        {
+          "tau": 0.82,
+          "precision": 0.1835,
+          "recall": 0.3632,
+          "f1": 0.2438,
+          "pair_fold_rate": 0.0117
+        },
+        {
+          "tau": 0.83,
+          "precision": 0.1882,
+          "recall": 0.3415,
+          "f1": 0.2427,
+          "pair_fold_rate": 0.0107
+        },
+        {
+          "tau": 0.84,
+          "precision": 0.1917,
+          "recall": 0.3182,
+          "f1": 0.2393,
+          "pair_fold_rate": 0.0098
+        },
+        {
+          "tau": 0.85,
+          "precision": 0.1939,
+          "recall": 0.2929,
+          "f1": 0.2333,
+          "pair_fold_rate": 0.0089
+        },
+        {
+          "tau": 0.86,
+          "precision": 0.1949,
+          "recall": 0.2673,
+          "f1": 0.2254,
+          "pair_fold_rate": 0.0081
+        },
+        {
+          "tau": 0.87,
+          "precision": 0.2024,
+          "recall": 0.249,
+          "f1": 0.2233,
+          "pair_fold_rate": 0.0073
+        },
+        {
+          "tau": 0.88,
+          "precision": 0.2092,
+          "recall": 0.2258,
+          "f1": 0.2172,
+          "pair_fold_rate": 0.0064
+        },
+        {
+          "tau": 0.89,
+          "precision": 0.2127,
+          "recall": 0.1992,
+          "f1": 0.2057,
+          "pair_fold_rate": 0.0055
+        },
+        {
+          "tau": 0.9,
+          "precision": 0.2165,
+          "recall": 0.1701,
+          "f1": 0.1905,
+          "pair_fold_rate": 0.0046
+        },
+        {
+          "tau": 0.91,
+          "precision": 0.2217,
+          "recall": 0.1434,
+          "f1": 0.1742,
+          "pair_fold_rate": 0.0038
+        },
+        {
+          "tau": 0.92,
+          "precision": 0.2286,
+          "recall": 0.114,
+          "f1": 0.1522,
+          "pair_fold_rate": 0.0029
+        },
+        {
+          "tau": 0.93,
+          "precision": 0.243,
+          "recall": 0.0889,
+          "f1": 0.1302,
+          "pair_fold_rate": 0.0022
+        },
+        {
+          "tau": 0.94,
+          "precision": 0.2729,
+          "recall": 0.0672,
+          "f1": 0.1079,
+          "pair_fold_rate": 0.0015
+        },
+        {
+          "tau": 0.95,
+          "precision": 0.3106,
+          "recall": 0.0468,
+          "f1": 0.0813,
+          "pair_fold_rate": 0.0009
+        }
+      ]
+    },
+    "embeddinggemma-300m:q8": {
+      "model": "onnx-community/embeddinggemma-300m-ONNX",
+      "dtype": "q8",
+      "file": "onnx/model_quantized.onnx",
+      "dim": 768,
+      "pooling": "mean",
+      "prompt": "task: sentence similarity | query: ",
+      "auc": 0.9308,
+      "best": {
+        "tau": 0.73,
+        "precision": 0.2661,
+        "recall": 0.2874,
+        "f1": 0.2764,
+        "pair_fold_rate": 0.0064
+      },
+      "greedy_ari": 0.1539,
+      "cpu_embed_secs": 104.0,
+      "note": "",
+      "sweep": [
+        {
+          "tau": 0.5,
+          "precision": 0.0063,
+          "recall": 0.9997,
+          "f1": 0.0125,
+          "pair_fold_rate": 0.9376
+        },
+        {
+          "tau": 0.51,
+          "precision": 0.0065,
+          "recall": 0.9995,
+          "f1": 0.0129,
+          "pair_fold_rate": 0.907
+        },
+        {
+          "tau": 0.52,
+          "precision": 0.0068,
+          "recall": 0.998,
+          "f1": 0.0135,
+          "pair_fold_rate": 0.8668
+        },
+        {
+          "tau": 0.53,
+          "precision": 0.0072,
+          "recall": 0.9976,
+          "f1": 0.0143,
+          "pair_fold_rate": 0.8174
+        },
+        {
+          "tau": 0.54,
+          "precision": 0.0077,
+          "recall": 0.995,
+          "f1": 0.0153,
+          "pair_fold_rate": 0.7588
+        },
+        {
+          "tau": 0.55,
+          "precision": 0.0085,
+          "recall": 0.9932,
+          "f1": 0.0168,
+          "pair_fold_rate": 0.6921
+        },
+        {
+          "tau": 0.56,
+          "precision": 0.0094,
+          "recall": 0.9892,
+          "f1": 0.0187,
+          "pair_fold_rate": 0.6192
+        },
+        {
+          "tau": 0.57,
+          "precision": 0.0107,
+          "recall": 0.9841,
+          "f1": 0.0211,
+          "pair_fold_rate": 0.543
+        },
+        {
+          "tau": 0.58,
+          "precision": 0.0123,
+          "recall": 0.9762,
+          "f1": 0.0244,
+          "pair_fold_rate": 0.4662
+        },
+        {
+          "tau": 0.59,
+          "precision": 0.0145,
+          "recall": 0.9641,
+          "f1": 0.0286,
+          "pair_fold_rate": 0.3915
+        },
+        {
+          "tau": 0.6,
+          "precision": 0.0174,
+          "recall": 0.9474,
+          "f1": 0.0342,
+          "pair_fold_rate": 0.321
+        },
+        {
+          "tau": 0.61,
+          "precision": 0.0211,
+          "recall": 0.9232,
+          "f1": 0.0413,
+          "pair_fold_rate": 0.2575
+        },
+        {
+          "tau": 0.62,
+          "precision": 0.0262,
+          "recall": 0.8943,
+          "f1": 0.0509,
+          "pair_fold_rate": 0.2012
+        },
+        {
+          "tau": 0.63,
+          "precision": 0.0329,
+          "recall": 0.8595,
+          "f1": 0.0634,
+          "pair_fold_rate": 0.154
+        },
+        {
+          "tau": 0.64,
+          "precision": 0.0416,
+          "recall": 0.8163,
+          "f1": 0.0792,
+          "pair_fold_rate": 0.1157
+        },
+        {
+          "tau": 0.65,
+          "precision": 0.0533,
+          "recall": 0.7683,
+          "f1": 0.0996,
+          "pair_fold_rate": 0.085
+        },
+        {
+          "tau": 0.66,
+          "precision": 0.0681,
+          "recall": 0.7124,
+          "f1": 0.1243,
+          "pair_fold_rate": 0.0617
+        },
+        {
+          "tau": 0.67,
+          "precision": 0.0869,
+          "recall": 0.6558,
+          "f1": 0.1534,
+          "pair_fold_rate": 0.0445
+        },
+        {
+          "tau": 0.68,
+          "precision": 0.1091,
+          "recall": 0.5912,
+          "f1": 0.1842,
+          "pair_fold_rate": 0.032
+        },
+        {
+          "tau": 0.69,
+          "precision": 0.1348,
+          "recall": 0.524,
+          "f1": 0.2144,
+          "pair_fold_rate": 0.0229
+        },
+        {
+          "tau": 0.7,
+          "precision": 0.1632,
+          "recall": 0.4563,
+          "f1": 0.2405,
+          "pair_fold_rate": 0.0165
+        },
+        {
+          "tau": 0.71,
+          "precision": 0.1943,
+          "recall": 0.3932,
+          "f1": 0.2601,
+          "pair_fold_rate": 0.0119
+        },
+        {
+          "tau": 0.72,
+          "precision": 0.2311,
+          "recall": 0.3409,
+          "f1": 0.2755,
+          "pair_fold_rate": 0.0087
+        },
+        {
+          "tau": 0.73,
+          "precision": 0.2661,
+          "recall": 0.2874,
+          "f1": 0.2764,
+          "pair_fold_rate": 0.0064
+        },
+        {
+          "tau": 0.74,
+          "precision": 0.3044,
+          "recall": 0.2429,
+          "f1": 0.2702,
+          "pair_fold_rate": 0.0047
+        },
+        {
+          "tau": 0.75,
+          "precision": 0.333,
+          "recall": 0.1995,
+          "f1": 0.2495,
+          "pair_fold_rate": 0.0035
+        },
+        {
+          "tau": 0.76,
+          "precision": 0.3568,
+          "recall": 0.162,
+          "f1": 0.2229,
+          "pair_fold_rate": 0.0027
+        },
+        {
+          "tau": 0.77,
+          "precision": 0.3765,
+          "recall": 0.1321,
+          "f1": 0.1955,
+          "pair_fold_rate": 0.0021
+        },
+        {
+          "tau": 0.78,
+          "precision": 0.3972,
+          "recall": 0.1083,
+          "f1": 0.1702,
+          "pair_fold_rate": 0.0016
+        },
+        {
+          "tau": 0.79,
+          "precision": 0.4136,
+          "recall": 0.09,
+          "f1": 0.1478,
+          "pair_fold_rate": 0.0013
+        },
+        {
+          "tau": 0.8,
+          "precision": 0.4315,
+          "recall": 0.0763,
+          "f1": 0.1297,
+          "pair_fold_rate": 0.001
+        },
+        {
+          "tau": 0.81,
+          "precision": 0.4383,
+          "recall": 0.0624,
+          "f1": 0.1092,
+          "pair_fold_rate": 0.0008
+        },
+        {
+          "tau": 0.82,
+          "precision": 0.4447,
+          "recall": 0.0518,
+          "f1": 0.0928,
+          "pair_fold_rate": 0.0007
+        },
+        {
+          "tau": 0.83,
+          "precision": 0.4553,
+          "recall": 0.0424,
+          "f1": 0.0776,
+          "pair_fold_rate": 0.0005
+        },
+        {
+          "tau": 0.84,
+          "precision": 0.448,
+          "recall": 0.0339,
+          "f1": 0.0631,
+          "pair_fold_rate": 0.0004
+        },
+        {
+          "tau": 0.85,
+          "precision": 0.4333,
+          "recall": 0.0276,
+          "f1": 0.0518,
+          "pair_fold_rate": 0.0004
+        },
+        {
+          "tau": 0.86,
+          "precision": 0.4261,
+          "recall": 0.0227,
+          "f1": 0.0431,
+          "pair_fold_rate": 0.0003
+        },
+        {
+          "tau": 0.87,
+          "precision": 0.4184,
+          "recall": 0.0179,
+          "f1": 0.0343,
+          "pair_fold_rate": 0.0003
+        },
+        {
+          "tau": 0.88,
+          "precision": 0.4118,
+          "recall": 0.0148,
+          "f1": 0.0287,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.89,
+          "precision": 0.4184,
+          "recall": 0.0124,
+          "f1": 0.0241,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.9,
+          "precision": 0.4304,
+          "recall": 0.0103,
+          "f1": 0.0201,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.91,
+          "precision": 0.4627,
+          "recall": 0.0094,
+          "f1": 0.0184,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.92,
+          "precision": 0.4914,
+          "recall": 0.0086,
+          "f1": 0.017,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.93,
+          "precision": 0.5192,
+          "recall": 0.0082,
+          "f1": 0.0161,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.94,
+          "precision": 0.4946,
+          "recall": 0.007,
+          "f1": 0.0137,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.95,
+          "precision": 0.5294,
+          "recall": 0.0068,
+          "f1": 0.0135,
+          "pair_fold_rate": 0.0001
+        }
+      ]
+    },
+    "gte-ml-base:q8": {
+      "model": "onnx-community/gte-multilingual-base",
+      "dtype": "q8",
+      "file": "onnx/model_quantized.onnx",
+      "dim": 768,
+      "pooling": "cls",
+      "prompt": "",
+      "auc": 0.9756,
+      "best": {
+        "tau": 0.68,
+        "precision": 0.4129,
+        "recall": 0.4957,
+        "f1": 0.4505,
+        "pair_fold_rate": 0.0071
+      },
+      "greedy_ari": 0.3066,
+      "cpu_embed_secs": 43.7,
+      "note": "",
+      "sweep": [
+        {
+          "tau": 0.5,
+          "precision": 0.0137,
+          "recall": 0.992,
+          "f1": 0.0271,
+          "pair_fold_rate": 0.4263
+        },
+        {
+          "tau": 0.51,
+          "precision": 0.0166,
+          "recall": 0.9885,
+          "f1": 0.0326,
+          "pair_fold_rate": 0.352
+        },
+        {
+          "tau": 0.52,
+          "precision": 0.0204,
+          "recall": 0.9824,
+          "f1": 0.0399,
+          "pair_fold_rate": 0.2845
+        },
+        {
+          "tau": 0.53,
+          "precision": 0.0255,
+          "recall": 0.9756,
+          "f1": 0.0497,
+          "pair_fold_rate": 0.2258
+        },
+        {
+          "tau": 0.54,
+          "precision": 0.0324,
+          "recall": 0.9682,
+          "f1": 0.0626,
+          "pair_fold_rate": 0.1764
+        },
+        {
+          "tau": 0.55,
+          "precision": 0.0415,
+          "recall": 0.9576,
+          "f1": 0.0795,
+          "pair_fold_rate": 0.1361
+        },
+        {
+          "tau": 0.56,
+          "precision": 0.0533,
+          "recall": 0.9432,
+          "f1": 0.101,
+          "pair_fold_rate": 0.1043
+        },
+        {
+          "tau": 0.57,
+          "precision": 0.0687,
+          "recall": 0.9255,
+          "f1": 0.1279,
+          "pair_fold_rate": 0.0795
+        },
+        {
+          "tau": 0.58,
+          "precision": 0.0875,
+          "recall": 0.902,
+          "f1": 0.1595,
+          "pair_fold_rate": 0.0608
+        },
+        {
+          "tau": 0.59,
+          "precision": 0.1107,
+          "recall": 0.8767,
+          "f1": 0.1966,
+          "pair_fold_rate": 0.0467
+        },
+        {
+          "tau": 0.6,
+          "precision": 0.1377,
+          "recall": 0.8487,
+          "f1": 0.2369,
+          "pair_fold_rate": 0.0364
+        },
+        {
+          "tau": 0.61,
+          "precision": 0.1686,
+          "recall": 0.8189,
+          "f1": 0.2796,
+          "pair_fold_rate": 0.0286
+        },
+        {
+          "tau": 0.62,
+          "precision": 0.201,
+          "recall": 0.781,
+          "f1": 0.3197,
+          "pair_fold_rate": 0.0229
+        },
+        {
+          "tau": 0.63,
+          "precision": 0.2352,
+          "recall": 0.7381,
+          "f1": 0.3568,
+          "pair_fold_rate": 0.0185
+        },
+        {
+          "tau": 0.64,
+          "precision": 0.2709,
+          "recall": 0.6935,
+          "f1": 0.3896,
+          "pair_fold_rate": 0.0151
+        },
+        {
+          "tau": 0.65,
+          "precision": 0.3058,
+          "recall": 0.6435,
+          "f1": 0.4146,
+          "pair_fold_rate": 0.0124
+        },
+        {
+          "tau": 0.66,
+          "precision": 0.3435,
+          "recall": 0.595,
+          "f1": 0.4356,
+          "pair_fold_rate": 0.0102
+        },
+        {
+          "tau": 0.67,
+          "precision": 0.3791,
+          "recall": 0.5438,
+          "f1": 0.4468,
+          "pair_fold_rate": 0.0085
+        },
+        {
+          "tau": 0.68,
+          "precision": 0.4129,
+          "recall": 0.4957,
+          "f1": 0.4505,
+          "pair_fold_rate": 0.0071
+        },
+        {
+          "tau": 0.69,
+          "precision": 0.4431,
+          "recall": 0.4439,
+          "f1": 0.4435,
+          "pair_fold_rate": 0.0059
+        },
+        {
+          "tau": 0.7,
+          "precision": 0.4737,
+          "recall": 0.3959,
+          "f1": 0.4313,
+          "pair_fold_rate": 0.0049
+        },
+        {
+          "tau": 0.71,
+          "precision": 0.5009,
+          "recall": 0.3501,
+          "f1": 0.4122,
+          "pair_fold_rate": 0.0041
+        },
+        {
+          "tau": 0.72,
+          "precision": 0.5252,
+          "recall": 0.3018,
+          "f1": 0.3833,
+          "pair_fold_rate": 0.0034
+        },
+        {
+          "tau": 0.73,
+          "precision": 0.5449,
+          "recall": 0.2519,
+          "f1": 0.3445,
+          "pair_fold_rate": 0.0027
+        },
+        {
+          "tau": 0.74,
+          "precision": 0.5617,
+          "recall": 0.2102,
+          "f1": 0.3059,
+          "pair_fold_rate": 0.0022
+        },
+        {
+          "tau": 0.75,
+          "precision": 0.5741,
+          "recall": 0.1754,
+          "f1": 0.2687,
+          "pair_fold_rate": 0.0018
+        },
+        {
+          "tau": 0.76,
+          "precision": 0.5799,
+          "recall": 0.1424,
+          "f1": 0.2286,
+          "pair_fold_rate": 0.0014
+        },
+        {
+          "tau": 0.77,
+          "precision": 0.5784,
+          "recall": 0.1145,
+          "f1": 0.1912,
+          "pair_fold_rate": 0.0012
+        },
+        {
+          "tau": 0.78,
+          "precision": 0.5869,
+          "recall": 0.0925,
+          "f1": 0.1599,
+          "pair_fold_rate": 0.0009
+        },
+        {
+          "tau": 0.79,
+          "precision": 0.6152,
+          "recall": 0.076,
+          "f1": 0.1353,
+          "pair_fold_rate": 0.0007
+        },
+        {
+          "tau": 0.8,
+          "precision": 0.6434,
+          "recall": 0.0615,
+          "f1": 0.1122,
+          "pair_fold_rate": 0.0006
+        },
+        {
+          "tau": 0.81,
+          "precision": 0.6392,
+          "recall": 0.0494,
+          "f1": 0.0917,
+          "pair_fold_rate": 0.0005
+        },
+        {
+          "tau": 0.82,
+          "precision": 0.6305,
+          "recall": 0.0388,
+          "f1": 0.073,
+          "pair_fold_rate": 0.0004
+        },
+        {
+          "tau": 0.83,
+          "precision": 0.6116,
+          "recall": 0.0303,
+          "f1": 0.0577,
+          "pair_fold_rate": 0.0003
+        },
+        {
+          "tau": 0.84,
+          "precision": 0.6107,
+          "recall": 0.0242,
+          "f1": 0.0466,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.85,
+          "precision": 0.5926,
+          "recall": 0.0194,
+          "f1": 0.0375,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.86,
+          "precision": 0.581,
+          "recall": 0.0158,
+          "f1": 0.0307,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.87,
+          "precision": 0.5789,
+          "recall": 0.0133,
+          "f1": 0.0261,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.88,
+          "precision": 0.6031,
+          "recall": 0.012,
+          "f1": 0.0235,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.89,
+          "precision": 0.5965,
+          "recall": 0.0103,
+          "f1": 0.0202,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.9,
+          "precision": 0.6117,
+          "recall": 0.0095,
+          "f1": 0.0188,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.91,
+          "precision": 0.617,
+          "recall": 0.0088,
+          "f1": 0.0173,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.92,
+          "precision": 0.5976,
+          "recall": 0.0074,
+          "f1": 0.0147,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.93,
+          "precision": 0.6164,
+          "recall": 0.0068,
+          "f1": 0.0135,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.94,
+          "precision": 0.6,
+          "recall": 0.0064,
+          "f1": 0.0126,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.95,
+          "precision": 0.6029,
+          "recall": 0.0062,
+          "f1": 0.0123,
+          "pair_fold_rate": 0.0001
+        }
+      ]
+    },
+    "harrier-270m:q8": {
+      "model": "onnx-community/harrier-oss-v1-270m-ONNX",
+      "dtype": "q8",
+      "file": "onnx/model_quantized.onnx",
+      "dim": 640,
+      "pooling": "lasttoken",
+      "prompt": "Instruct: Retrieve semantically similar text\nQuery: ",
+      "auc": 0.9423,
+      "best": {
+        "tau": 0.78,
+        "precision": 0.2768,
+        "recall": 0.3889,
+        "f1": 0.3234,
+        "pair_fold_rate": 0.0083
+      },
+      "greedy_ari": 0.2248,
+      "cpu_embed_secs": 81.8,
+      "note": "ships an sts_query prompt that is exactly this task",
+      "sweep": [
+        {
+          "tau": 0.5,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0117,
+          "pair_fold_rate": 1.0
+        },
+        {
+          "tau": 0.51,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0117,
+          "pair_fold_rate": 0.9999
+        },
+        {
+          "tau": 0.52,
+          "precision": 0.0059,
+          "recall": 1.0,
+          "f1": 0.0117,
+          "pair_fold_rate": 0.9997
+        },
+        {
+          "tau": 0.53,
+          "precision": 0.0059,
+          "recall": 0.9998,
+          "f1": 0.0117,
+          "pair_fold_rate": 0.9994
+        },
+        {
+          "tau": 0.54,
+          "precision": 0.0059,
+          "recall": 0.9998,
+          "f1": 0.0117,
+          "pair_fold_rate": 0.9987
+        },
+        {
+          "tau": 0.55,
+          "precision": 0.0059,
+          "recall": 0.9998,
+          "f1": 0.0118,
+          "pair_fold_rate": 0.9976
+        },
+        {
+          "tau": 0.56,
+          "precision": 0.0059,
+          "recall": 0.9998,
+          "f1": 0.0118,
+          "pair_fold_rate": 0.9955
+        },
+        {
+          "tau": 0.57,
+          "precision": 0.0059,
+          "recall": 0.9998,
+          "f1": 0.0118,
+          "pair_fold_rate": 0.9917
+        },
+        {
+          "tau": 0.58,
+          "precision": 0.006,
+          "recall": 0.9998,
+          "f1": 0.0119,
+          "pair_fold_rate": 0.9847
+        },
+        {
+          "tau": 0.59,
+          "precision": 0.0061,
+          "recall": 0.9998,
+          "f1": 0.0121,
+          "pair_fold_rate": 0.9724
+        },
+        {
+          "tau": 0.6,
+          "precision": 0.0062,
+          "recall": 0.9997,
+          "f1": 0.0123,
+          "pair_fold_rate": 0.9524
+        },
+        {
+          "tau": 0.61,
+          "precision": 0.0064,
+          "recall": 0.9997,
+          "f1": 0.0127,
+          "pair_fold_rate": 0.9215
+        },
+        {
+          "tau": 0.62,
+          "precision": 0.0067,
+          "recall": 0.9995,
+          "f1": 0.0134,
+          "pair_fold_rate": 0.8768
+        },
+        {
+          "tau": 0.63,
+          "precision": 0.0072,
+          "recall": 0.9983,
+          "f1": 0.0143,
+          "pair_fold_rate": 0.8159
+        },
+        {
+          "tau": 0.64,
+          "precision": 0.0079,
+          "recall": 0.9947,
+          "f1": 0.0157,
+          "pair_fold_rate": 0.739
+        },
+        {
+          "tau": 0.65,
+          "precision": 0.009,
+          "recall": 0.9918,
+          "f1": 0.0179,
+          "pair_fold_rate": 0.6478
+        },
+        {
+          "tau": 0.66,
+          "precision": 0.0106,
+          "recall": 0.9873,
+          "f1": 0.021,
+          "pair_fold_rate": 0.5485
+        },
+        {
+          "tau": 0.67,
+          "precision": 0.0129,
+          "recall": 0.9791,
+          "f1": 0.0255,
+          "pair_fold_rate": 0.4477
+        },
+        {
+          "tau": 0.68,
+          "precision": 0.0162,
+          "recall": 0.9656,
+          "f1": 0.0319,
+          "pair_fold_rate": 0.3517
+        },
+        {
+          "tau": 0.69,
+          "precision": 0.0209,
+          "recall": 0.944,
+          "f1": 0.041,
+          "pair_fold_rate": 0.2658
+        },
+        {
+          "tau": 0.7,
+          "precision": 0.0277,
+          "recall": 0.9105,
+          "f1": 0.0537,
+          "pair_fold_rate": 0.194
+        },
+        {
+          "tau": 0.71,
+          "precision": 0.0376,
+          "recall": 0.8732,
+          "f1": 0.0721,
+          "pair_fold_rate": 0.137
+        },
+        {
+          "tau": 0.72,
+          "precision": 0.0514,
+          "recall": 0.8201,
+          "f1": 0.0967,
+          "pair_fold_rate": 0.0942
+        },
+        {
+          "tau": 0.73,
+          "precision": 0.0714,
+          "recall": 0.7639,
+          "f1": 0.1305,
+          "pair_fold_rate": 0.0631
+        },
+        {
+          "tau": 0.74,
+          "precision": 0.0974,
+          "recall": 0.6894,
+          "f1": 0.1706,
+          "pair_fold_rate": 0.0418
+        },
+        {
+          "tau": 0.75,
+          "precision": 0.132,
+          "recall": 0.6144,
+          "f1": 0.2174,
+          "pair_fold_rate": 0.0274
+        },
+        {
+          "tau": 0.76,
+          "precision": 0.1744,
+          "recall": 0.5367,
+          "f1": 0.2633,
+          "pair_fold_rate": 0.0181
+        },
+        {
+          "tau": 0.77,
+          "precision": 0.2252,
+          "recall": 0.4652,
+          "f1": 0.3035,
+          "pair_fold_rate": 0.0122
+        },
+        {
+          "tau": 0.78,
+          "precision": 0.2768,
+          "recall": 0.3889,
+          "f1": 0.3234,
+          "pair_fold_rate": 0.0083
+        },
+        {
+          "tau": 0.79,
+          "precision": 0.3257,
+          "recall": 0.3183,
+          "f1": 0.322,
+          "pair_fold_rate": 0.0058
+        },
+        {
+          "tau": 0.8,
+          "precision": 0.3723,
+          "recall": 0.2566,
+          "f1": 0.3038,
+          "pair_fold_rate": 0.0041
+        },
+        {
+          "tau": 0.81,
+          "precision": 0.4109,
+          "recall": 0.2019,
+          "f1": 0.2707,
+          "pair_fold_rate": 0.0029
+        },
+        {
+          "tau": 0.82,
+          "precision": 0.4426,
+          "recall": 0.157,
+          "f1": 0.2318,
+          "pair_fold_rate": 0.0021
+        },
+        {
+          "tau": 0.83,
+          "precision": 0.4629,
+          "recall": 0.1228,
+          "f1": 0.1941,
+          "pair_fold_rate": 0.0016
+        },
+        {
+          "tau": 0.84,
+          "precision": 0.4814,
+          "recall": 0.0942,
+          "f1": 0.1576,
+          "pair_fold_rate": 0.0012
+        },
+        {
+          "tau": 0.85,
+          "precision": 0.4953,
+          "recall": 0.0722,
+          "f1": 0.1261,
+          "pair_fold_rate": 0.0009
+        },
+        {
+          "tau": 0.86,
+          "precision": 0.4932,
+          "recall": 0.0553,
+          "f1": 0.0994,
+          "pair_fold_rate": 0.0007
+        },
+        {
+          "tau": 0.87,
+          "precision": 0.4991,
+          "recall": 0.0427,
+          "f1": 0.0787,
+          "pair_fold_rate": 0.0005
+        },
+        {
+          "tau": 0.88,
+          "precision": 0.4954,
+          "recall": 0.0326,
+          "f1": 0.0611,
+          "pair_fold_rate": 0.0004
+        },
+        {
+          "tau": 0.89,
+          "precision": 0.4985,
+          "recall": 0.0251,
+          "f1": 0.0479,
+          "pair_fold_rate": 0.0003
+        },
+        {
+          "tau": 0.9,
+          "precision": 0.502,
+          "recall": 0.0186,
+          "f1": 0.0359,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.91,
+          "precision": 0.5246,
+          "recall": 0.0145,
+          "f1": 0.0283,
+          "pair_fold_rate": 0.0002
+        },
+        {
+          "tau": 0.92,
+          "precision": 0.5436,
+          "recall": 0.0123,
+          "f1": 0.024,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.93,
+          "precision": 0.5893,
+          "recall": 0.01,
+          "f1": 0.0197,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.94,
+          "precision": 0.5714,
+          "recall": 0.0085,
+          "f1": 0.0167,
+          "pair_fold_rate": 0.0001
+        },
+        {
+          "tau": 0.95,
+          "precision": 0.573,
+          "recall": 0.0077,
+          "f1": 0.0152,
+          "pair_fold_rate": 0.0001
+        }
+      ]
+    }
+  }
+}

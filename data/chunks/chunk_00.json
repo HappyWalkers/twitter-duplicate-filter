@@ -1,0 +1,1208 @@
+[
+ {
+  "statusId": "2095381099488915586",
+  "author": "Alacritic_Super",
+  "text": "15 Robotics AI Models every builder should know\n\n1. OpenVLA\nOpen-source VLA model for turning images + language instructions into robot actions.\n\nhttps://\ngithub.com/openvla/openvla\n\n2. π₀ / OpenPI\nPhysical Intelligence's general-purpose robot foundation model and open-source framework.",
+  "trend": null
+ },
+ {
+  "statusId": "2095630197257367857",
+  "author": "higgsfield_ai",
+  "text": "GPT-6 Astra just vibe-coded the Oval Office in 3D.\n\nWe described the set design > GPT-6 Astra generated the scene code > Higgsfield built the location model in Blender and rendered it with Cycles.\n\nThe whole pipeline ran end-to-end on Higgsfield Supercomputer.",
+  "trend": null
+ },
+ {
+  "statusId": "2095469352976003482",
+  "author": "seeedstudio",
+  "text": "Physical AI Project of August | Creativity Award 🏆\nCongrats to our community member, Fangtian Chonghui!\n\nNo controller. No wearable device. Just bare hands controlling two reBot #opensource #robotic arms synchronously to fold a T-shirt.\n\nFangtian will receive an AmazingHand 🤚",
+  "trend": null
+ },
+ {
+  "statusId": "2095637507337826741",
+  "author": "ChihYang04",
+  "text": "GPT-6 Astra doing PCB layout in KiCad 🤯🤯",
+  "trend": null
+ },
+ {
+  "statusId": "2095616072174981379",
+  "author": "Azure",
+  "text": "We’re excited to welcome GPT-6 Astra to Microsoft Foundry.\n\nLook beyond chat, Astra is built to work for you, act across your apps, and even use a full computer. Unleash a new wave of productivity for your organization without compromising trust and security.",
+  "trend": null
+ },
+ {
+  "statusId": "2095696882844463382",
+  "author": "DrJimFan",
+  "text": "Good old days at OpenAI in 2016: an agent stares at screen pixels, moves a mouse, and books a flight on United. We called it World of Bits, inside OpenAI Universe. 10 yrs later, Astra is reincarnated in the same universe. Even the naming is astronomically correct 😆\n\nUniverse was",
+  "trend": null
+ },
+ {
+  "statusId": "2095662090702995702",
+  "author": "chooi_jeq",
+  "text": "We are giving out $500k and free YAM arms to academic teams to design dexterous manipulation benchmarks and run real-world evaluations.\n\nGeneral-purpose robots could soon be in homes and data centers. Society should know what robots can do before they get there.",
+  "trend": null
+ },
+ {
+  "statusId": "2095667518157537657",
+  "author": "NVIDIAAIInfra",
+  "text": "Congratulations to \n@OpenAI\n on GPT-6 Astra! 🌌 \n\nIts most intelligent and aligned model to date, trained and deployed using NVIDIA AI infrastructure to advance computer use, agentic coding, professional work, scientific reasoning and cybersecurity.\n\nExcited to see what developers,",
+  "trend": null
+ },
+ {
+  "statusId": "2095610633400324220",
+  "author": "pablovelagomez1",
+  "text": "Next up, something I haven't REALLY managed to get working for a long time is synchronized, uncalibrated videos for person tracking.\n\nWhenever I used something like vggt, there was just enough residual error that it didn't work and gave crap results.\n\nI have a version now in",
+  "trend": null
+ },
+ {
+  "statusId": "2095245738183942531",
+  "author": "jhshin2000",
+  "text": "1/\nCan Video World Models Track Unobserved World States?\n\nVideo world models increasingly look like simulators. But rendering plausible video is not the same as knowing what the world is doing.\n\nWe test this with a video shell game. A ball hides under one of five identical cups,",
+  "trend": null
+ },
+ {
+  "statusId": "2092293667688173593",
+  "author": "GoogleLabs",
+  "text": "🚨 NEW LABS EXPERIMENT 🚨\n\nGreat minds t̵h̵i̵n̵k̵  play alike!\n\nPlay with Putty is a collaborative vibe coding tool that lets you build tools and websites together in real time. 🫟\n\nReady for your imagination to go multiplayer? Join the waitlist at \nhttps://\nlabs.google/playwithputty and",
+  "trend": null
+ },
+ {
+  "statusId": "2095510033169777025",
+  "author": "ChinaNow24",
+  "text": "UNUSUAL\nA Chinese robot with exceptional capabilities… a perfect integration of a humanoid robot and a robotic arm!\n\nA modular design and a 360‑degree work range with no blind spots allow the robot to perform diverse tasks with high efficiency and flexibility. \n\nThis technical",
+  "trend": null
+ },
+ {
+  "statusId": "2095608316848189946",
+  "author": "XuFei_Xiaomi",
+  "text": "Meet Mijia: smart products designed to do the right thing at the right moment. Coming to Europe.\n#Mijia #Xiaomi #IFA2026",
+  "trend": null
+ },
+ {
+  "statusId": "2095584692909257044",
+  "author": "arena",
+  "text": "Muse Spark 1.3 (xHigh) just landed \n@AIatMeta\n back in the top 10 models for Code Arena: WebDev!\n\nThis release is ~#10 in Code Arena: WebDev with 1623 pts (AutoEval). It’s performance is par with Claude Fable 5 at #8 (1628 pts) and GPT-5.6 Sol at #11 (1616 pts).\n\nMuse Spark 1.3",
+  "trend": null
+ },
+ {
+  "statusId": "2095628925582057840",
+  "author": "googlephotos",
+  "text": "Google Photos in Gemini Spark is here. Put your photo library into action to handle end-to-end tasks with a single prompt.\n\n📸 100+ vacation shots ➡️ Cleaned-up photos in a shared album & emailed recap\n📝 Whiteboard snapshots ➡️ Drafted team emails\n🗓️ Event flyers ➡️ Checked for",
+  "trend": null
+ },
+ {
+  "statusId": "2095616662342906274",
+  "author": "NVIDIADRIVE",
+  "text": "Building robotaxis or L4 autonomy? Don't miss our livestream. \n\nOn Sept. 9 @ 9AM PT, we'll deep dive into NVIDIA Alpamayo 2 Super, covering release notebooks, robotaxi pipelines, AlpaSim updates and more. \n\nSave the date: \nhttps://\nnvda.ws/4A1S9r5",
+  "trend": null
+ },
+ {
+  "statusId": "2095622423324590308",
+  "author": "higgsfield_ai",
+  "text": "This shot walks through seven rooms without a cut.\n\nGPT-6 Astra mapped the space, the blocking never left the viewport, and Higgsfield Seedance 2.5 rendered the whole run.",
+  "trend": null
+ },
+ {
+  "statusId": "2095621195131695352",
+  "author": "AravSrinivas",
+  "text": "Congrats to \n@OpenAI\n on building the industry's frontier model: GPT-6 Astra. It's far ahead of every other model on wide and deep research tasks, while also being more cost-effective. We'll be bringing this model up on Perplexity Computer for all Pro and Max users soon!",
+  "trend": null
+ },
+ {
+  "statusId": "2095501816998039580",
+  "author": "rsasaki0109",
+  "text": "Qwen-RobotManip\nAlignment Unlocks Scale for Robotic Manipulation Foundation Models\n\nhttps://\ngithub.com/QwenLM/Qwen-Ro\nbotManip\n…\nQwen-RobotManip is a generalizable vision-language-action foundation model built upon Qwen-VL / Qwen3.5-4B. It couples a vision-language backbone with a flow-matching",
+  "trend": null
+ },
+ {
+  "statusId": "2095720649922871630",
+  "author": "Stefan_3D_AI",
+  "text": "GPT-6 changes 3D modeling forever.\n\nIt works inside Blender completely autonomously, like an artist: gathers reference photos on its own, builds the scene, renders test frames, checks them against the references, then fixes what's off.\n\nWhen the scene holds up, it ships it to",
+  "trend": null
+ },
+ {
+  "statusId": "2095527234811633882",
+  "author": "perceptroninc",
+  "text": "In case you were wondering – Yes, Isaac can fold tshirts too.\n\nMore importantly, you can reproduce our results on multiple embodiments.\n\nRead more about what Isaac 0.5 can do:\n\nhttps://\nperceptron.inc/blog/introduci\nng-isaac-0-5\n…\n\nDownload the weights:\n\nhttps://\nhuggingface.co/PerceptronAI/I\nsaac-0.5\n…",
+  "trend": null
+ },
+ {
+  "statusId": "2095688272269984016",
+  "author": "SahilExec",
+  "text": "GPT-6 Astra vs Fable 5.1 in Blender…\n\nThe gap in visual quality is actually crazy 👀\n\nAI is getting dangerously good at turning prompts into fully built 3D scenes.\n\nWhich one would you pick?",
+  "trend": null
+ },
+ {
+  "statusId": "2095596020638036311",
+  "author": "OpenAIDevs",
+  "text": "GPT-6 Astra is our best model yet for computer use, software engineering, and visual understanding to date.\n\nHear from the builders putting it to work:",
+  "trend": null
+ },
+ {
+  "statusId": "2095412493686395147",
+  "author": "DeRonin_",
+  "text": "here are 5 robots you could build after reading this article:\n\n1. the SO-101 arm, $122 in parts\nbuild it, calibrate every servo, teleoperate it, then print your own gripper fingers\n\n2. a ROS 2 rover that maps a room and navigates it\nSLAM Toolbox and Nav2, and you can do the whole",
+  "trend": null
+ },
+ {
+  "statusId": "2095721318515699868",
+  "author": "nodedotshane",
+  "text": "Is this how reality works and every human is actually just a node in the underlying blockchain network to verify state?",
+  "trend": null
+ },
+ {
+  "statusId": "2095526486237229160",
+  "author": "TensordyneInc",
+  "text": "Nobody gets more fast tokens out of a megawatt than us. Nobody.\n\n· Bit-accurate log math is locked in.\n· Chip is taped out with Broadcom and in wafer fab on TSMC 3nm.\n· System bring-up of compute tray with HPE Juniper scale-up fabric is ahead of schedule.\n\nToday we're publishing",
+  "trend": null
+ },
+ {
+  "statusId": "2095495519149985866",
+  "author": "OrcaRouter",
+  "text": "Our official DeepSeek V4 Flash Vision Uncensored weights just shipped 🐳\n\n→ Uncensoring baked directly into the weights\n→ Official Block-FP8 / FP4 checkpoint format\n→ No jailbreak. No runtime tricks.\n\nRun it yourself locally. Have fun.",
+  "trend": null
+ },
+ {
+  "statusId": "2095603455524053264",
+  "author": "clankrmedia",
+  "text": "China built a robot you can actually ride.\n\nVOGEBOT is a wheeled quadruped that can carry a human.\n\nIt climbs slopes and handles rough terrain.\n\nWould you ride one?",
+  "trend": null
+ },
+ {
+  "statusId": "2095616597419528426",
+  "author": "DanDr1s",
+  "text": "The Artificial Analysis Intelligence Index is starting to lose its credibility.\n\nIt ranks Muse Spark 1.3 above GPT-6 Astra:\n\n• Muse Spark 1.3: 62\n• GPT-6 Astra: 61\n\nYet GPT-6 Astra got:\n\n• 98.6% on ARC-AGI-3\n• 97.6% on FrontierMath\n• 100% on ExploitBench\n\nNo disrespect to",
+  "trend": null
+ },
+ {
+  "statusId": "2095670836275634536",
+  "author": "Codex_Changelog",
+  "text": "🚀 Codex CLI 0.153.2 is out!\n\n🔧 GPT-6-Astra Fast: speed description fixed (1.5x → 2x)\n📋 Display-only fix; request behavior unchanged\n✅ Accurate \"increased usage\" label in Fast tier\n\nChangelog:",
+  "trend": null
+ },
+ {
+  "statusId": "2095541168528675148",
+  "author": "belkin",
+  "text": "The next generation of portable power is here. ⚡\n\nMeet Belkin’s new semi-solid-state power bank, built to bring more power wherever the day takes you.\n\n#Belkin #PortablePower #PowerBank #TechLaunch #TechEssentials",
+  "trend": null
+ },
+ {
+  "statusId": "2095582023058432213",
+  "author": "rive_app",
+  "text": "GPU Canvas is now live for everyone.\n\nRive's low-level GPU layer for 3D, shaders, and custom effects is out of Early Access and in the production editor today.\n\nWrite your shaders once in WGSL. Rive compiles them for Metal, Vulkan, Direct3D, WebGPU, and WebGL. It adds 25KB to the",
+  "trend": null
+ },
+ {
+  "statusId": "2095597264043717014",
+  "author": "SpaceXAI",
+  "text": "We are sorry for the issues you may have experienced with Grok following an outage at our Memphis compute center this morning. We’d also like to apologize to our impacted compute partners.\n\nAll systems have now been restored and are functioning nominally.",
+  "trend": null
+ },
+ {
+  "statusId": "2095542665571917894",
+  "author": "GMapsPlatform",
+  "text": "WeatherNext 3, Google's most advanced and accurate weather AI model, now powers forecasts in Google Maps Platform Weather API. Learn more at \nhttps://\ngoo.gle/4xEaF7f ⬇️",
+  "trend": null
+ },
+ {
+  "statusId": "2095627103366705423",
+  "author": "liquidai",
+  "text": "Can a language model master chemical synthesis through deep customization? Our partners \n@InSilicoMeds\n tested this out with our LFM2.5-2.6B. \n\nSee what happened next 👇",
+  "trend": null
+ },
+ {
+  "statusId": "2095580199974789200",
+  "author": "WSJ",
+  "text": "Want to feel better about your imminent obsolescence? Try watching a robot run into a wall or drive off a pier. It’s hilarious. \nhttps://\non.wsj.com/4gCoEnW",
+  "trend": null
+ },
+ {
+  "statusId": "2095580308150092230",
+  "author": "supabase",
+  "text": "Y'all, \n@katelyn_lesse\n is speaking at Supabase Select 2026.\n\nKatelyn leads Platform Engineering at \n@AnthropicAI\n.\n\nT-29 days. See you there: \nhttps://\nselect.supabase.com",
+  "trend": null
+ },
+ {
+  "statusId": "2095636705529213374",
+  "author": "ycombinator",
+  "text": "At \n@HeartAerospace\n, \n@AndersForslund1\n built the company one material milestone at a time, using each one to earn the credibility and capital to build the next.\n\n“We really had no technology. I came to YC Demo Day with a little 3D-printed model.”\n\n“We went from having the LOIs to",
+  "trend": null
+ },
+ {
+  "statusId": "2095582715999289726",
+  "author": "NewsfromScience",
+  "text": "A speck in a dish—that’s all the nervous system of the fruit fly Drosophila melanogaster looks like to the naked eye.\n\nBut look closely enough, and it resolves into a network of 166,700 nerve cells connected through 124.2 million synapses.\n\nThe intricate map—called a",
+  "trend": null
+ },
+ {
+  "statusId": "2095318278654804133",
+  "author": "kimchisabalmyun",
+  "text": "Spotting Company Dinner Vibes by MBTI at a Glance\n\nFind yours and see if it matches, take a look lololol",
+  "trend": null
+ },
+ {
+  "statusId": "2095719587929039200",
+  "author": "elonmusk",
+  "text": "Having electric brakes avoids the complexity of a hydraulic system: no need to rout plumbing all around the car",
+  "trend": null
+ },
+ {
+  "statusId": "2095671171127935143",
+  "author": "alibaba_cloud",
+  "text": "Qwen3.8-Flash is now live on \n@qwenwork\n — twice as fast, and it gets you. Drop in your thoughts and files, and it automatically organizes your logic and generates decks with clear structure and professional polish, so you can focus on thinking and expressing. On Standard mode,",
+  "trend": null
+ },
+ {
+  "statusId": "2095697056900026435",
+  "author": "threejs",
+  "text": "🏞️ \nhttps://\ncosy-japan.vercel.app",
+  "trend": null
+ },
+ {
+  "statusId": "2095740699492987121",
+  "author": "ElijahGotNext",
+  "text": "Nah we got Jarvis in real life 😭😭",
+  "trend": null
+ },
+ {
+  "statusId": "2095640467715105076",
+  "author": "quadcode_ai",
+  "text": "AI made this\n\nNot a studio, not a game engine team. Just prompts",
+  "trend": null
+ },
+ {
+  "statusId": "2095557972122337787",
+  "author": "Arm",
+  "text": "Last week at World Robotics Conference, Federico Pecora shared how the next phase of robotics is becoming an increasingly complex systems challenge.\n \nAt Arm, we’re exploring the compute foundation needed to bring sensing, AI, planning, control and safety together reliably as",
+  "trend": null
+ },
+ {
+  "statusId": "2095572564475257060",
+  "author": "zoox",
+  "text": "Your airport ride just got an upgrade. Starting today, we're operating to and from \n@LASairport\n! What happens in Vegas can now start in a Zoox. 🛬 🎰",
+  "trend": null
+ },
+ {
+  "statusId": "2095533462107095215",
+  "author": "FT",
+  "text": "Revolut wins provisional US banking licence",
+  "trend": null
+ },
+ {
+  "statusId": "2095723527676858767",
+  "author": "Hi_MINISFORUM",
+  "text": "The Most Powerful Next-Gen AI Workstation is coming!\n\nMeet the MINISFORUM MS-S1 MAX-P495—powered by AMD Ryzen™ AI Max+ PRO 495. It features up to 192GB of unified memory, up to 160GB of allocatable VRAM, AMD Radeon™ 8065S Graphics, and up to 131 TOPS of total AI compute.\n\nBuilt",
+  "trend": null
+ },
+ {
+  "statusId": "2095483031398060252",
+  "author": "jetbrains",
+  "text": "JetBrains GameDev Day returns September 28!\nJoin us for practical production talks on \n@unity\n, \n@UnrealEngine\n, \n@godotengine\n, and proprietary engines, with speakers from \n@Hypixel\n, \n@Fools_Theory\n, \n@awscloud\n, and more.\nWatch online, in Belgrade, or in Limassol: \nhttps://\njb.gg/gamedevday2026",
+  "trend": null
+ },
+ {
+  "statusId": "2095548151033679892",
+  "author": "brave",
+  "text": "Last month, over 100 engineers participated in an \n@AlphaSignalAI\n hackathon with an unusual challenge: build an AI agent that could order and deliver a pizza in 90 minutes. 🍕\n\nHere's how two winners used Brave Search API to accomplish this... \n\n\nhttps://\nbrave.com/blog/alphasign\nal-hackathon/\n…",
+  "trend": null
+ },
+ {
+  "statusId": "2095523012359635012",
+  "author": "RekaAILabs",
+  "text": "Together with \n@nvidia\n , we've built a real-time version of our video generation model: 30B parameters, steerable mid-stream in natural language, 720p at 24fps.\n\n11.8x faster on a single H100, no major quality drop in our blind eval.\n\nWe're one step closer to World Language Action",
+  "trend": null
+ },
+ {
+  "statusId": "2095481937053823202",
+  "author": "adaption_ai",
+  "text": "Introducing Invent a Dataset.\n\nDescribe the dataset you need. Get a structured, training-ready dataset back. No existing data needed.\n\nDataset creation used to start with collection. Now it starts with specification.",
+  "trend": null
+ },
+ {
+  "statusId": "2095702449092984888",
+  "author": "ShuoYangAIR",
+  "text": "Beni is now the most funded personal robot on \n@Kickstarter\n.  Mass production is ramping up. We will deliver in September and October.",
+  "trend": null
+ },
+ {
+  "statusId": "2095573289376624839",
+  "author": "awscloud",
+  "text": "@amazonquick\n is an AI assistant that runs natively on your desktop. \n\nLearn more 👉 \nhttps://\ngo.aws/4iLmWC5",
+  "trend": null
+ },
+ {
+  "statusId": "2095533430440099946",
+  "author": "NVIDIAAIInfra",
+  "text": "Storage innovation moves faster when the ecosystem can build on proven technology.\n\nAt #FMS2026, we announced that we’re open-sourcing the NVIDIA cuFile APIs and headers, extending NVIDIA GPUDirect Storage functionality so developers and storage partners can integrate faster",
+  "trend": null
+ },
+ {
+  "statusId": "2095423050762072151",
+  "author": "Acer",
+  "text": "Weighing just 799g with a 12.9mm ultra-slim frame, a stunning 14\" 3K OLED display, and Intel Core Series 3 power?! That’s the NEW #AcerSwiftBlade14 🪶",
+  "trend": null
+ },
+ {
+  "statusId": "2095649308028907749",
+  "author": "soundcoreaudio",
+  "text": "This time, we made your sleep data come alive. Coming soon: Sleep Earbuds 4 Pro — The World’s Smartest Sleep Earbuds, powered by advanced in-ear PPG — and SleepLab Pro, the world’s first invisible sleep-sensing device with personalized benefits. \n\n#IFA2026 \n#Anker \n#soundcore",
+  "trend": null
+ },
+ {
+  "statusId": "2095667775830434099",
+  "author": "_akhaliq",
+  "text": "Repo-To-Skill\n\nDistilling GitHub Repositories Into AI4AI Skills\n\npaper: \nhttps://\nhuggingface.co/papers/2609.02\n749\n…",
+  "trend": null
+ },
+ {
+  "statusId": "2095546576080953598",
+  "author": "DanAkarca",
+  "text": "“We're in the early stages now of this Cambrian explosion. What are the boundary cases where we want certain tasks on certain models on certain silicon? We’re making that programmable. This is where all the frontier performance is going to come from.”\n\nProud to launch our new",
+  "trend": null
+ },
+ {
+  "statusId": "2095584592837140879",
+  "author": "sparkfun",
+  "text": "We're Hiring!\n\nCurious about what it's like to work at SparkFun, a leader in open-source innovation? From a creative and technical content specialist to embedded hardware and software roles, we have some great positions open!\n\nLearn more at \nhttps://\nbit.ly/4x70eYQ",
+  "trend": null
+ },
+ {
+  "statusId": "2095620122828243243",
+  "author": "UCSanDiego",
+  "text": "UC San Diego continues to rank among the best universities in the world. 🌎\n\nWe’re proud to rank No. 4 among U.S. public universities, No. 14 among all U.S. universities and No. 20 in the world in the 2026 Academic Ranking of World Universities. 🔗 \nhttps://\nbit.ly/4wZSMyp \n\n#UCSD",
+  "trend": null
+ },
+ {
+  "statusId": "2095680382956114369",
+  "author": "canva",
+  "text": "Big ideas need room. \n\nZoom out for the reveal. 👀",
+  "trend": null
+ },
+ {
+  "statusId": "2095602115284447257",
+  "author": "GrapheneOS",
+  "text": "We're aware of claims spread on German social media about GrapheneOS being exploited. We looked into it in case there was substance behind it. OS and hardware security isn't actually much of a factor in the story. Instead, the central claim is disk encryption with a strong",
+  "trend": null
+ },
+ {
+  "statusId": "2095688746805166176",
+  "author": "jxnlco",
+  "text": "Is the future a desktop app or a CLI?",
+  "trend": null
+ },
+ {
+  "statusId": "2095766834733793363",
+  "author": "steipete",
+  "text": "Neither. It's web.",
+  "trend": null
+ },
+ {
+  "statusId": "2095743467435761886",
+  "author": "samagra_sharma",
+  "text": "Introducing ARC AGI 4\n\nNow that GPT-6 Astra has already saturated the Arc AGI 3 benchmarks, it is time we introduce a newer more foundational benchmark to measure frontier intelligence. \n\n\n@AnthropicAI\n Fable and \n@ChatGPT\n Astra are both tied at ~4%. \n\n\nhttps://\nclaymath.org/millennium-pro\nblems/\n…",
+  "trend": null
+ },
+ {
+  "statusId": "2095587734991536288",
+  "author": "Docker",
+  "text": "Docker President & COO Mark Cavage is speaking at WeAreDevelopers North America, co-hosted by Docker. \n\nMark’s keynote, “Manufacturing Trust: Speed and Safety in the Age of Agents,” makes the case for enforceable boundaries for nondeterministic agents.\n\nSeptember 23-25 in San",
+  "trend": null
+ },
+ {
+  "statusId": "2095739995638399216",
+  "author": "AlibabaGroup",
+  "text": "QwenWork hits 30M users just one month into beta in China, with enterprise accounts making up over half!\n\nWith 120 updates and 1,000+ new features in just 30 days, QwenWork stands as one of the fastest-growing workplace AI products globally, designed to empower users across",
+  "trend": null
+ },
+ {
+  "statusId": "2095701534961176633",
+  "author": "ItsmeAjayKV",
+  "text": "We got\n- Qwen3.5\n- Qwen3.6\n- Qwen3.8\n\nEach one way better than previous, all in the same year 🤩\n\nBut surely 2026 can't end here, right? \n\n\n@QwenDevs\n, when are we going to get next drop?\n\nWe are all ready for Qwen4.0-27B 👀",
+  "trend": null
+ },
+ {
+  "statusId": "2095602498253795552",
+  "author": "VisualStudio",
+  "text": "Gemini 3.8 Flash is now available in Visual Studio.\n\nIn early testing, it performed strongly on complex terminal-based coding tasks, with rigorous validation and persistent recovery from actionable failures.\n\nTry it in Copilot Chat: \nhttps://\nmsft.it/6010apC06\n\n#VisualStudio",
+  "trend": null
+ },
+ {
+  "statusId": "2095585125627003244",
+  "author": "NASA",
+  "text": "An uncrewed Progress cargo spacecraft carrying food, fuel, and supplies is scheduled to lift off on a two-day flight to the \n@Space_Station\n on Wednesday, Sept. 9.\n\nWe will be broadcasting its launch and arrival live. How to tune in: \nhttps://\ngo.nasa.gov/4gzfYyG",
+  "trend": null
+ },
+ {
+  "statusId": "2095486595390460162",
+  "author": "WSJ",
+  "text": "Nvidia has agreed to buy AI startup Hugging Face in a deal worth roughly $13 billion",
+  "trend": null
+ },
+ {
+  "statusId": "2095684248220881049",
+  "author": "EvanMilenko",
+  "text": "Fable 5.1 + Opus 5",
+  "trend": null
+ },
+ {
+  "statusId": "2095600253017665823",
+  "author": "TheEconomist",
+  "text": "One solution to the overflowing Chinchorro mummy predicament in the Atacama desert is developing the sites into a tourist attraction. But not everyone is happy with that",
+  "trend": null
+ },
+ {
+  "statusId": "2095563382716002653",
+  "author": "OsaurusAI",
+  "text": "Most Macs have 8 or 16GB. Model releases pretend they don't.\n\nAbout 40% of Osaurus users are on those machines. So we built them an agent model. It reads your files, checks your spreadsheets, drafts your emails.\n\nRaptor 0.5. 8B MoE. ~1B active per token. 6.3 GB. Resident all day.",
+  "trend": null
+ },
+ {
+  "statusId": "2095776385847459876",
+  "author": "DJIGlobal",
+  "text": "SEE YOU IN VENICE\nSept. 7, 2026 | 9:00 AM GMT\nA smaller camera. The next language of cinema— written by a younger generation.\nOsmo Pocket 4P. Venice. This September.",
+  "trend": null
+ },
+ {
+  "statusId": "2095552481853923662",
+  "author": "ProtonPrivacy",
+  "text": "Source: \n@briankrebs",
+  "trend": null
+ },
+ {
+  "statusId": "2095678236722098292",
+  "author": "askalphaxiv",
+  "text": "“Language Models Can Control Their Own Attention”\n\nLong-context LLMs waste compute by scanning the entire KV cache at every decoding step, even when only a small region matters.\n\nSo this paper introduces Declarative Attention, where the model explicitly switches between global,",
+  "trend": null
+ },
+ {
+  "statusId": "2095767350070890688",
+  "author": "Tesla_AI",
+  "text": "FSD Supervised v14.3.9 starting to roll out shortly\n\nThis release includes a new active safety feature set: FSD Supervised can now activate on your behalf when an imminent collision is detected and Automatic Emergency Braking (AEB) may not be enough. \n\nIt may also engage if we",
+  "trend": null
+ },
+ {
+  "statusId": "2095756085890310311",
+  "author": "tomkrcha",
+  "text": "So how good really is GPT-6 Astra at 3D modeling?\nI took an old drawing of a steam train, gave it to Astra to reconstruct it in Blender. After few minutes it crafted 3,295 fully editable detailed objects with beautiful geometry. You can obviously tell it how detailed or",
+  "trend": null
+ },
+ {
+  "statusId": "2095545496915923018",
+  "author": "DARPA",
+  "text": "𝗘𝘃𝗲𝗿𝘆 𝘀𝗲𝗰𝗼𝗻𝗱 𝗰𝗼𝘂𝗻𝘁𝘀 𝘄𝗵𝗲𝗻 𝗹𝗶𝘃𝗲𝘀 𝗮𝗿𝗲 𝗼𝗻 𝘁𝗵𝗲 𝗹𝗶𝗻𝗲. \n\nIn November, the DARPA Triage Challenge Finals begin, bringing bold ideas, cutting-edge technology, academia, and industry together with one mission: Save more lives.",
+  "trend": null
+ },
+ {
+  "statusId": "2095606496268521958",
+  "author": "FT",
+  "text": "Volkswagen to slash 50,000 jobs in ‘far-reaching’ restructuring",
+  "trend": null
+ },
+ {
+  "statusId": "2095596177311854842",
+  "author": "ultrasonium",
+  "text": "We are building a new way to manufacture complex metal parts.\n\nThe technologies defining this century, including data centers, rockets, satellites, robots, and advanced energy systems, depend on increasingly complex metal components. Engineers can change a design in hours, but",
+  "trend": null
+ },
+ {
+  "statusId": "2095545920184013094",
+  "author": "FT",
+  "text": "‘People are going to get screwed’: Pennsylvania voters unite against data centres",
+  "trend": null
+ },
+ {
+  "statusId": "2095796708307505377",
+  "author": "AMD",
+  "text": "IFA Opening Keynote, presented by Jack Huynh",
+  "trend": null
+ },
+ {
+  "statusId": "2095611029161947447",
+  "author": "FT",
+  "text": "VW risks downgrade to ‘junk’ without sweeping cuts, warns top investor",
+  "trend": null
+ },
+ {
+  "statusId": "2095819538281468150",
+  "author": "WSJ",
+  "text": "A trio of nerdy Frenchmen came to New York to build a sassy chatbot for teens. A decade later, their startup has grown into an AI platform that is a pillar of the tech ecosystem, and a linchpin in the strategy of the world’s most valuable company.",
+  "trend": null
+ },
+ {
+  "statusId": "2095791351921336591",
+  "author": "HuaweiMobile",
+  "text": "Munich was just the beginning! New products, fresh ideas, and endless possibilities. Here's how we #ChaseTheWild in Munich.",
+  "trend": null
+ },
+ {
+  "statusId": "2095804093725921732",
+  "author": "TheEconomist",
+  "text": "Over the years, physicists have come up with a motley crew of suspects that could be behind the phenomena of dark matter. “Weakly interacting massive particles” are one of the most promising",
+  "trend": null
+ },
+ {
+  "statusId": "2095768834871382106",
+  "author": "Xiaomi",
+  "text": "Check out what the media and influencers think about the REDMI Note 17 Series!",
+  "trend": null
+ },
+ {
+  "statusId": "2095497144975188280",
+  "author": "Docker",
+  "text": "80% fewer high-severity vulnerabilities and zero critical CVEs. That's what happened when IDOM, one of Japan's largest vehicle retailers, standardized on Docker Hardened Images (DHI). Learn more: \nhttps://\nbit.ly/4qSOS9h",
+  "trend": null
+ },
+ {
+  "statusId": "2095757811347026383",
+  "author": "alibaba_cloud",
+  "text": "POV: You heard music deep in the woods and followed the sound to this 🍂\nBGM Support: HappyShrimpAI\n\nMore API access：\n• Qwen Cloud: \nhttps://\nclick.qwencloud.com/m/20000003019/ \n• Model Studio: \nhttps://\nclick.alibabacloud.com/m/20000003027/",
+  "trend": null
+ },
+ {
+  "statusId": "2095799029699395963",
+  "author": "Siemens",
+  "text": "🇩🇰 Greater Copenhagen Light Rail is fully open. In #collaboration with @Aarsleff: 8 municipalities are connected via 28 km of rail, using 29 Avenio vehicles. This is 14M annual passengers by 2030. #TechForSustainability",
+  "trend": null
+ },
+ {
+  "statusId": "2095783328309744008",
+  "author": "nytimes",
+  "text": "Breaking News: U.S. diesel fuel prices hit an all-time high as the war in Iran continued to restrict energy supplies.",
+  "trend": null
+ },
+ {
+  "statusId": "2095757203974365303",
+  "author": "ASUS_ROG",
+  "text": "I'm considering playing \n@DawnwalkerGame\n on this beauty to check it out 👀 and post it here later",
+  "trend": null
+ },
+ {
+  "statusId": "2095801541328257256",
+  "author": "DJIGlobal",
+  "text": "You asked for the full ride. Here it is.\nThe DJI Osmo Action 6 rode a rocket — ignition, high into the atmosphere, all the way back down to a precision vertical landing.\n*Filmed under authorization. Do not attempt.\n🎥：By LandSpace",
+  "trend": null
+ },
+ {
+  "statusId": "2095512924517466302",
+  "author": "TIME",
+  "text": "Twenty-five years after Sept. 11, Tom Roston writes about incomplete mourning, the Windows on the World staff, and what it means to grieve and grow:",
+  "trend": null
+ },
+ {
+  "statusId": "2095814330839339378",
+  "author": "ASUS",
+  "text": "Only the smartest ASUS fans will get the last one. 👀​\n\nThink you have a tougher one? Share it with us and we’ll try to solve it!​\n\n#Relatable #Puzzle",
+  "trend": null
+ },
+ {
+  "statusId": "2095497905192771963",
+  "author": "Razer",
+  "text": "Show of hands in the replies if you're watching \n@PlayStation\n's State Of Play!",
+  "trend": null
+ },
+ {
+  "statusId": "2095557694841098509",
+  "author": "awscloud",
+  "text": "AWS is recognized as a Leader in the 2026 Gartner Magic Quadrant for Strategic Cloud Platform Services for the 16th consecutive year. \n\nNo other provider can say that.\n\nDownload the report to see the full evaluation. \nhttps://\ngo.aws/3SOG8Ep\n\n#GartnerMagicQuadrant",
+  "trend": null
+ },
+ {
+  "statusId": "2095561775844409574",
+  "author": "FT",
+  "text": "We need to keep an eye on surveillance pricing",
+  "trend": null
+ },
+ {
+  "statusId": "2095587912343507360",
+  "author": "GoPro",
+  "text": "Photo of the Day: Up-close and personal with #GoProMISSION1 PRO ILS from Andrew Shannon.\n\nFun Fact: This was shot with a $60 50mm macro lens 🤯\n\n#GoPro #MacroPhotography #Macro #WildlifePhotography",
+  "trend": null
+ },
+ {
+  "statusId": "2095806786070557109",
+  "author": "WSJ",
+  "text": "Tempus AI could capture a lucrative slice of Moderna and Merck’s personalized cancer therapy business, with Personalis at the center of the bet.",
+  "trend": null
+ },
+ {
+  "statusId": "2095624966788243849",
+  "author": "NVIDIARobotics",
+  "text": "Excited to see \n@fieldai_\n  and Caterpillar advance physical AI across heavy industry. A step forward for bringing autonomous robots into real-world environments. 👏",
+  "trend": null
+ },
+ {
+  "statusId": "2095485731208925294",
+  "author": "DJIGlobal",
+  "text": "Meet DJI ROMO 2 Series — Thinks Deeper. Cleans Smarter.\n\nIntroducing the DJI ROMO 2 Series, DJI's next-generation flagship robot vacuum, built on the advanced sensing technology and mechatronics behind DJI drones.\n\nDJI ROMO 2 Series adapts in real time for an intelligent clean.",
+  "trend": null
+ },
+ {
+  "statusId": "2095119549804822834",
+  "author": "Acer",
+  "text": "Introducing the #AcerSFFRTXSpark ⚡\n\nWith up to 6,144-core NVIDIA Blackwell RTX GPU, up to 20-core NVIDIA Grace CPU, up to 128 GB of Unified Memory and 1 Petaflop FP4 AI performance…the future of computing is powerful 😮‍💨\n\n@ NVIDIARTXSpark",
+  "trend": null
+ },
+ {
+  "statusId": "2095704146452037959",
+  "author": "unity",
+  "text": "A huge milestone for \n@OpenAI\n with the GPT-6 Astra launch 🎉\n\nThanks for highlighting how Unity works alongside coding agents to build immersive 3D environments. \n\nCongratulations on the release! 👏",
+  "trend": null
+ },
+ {
+  "statusId": "2095529763280466295",
+  "author": "Google",
+  "text": "Today, \n@GoogleDeepMind\n and \n@GoogleResearch\n are introducing WeatherNext 3, our most advanced and accurate global weather AI model to date. It uses real-time satellite data to generate hourly high-resolution forecasts, precise precipitation forecasting, and clean energy variables.",
+  "trend": null
+ },
+ {
+  "statusId": "2095521214777442546",
+  "author": "ArtificialAnlys",
+  "text": "Microsoft AI has released MAI-Transcribe-2, achieving 2.0% AA-WER (#2) at ~411x real time (#2) for $1.67 per 1,000 minutes, placing it on the accuracy-speed Pareto frontier at one of the lowest prices among high-accuracy models\n\nMAI-Transcribe-2 is \n@MicrosoftAI\n’s latest speech",
+  "trend": null
+ },
+ {
+  "statusId": "2095627661632557363",
+  "author": "NousResearch",
+  "text": "Our new new one-click local model setup is perfect for use with NVIDIA hardware",
+  "trend": null
+ },
+ {
+  "statusId": "2095628670593650973",
+  "author": "googledevs",
+  "text": "Gemini 3.8 Flash and \n@Antigravity\n just made building complex developer tools a whole lot easier. From procedural game design to multi-platform UI and deep architectural mapping.\n\n🧵 Here are 3 things you can build ↓",
+  "trend": null
+ },
+ {
+  "statusId": "2095584908852805643",
+  "author": "elonmusk",
+  "text": "Cybercab is basically a super comfortable lounge on wheels with a great TV and epic sound",
+  "trend": null
+ },
+ {
+  "statusId": "2095520018561630691",
+  "author": "JackWoth98",
+  "text": "Gemini video understanding is truly bonkers 🤯\n\nGiven a 2 hour football match, it scans the video for yellow cards, finds them, 3.8 Flash adds them to a 2D field so you can see where they occurred, then you can click on it and go to the exact part of the video!\n\nCheck it out 👇",
+  "trend": null
+ },
+ {
+  "statusId": "2095543624046203354",
+  "author": "UnrealEngine",
+  "text": "How do you recreate classic anime for a UE5 game? \n@Shapefarm\n shares the tech behind Orbitals' retro-inspired visual style 🚀 \n\nDiscover how their team recreated the look of classic anime for their space adventure game with the help of custom shaders and more:",
+  "trend": null
+ },
+ {
+  "statusId": "2095557599706132488",
+  "author": "RespanAI",
+  "text": "Introducing Respan P-1, the world’s best privacy model.\n\nEvery AI application handles sensitive data. Existing approaches to protecting it force a tradeoff between accuracy, latency, and cost.\n\nWe built P-1 to eliminate that tradeoff.\n\nP-1 sets a new state of the art for",
+  "trend": null
+ },
+ {
+  "statusId": "2095542345324249197",
+  "author": "MIT_CSAIL",
+  "text": "Free MIT course on distributed systems: \nhttps://\ntinyurl.com/2tt3mdxs\n\nHere, MIT prof. Robert Morris breaks down what they are (Lecture 1).\n\nv/\n@MITOCW",
+  "trend": null
+ },
+ {
+  "statusId": "2095587182039969861",
+  "author": "satyanadella",
+  "text": "Looking forward to this ecosystem with open models continuing to flourish and grow with NVIDIA and Hugging Face, and the continued partnership. Congrats \n@JensenHuang\n and \n@ClementDelangue\n!",
+  "trend": null
+ },
+ {
+  "statusId": "2095568380543545490",
+  "author": "CyberInsidercom",
+  "text": "Brave tests show lower CPU and memory usage than Chrome, Edge, and Firefox\n\n#Brave #browser #Chromium",
+  "trend": null
+ },
+ {
+  "statusId": "2095631437857013834",
+  "author": "NotionHQ",
+  "text": "We’ve seen a bunch of people pairing \n@bot\n and Notion this week. Tracking work in Notion and letting bots handle the rest.\n\nA few to inspire you:",
+  "trend": null
+ },
+ {
+  "statusId": "2095539014023417883",
+  "author": "UnoPlatform",
+  "text": "AI demos are the easy part.\n\nIf you’ve been around for a while, you know the reality is different: generating code is easy; confidently putting your name on it and shipping it is what counts.\n\nMeet Uno Platform Studio.\n\nWhat happens after the prompt is what matters most. 👇\n\nA",
+  "trend": null
+ },
+ {
+  "statusId": "2095529562167738875",
+  "author": "LeRobotHF",
+  "text": "@nvidia\n and \n@huggingface\n are joining forces! \n\nAt LeRobot, we believe the future of physical AI must be collaborative, open, and accessible to everyone. This partnership brings incredible momentum to the open robotics community while keeping our commitment to flexible,",
+  "trend": null
+ },
+ {
+  "statusId": "2095629409017614390",
+  "author": "gdb",
+  "text": "arc-agi-3 is now saturated",
+  "trend": null
+ },
+ {
+  "statusId": "2095601211869421726",
+  "author": "sama",
+  "text": "We are working towards getting Astra in everyone's hands as quickly as we can; I know it is frustrating and I appreciate the patience. It should be quick.",
+  "trend": null
+ },
+ {
+  "statusId": "2095591983276540234",
+  "author": "GoogleResearch",
+  "text": "Introducing WeatherNext 3! Built by \n@GoogleDeepMind\n and \n@GoogleResearch\n, this is our most advanced & accurate AI weather model, and now includes real-time satellite data, hourly refreshes, higher resolution, precise precipitation forecasting, and clean energy variables.\n\nRead the",
+  "trend": null
+ },
+ {
+  "statusId": "2095717295192486239",
+  "author": "elonmusk",
+  "text": "Cybercab safety",
+  "trend": null
+ },
+ {
+  "statusId": "2095620419906830788",
+  "author": "perplexity_ai",
+  "text": "We evaluated GPT-6 Astra on WANDR. It scored 0.682 at $11.98 per task, the highest score of any model we tested.\n\nGPT-6-Astra scored 13.5% higher than Fable 5.1 at 6.1% lower cost, and 27.0% higher than Opus 5 at 3.3% higher cost.",
+  "trend": null
+ },
+ {
+  "statusId": "2095291912706220410",
+  "author": "amasad",
+  "text": "Replit is coming to London 🇬🇧\n\nTo celebrate Replit’s first international office in London, together with our friends \n@OpenAI\n, we're hosting a night of drinks, music, and a fireside chat with Paul Graham (\n@paulg\n).\n\nThursday, September 10th, RSVP: \nhttps://\nlondon-launch.replit.app",
+  "trend": null
+ },
+ {
+  "statusId": "2095631973293392176",
+  "author": "StanfordAILab",
+  "text": "The most capable models available in the world are using Terminal-Bench-Science to show it (just one week after the benchmark’s release). \n\nCongratulations to \n@StevenDillmann\n and team for their remarkable impact!",
+  "trend": null
+ },
+ {
+  "statusId": "2095527512419791329",
+  "author": "digitalocean",
+  "text": ".\n@vercel\n and DigitalOcean are teaming up to bring GLM-5.3 to Vercel AI Gateway users at half the cost, for one week only.\n\nOffer details here. 👉 \nhttps://\ndo.co/4qPma98",
+  "trend": null
+ },
+ {
+  "statusId": "2095518531693806017",
+  "author": "nvidia",
+  "text": "Open models are essential to expanding access to AI and accelerating innovation around the world.\n\nWe're excited to help \n@huggingface\n scale its platform and community while preserving the openness, neutrality, and choice that have made it a trusted home for AI builders.\n\n🤗💚",
+  "trend": null
+ },
+ {
+  "statusId": "2095615231078875216",
+  "author": "charlieholtz",
+  "text": "Introducing Cloud Desktop! \n\nA new way to interact with your cloud machine so that it feels like localhost. Watch your agents work and take control when you like!",
+  "trend": null
+ },
+ {
+  "statusId": "2095270544023195887",
+  "author": "NVIDIARobotics",
+  "text": "Robots are ready to take on complex environments. 🌍\n\nSee how AI, simulation, and accelerated computing are redefining what’s possible in robotics at #NVIDIAGTC Berlin. \n\nView sessions 👉 \nhttps://\nnvda.ws/3Tagdav",
+  "trend": null
+ },
+ {
+  "statusId": "2095580444112699459",
+  "author": "PyTorch",
+  "text": "At PyTorch Conference North America 2026, hear directly from and connect with the people working on PyTorch, \n@vllm_project\n, \n@DeepSpeedAI\n, \n@raydistributed\n, Helion, and Safetensors, alongside experts working across the AI stack.\n\nAt #PyTorchCon NA 2025, \n@richliaw\n (\n@raydistributed\n,",
+  "trend": null
+ },
+ {
+  "statusId": "2095594440022724762",
+  "author": "googlecloud",
+  "text": "Google was named a Leader in the \n@Gartner_inc\n Magic Quadrant™ for Strategic Cloud Platform Services!\n\nWe believe this recognition reflects our dedication to helping you build and scale your most demanding workloads reliably and securely on Google Cloud → \nhttps://\ngoo.gle/4xMTbFJ",
+  "trend": null
+ },
+ {
+  "statusId": "2095487524856861062",
+  "author": "DJIGlobal",
+  "text": "Meet DJI ROMO 2 Series — Thinks Deeper. Cleans Smarter.\n\nIntroducing the DJI ROMO 2 Series, DJI's next-generation flagship robot vacuum, built on the advanced sensing technology and mechatronics behind DJI drones.\n\nDJI ROMO 2 Series adapts in real time for an intelligent clean.",
+  "trend": null
+ },
+ {
+  "statusId": "2095651287551316461",
+  "author": "Polymarket",
+  "text": "JUST IN: Genetically modified pig kidney keeps man alive for 9 months until he receives a human kidney, marking the first known case of its kind.",
+  "trend": null
+ },
+ {
+  "statusId": "2095569102316208341",
+  "author": "sameenkarim",
+  "text": "gh stack v0.1.1 is here 🥞 \n- use `add` to start a stack from anywhere, no need to `init` separately\n- `checkout` will pull down an associated stack from a branch\n- improved skill file, more keyboard shortcuts, prints full PR urls, and more!\n\n\nhttps://\ngithub.com/github/gh-stac\nk/releases/tag/v0.1.1\n…",
+  "trend": null
+ },
+ {
+  "statusId": "2095621641888055443",
+  "author": "UnslothAI",
+  "text": "You can now run Unsloth GGUFs locally in one-click via Hermes! ✨\n\nQwen3.8-27B, Qwen3.8-Flash, DeepSeek-V4-Flash and more are all supported.",
+  "trend": null
+ },
+ {
+  "statusId": "2095589177341403244",
+  "author": "Google",
+  "text": "We’re bringing new voice capabilities to \n@GoogleWorkspace\n to help you tackle daily tasks. These are now rolling out across \n@Gmail\n, \n@GoogleDocs\n, and Keep to help you search your inbox, organize your thoughts, or brainstorm new ideas conversationally.\n\nHere's how you can use them",
+  "trend": null
+ },
+ {
+  "statusId": "2095572615800803633",
+  "author": "PyTorch",
+  "text": "Discover how open source agentic search and hardware-guided workflows are unlocking massive speedups across GPUs and TPUs at PyTorch Conference North America (Oct 20–21 in San Jose).\n\nSpeakers will cover hardware-guided multi-agent kernel optimization and LLM autotuning to",
+  "trend": null
+ },
+ {
+  "statusId": "2095593682871394409",
+  "author": "github",
+  "text": "⚡️ \n@GoogleAI\n's Gemini 3.8 Flash is now available in GitHub Copilot. \n\nOur early testing shows:\n• it performed strongly on complex terminal-based coding tasks\n• it demonstrated rigorous validation and persistent recovery from actionable failures\n\nTry it out in the GitHub Copilot",
+  "trend": null
+ },
+ {
+  "statusId": "2095742228320711149",
+  "author": "alibaba_cloud",
+  "text": "Wan3.0 is now generally available on Alibaba Cloud.\n• 30-sec generation\n• 1-click doc-to-video\n• Production-ready\nCheck the detailed guide here: \nhttps://\nclick.alibabacloud.com/m/20000003076/ \n#AlibabaCloud #Wan #GenAI #AI",
+  "trend": null
+ },
+ {
+  "statusId": "2095725928114794993",
+  "author": "GoPro",
+  "text": "Letter from Nick, GoPro Founder & CEO\n\n\nhttps://\ngopro.com/en/us/news/let\nter-from-nick-the-future-of-gopro-cameras\n…",
+  "trend": null
+ },
+ {
+  "statusId": "2095636750500606222",
+  "author": "WSJ",
+  "text": "Apple CEO Tim Cook isn’t just passing the torch to John Ternus, he’s handing over one of the corporate world’s biggest successes. \nhttps://\nwsj.com/tech/apple-sin\nce-2011-john-ternus-51c1d5d8?utm_source=twitter\n…",
+  "trend": null
+ },
+ {
+  "statusId": "2095560536926593112",
+  "author": "MIT",
+  "text": "Each year, farmers around the world spend $80 billion on pesticides for their crops. Now, Robigo is equipping naturally occurring microbes with more potent pest-fighting capabilities.",
+  "trend": null
+ },
+ {
+  "statusId": "2095496304914808875",
+  "author": "RedHat",
+  "text": "Virtualization isn't on its way out: It's actually more important than ever. Red Hat's Maria Bracho tells the #CompilerPodcast team how VMs became the MVP for AI infrastructure. \nhttps://\nred.ht/4cGPusA #VMwareExplore",
+  "trend": null
+ },
+ {
+  "statusId": "2095552018622427245",
+  "author": "arduino",
+  "text": "Raul Muñoz turned a rented treadmill into a smart one — without modifying the machine — using just a camera and an edge AI model running on Arduino VENTUNO Q: \nhttps://\nprojecthub.arduino.cc/raulrm/give-yo\nur-treadmill-eyes-with-edge-ai-15e10a\n…",
+  "trend": null
+ },
+ {
+  "statusId": "2095587633334210778",
+  "author": "YouTube",
+  "text": "thinking about that beautiful moment before NFL Kickoff where every fanbase believes this is their year.",
+  "trend": null
+ },
+ {
+  "statusId": "2095600005772104059",
+  "author": "sama",
+  "text": "GPT-6 Astra is here.\n\nWe hope it will begin to enable a new generation of entrepreneurship, scientific discovery, and building.\n\nWe believe it is the best model in the world for computer use, professional work, science, coding, cybersecurity, and more.\n\nIt took us some extra time",
+  "trend": null
+ },
+ {
+  "statusId": "2095620624525742434",
+  "author": "Canonical",
+  "text": "Open source software powers the modern enterprise, but it can also introduce blind spots. Our recent research found that 96% of organizations have security concerns about their open source ecosystem. But how do we fix it?\n\nJoin \n@Canonical\n’s Aaron Whitehouse and \n@redmonk\n's James",
+  "trend": null
+ },
+ {
+  "statusId": "2095476249556853100",
+  "author": "Alibaba_Qwen",
+  "text": "Meet E-Commerce Bench, a new benchmark for long-horizon autonomous business operations. 🚀\n\nAgents start with ¥100,000 to run online stores for 365 days, handling sourcing, negotiation, pricing, promotions, inventory and cash flow, in a market driven by real e-commerce data.",
+  "trend": null
+ },
+ {
+  "statusId": "2095593800982798787",
+  "author": "NVIDIARobotics",
+  "text": "Can AI and safety work hand in hand in industrial environments?\n\nOur VP of Industry Safety, Riccardo Mariani, joins Robert Weber and Peter Seeberg on the Industrial AI Podcast to discuss safety frameworks for physical AI, simulation and the future of industrial AI.\n\nListen 🎧",
+  "trend": null
+ },
+ {
+  "statusId": "2095616336953028943",
+  "author": "nytimes",
+  "text": "Breaking News: Volkswagen said it is cutting about 50,000 jobs in the face of surging Chinese competition, energy prices and the costly transition to electric vehicles.",
+  "trend": null
+ },
+ {
+  "statusId": "2095583027728368024",
+  "author": "CTATech",
+  "text": "No big studio. No storyline. No flashy graphics. And yet, \n@Tetris_Official\n became one of the most played video games of all time.\n\nWe look back at Alexey Pajitnov's creation, its pivotal U.S. debut at \n@CES\n 1988 and why the simplest ideas are often the ones that last. Learn more",
+  "trend": null
+ },
+ {
+  "statusId": "2095552468289503569",
+  "author": "RedHat",
+  "text": "Every shipment runs smoother on an app platform that scales the moment demand does.\n\nOur customers can show you how it’s done: \nhttps://\nred.ht/4pTfMxn",
+  "trend": null
+ },
+ {
+  "statusId": "2095441698138866017",
+  "author": "alibaba_cloud",
+  "text": "This Saturday: 3 hands-on Alibaba Cloud Agentic Tools workshops in Bangkok! Pick your track: \n🔹 QwenWork — AI for productivity \n🔹 WonderClip — AI for creative & marketing \n🔹 Qoder — agentic coding \n\n💻 Bring a laptop. No experience needed. Seats are limited — register below 👇",
+  "trend": null
+ },
+ {
+  "statusId": "2095566299506024522",
+  "author": "FT",
+  "text": "Nvidia’s $13bn deal cements its $5.5tn advantage",
+  "trend": null
+ },
+ {
+  "statusId": "2095508870915338284",
+  "author": "huggingface",
+  "text": "🤗💚\n\nhttps://\nblogs.nvidia.com/blog/nvidia-to\n-acquire-hugging-face/\n…",
+  "trend": null
+ },
+ {
+  "statusId": "2095604997668892983",
+  "author": "elonmusk",
+  "text": "Probably over 30k people working in high-paying jobs at Tesla HQ & manufacturing in Austin by 2028!",
+  "trend": null
+ },
+ {
+  "statusId": "2095761505815806081",
+  "author": "ModelScope2022",
+  "text": "OpenVDN releases VDN-H3, a faster-than-playback adaptation of MiniMax-H3. \n🤖 \nhttps://\nmodelscope.ai/models/OpenVDN\n/vdn-minimax-h3\n…\n\n⚡ The 8-step model reaches 11.23s steady-state denoising on the reported 8-GPU setup, excluding loading, warm-up, VAE decoding, and video encoding.\n🧠 Its hybrid architecture",
+  "trend": null
+ },
+ {
+  "statusId": "2095601320212267167",
+  "author": "SlackHQ",
+  "text": "Slack's Dreamforce lineup has range. 🤩\n\n🔹 Productivity hacks \n🔹 CRM in the flow of work\n🔹 Headless AI \n🔹 Code channels that 10x your workflow\n\nSwipe to see where to find us Sept 15–17 in San Francisco, CA (or on Salesforce+). And use code DF26D2SLACK for an additional 20%",
+  "trend": null
+ },
+ {
+  "statusId": "2095530576581452136",
+  "author": "googlegemma",
+  "text": "Gemma is only as powerful as the community building with it.\n\nWe launched awesome-gemma to highlight amazing community-made tools, research, and applications in the ecosystem.\n\nWhat have you built?\n\nDrop a link below or submit a PR to get featured: \nhttps://\ngithub.com/google-gemma/a\nwesome-gemma\n…",
+  "trend": null
+ },
+ {
+  "statusId": "2095542380665401352",
+  "author": "LASairport",
+  "text": "A new way to get from LAS to select Las Vegas Strip destinations is here with \n@zoox\n! 🚙🤖\n\nZoox pickup locations:\n📍 Terminal 1 & 3: Level Zero\nZoox drop-off locations:\n📍 Terminal 1: Center Departures Level\n📍 Terminal 3: Level Zero and North Departures\n\nReady to give it a try?",
+  "trend": null
+ },
+ {
+  "statusId": "2095557435280732336",
+  "author": "VisualStudio",
+  "text": "Every legacy .NET codebase has that one project nobody wants to touch.\nJon Galloway shows how Copilot helps you finally tackle it. \nhttps://\nmsft.it/6012aPIwO",
+  "trend": null
+ },
+ {
+  "statusId": "2095758999023169834",
+  "author": "DJIGlobal",
+  "text": "Which DJI drone are you most curious about? 🚁\nDon't see your favorite? Drop it in the comments! 👇\n#DJI #DroneVote #ShotOnDJI",
+  "trend": null
+ },
+ {
+  "statusId": "2095605832847380529",
+  "author": "MariaSharapova",
+  "text": "Every serve. Every match point.\nLivetrade and livestream tennis on the \n@polymarket\n app",
+  "trend": null
+ },
+ {
+  "statusId": "2095613827270205525",
+  "author": "Arm",
+  "text": "AI is changing how silicon gets designed.\n\nOn \n@NoPriorsPod\n, Rene Haas joins \n@Saranormous\n and \n@EladGil\n to discuss how AI could accelerate chip development, Arm’s evolution from IP to silicon, and why CPUs remain at the heart of computing as AI scales.\n\nListen",
+  "trend": null
+ },
+ {
+  "statusId": "2095605985398104109",
+  "author": "Arm",
+  "text": "Developers should have the freedom to use the models that best fit what they’re building. Arm provides the compute foundation behind that flexibility. We’re proud to support the \n@NVIDIA\n and \n@HuggingFace\n partnership and the innovation it will unlock across the AI ecosystem.",
+  "trend": null
+ },
+ {
+  "statusId": "2095466849555378205",
+  "author": "DJIGlobal",
+  "text": "Meet DJI Osmo 360 II - All Angles. All Epic.\n\n✅ 1-Inch 8K/60fps HDR 360° Imaging\n✅ AI SuperNight 2.0 \n✅ Ultra-Hard, Scratch-Resistant Lenses With a Replaceable Design \n✅ Smart Editing, Instant Sharing \n✅ Osmo All-Scenario Ecosystem\n✅ 105GB Built-in Storage \n\nLearn more\n👉",
+  "trend": null
+ },
+ {
+  "statusId": "2095578915200806931",
+  "author": "FT",
+  "text": "Breaking news: OpenAI has released its latest AI model, which it called 'the world’s most intelligent', as the ChatGPT maker aims to retake the lead from arch-rival Anthropic ahead of a planned public listing. \nhttps://\nft.trib.al/EAlopgV",
+  "trend": null
+ },
+ {
+  "statusId": "2095789867514888485",
+  "author": "WSJ",
+  "text": "Exclusive: Elon Musk’s Boring Company is asking some investors to help recruit employees or win business as a condition of joining its latest funding round",
+  "trend": null
+ },
+ {
+  "statusId": "2095771845572370752",
+  "author": "Polymarket",
+  "text": "BREAKING: Volkswagen to cut 100,000 jobs.",
+  "trend": null
+ },
+ {
+  "statusId": "2095622899734397436",
+  "author": "TheEconomist",
+  "text": "“You’re not going to be installing it in your living room.” On “Babbage”, our correspondent goes inside one of the world’s most sophisticated quantum computers",
+  "trend": null
+ },
+ {
+  "statusId": "2095238067116527957",
+  "author": "BrendanEich",
+  "text": "@Brave\n's research and security folks in our London office built a power lab, BLaDE, with a high-sensitivity digital power meter / supply wired up to test phones in place of pulled batteries.\n\nExcellent work, chaps!\n\nHere's a pic, with labels.\n\n\"...only ever gonna be one Blade!\"",
+  "trend": null
+ },
+ {
+  "statusId": "2095569744657084420",
+  "author": "FT",
+  "text": "Star Citadel energy trader to step down amid tumult in energy markets",
+  "trend": null
+ },
+ {
+  "statusId": "2095599109453545505",
+  "author": "TIME",
+  "text": "Heather Gerken and Robert Rubin explain what's at stakes in the 2026 midterm elections",
+  "trend": null
+ },
+ {
+  "statusId": "2094748718008307744",
+  "author": "ivanfioravanti",
+  "text": "Sherry quantization method by Tencent, combined with large Hy4 Preview is able to deliver incredible results!\n1.5TB to 214GB using 1.25 bits weights while keeping incredible accuracy!\n\nBF16 vs Sherry: \n- MCP Atlas 83.7→83.2\n- SWE-Bench multi 82.9→81.3\n- MRCR 81.3→81.1\n-",
+  "trend": null
+ },
+ {
+  "statusId": "2095526333799633063",
+  "author": "axiommathai",
+  "text": "1/ ✨ World record today on bounded gaps between primes, one of number theory’s oldest open conjectures. \n\nWe show that infinitely many pairs of prime numbers are separated by 212 or less.",
+  "trend": null
+ },
+ {
+  "statusId": "2095533696808051001",
+  "author": "AntLingAGI",
+  "text": "We’re open-sourcing Ling-3.0-flash-Fin, a finance-enhanced model for real-world workflows, and FinFIRST, an expert-built benchmark for financial search agents.\nTwo open releases, one goal: making financial AI more accessible and verifiable.",
+  "trend": null
+ },
+ {
+  "statusId": "2095616228341518775",
+  "author": "supabase",
+  "text": "We've got \n@angjiang\n speaking at Supabase Select 2026.\n\nAngela leads Product for Claude Platform at \n@AnthropicAI\n.\n\nCan't wait to see y'all: \nhttps://\nselect.supabase.com",
+  "trend": null
+ },
+ {
+  "statusId": "2095479602722529701",
+  "author": "TIME",
+  "text": "State fairs remain one of the most enduring ways to connect at the local level, writes Steve Grove",
+  "trend": null
+ },
+ {
+  "statusId": "2095779544917483538",
+  "author": "nytimes",
+  "text": "Breaking News: At least two workers trapped underground in tunnels hit by Nepal’s flash flood last week were rescued.",
+  "trend": null
+ },
+ {
+  "statusId": "2095793348669751745",
+  "author": "FT",
+  "text": "Latest allegations make Reform look ridiculous \nhttps://\nft.trib.al/m7jClBT  | opinion",
+  "trend": null
+ },
+ {
+  "statusId": "2095617954717077940",
+  "author": "TheEconomist",
+  "text": "AI is speeding up two shifts in Indian white-collar work that were already under way. The first is from outsourcing to insourcing. The second is reinforcing the plight of recent graduates",
+  "trend": null
+ },
+ {
+  "statusId": "2095444606330519862",
+  "author": "WSJ",
+  "text": "The genre delivers exactly what we need: pure physical comedy, schadenfreude and a reassuring feeling of superiority.",
+  "trend": null
+ },
+ {
+  "statusId": "2095808503831298198",
+  "author": "HuaweiMobile",
+  "text": "Ignore the noise. Keep talking. Even when it gets noisy, your calls stay clear and the conversation keeps flowing. #HUAWEIFreeBudsNeo",
+  "trend": null
+ },
+ {
+  "statusId": "2095513660835684580",
+  "author": "alibaba_cloud",
+  "text": "Tomorrow's the day.\nQwen Conference Thailand 2026 - one stage, eleven sessions, and announcements we've kept under wraps until now. Some will surprise you. Some will change how you think about building with AI.\nDeep dives, live demos, real conversations. In Bangkok, be there.",
+  "trend": null
+ },
+ {
+  "statusId": "2095490698640314863",
+  "author": "nytimes",
+  "text": "Breaking News: Nvidia said it would pay $12.9 billion for the start-up Hugging Face, extending its A.I. spending spree.",
+  "trend": null
+ },
+ {
+  "statusId": "2095614583729787199",
+  "author": "Yale",
+  "text": "Measles was once considered eliminated in the United States. So why are cases rising again?\n\nYale pediatric infectious disease specialist Marietta Vazquez explains what’s behind the resurgence, who is most at risk, what symptoms and complications families should know about, and",
+  "trend": null
+ },
+ {
+  "statusId": "2095622688190394396",
+  "author": "nytimes",
+  "text": "The Trump administration on Thursday asked the Supreme Court for permission to resume its efforts to restrict mail voting ahead of the midterms.",
+  "trend": null
+ },
+ {
+  "statusId": "2095607922386678243",
+  "author": "TIME",
+  "text": "Trade negotiations between the U.S. and Canada collapsed last month. Here's how Americans and Canadians feel about the escalating trade war",
+  "trend": null
+ },
+ {
+  "statusId": "2095516682315788764",
+  "author": "nytimes",
+  "text": "From \n@TheAthletic\n: With the entire NBA watching, Adam Silver’s punishment of the Los Angeles Clippers met the moment, our columnist writes. “Silver’s justice was comprehensive.”",
+  "trend": null
+ },
+ {
+  "statusId": "2095771394298511858",
+  "author": "alibaba_cloud",
+  "text": "Who needs a skateboard anymore when you've got a fully functional DOGBOARD?\n\nMore API access：\n• Qwen Cloud: \nhttps://\nclick.qwencloud.com/m/20000003019/ \n• Model Studio: \nhttps://\nclick.alibabacloud.com/m/20000003027/",
+  "trend": null
+ },
+ {
+  "statusId": "2095512233409155288",
+  "author": "WSJ",
+  "text": "From \n@WSJopinion\n: The Navy has an overstretched carrier fleet. Underinvestment has led to long deployments, a pilot shortage and strains on ship maintenance, writes \n@katebachwsj\n.",
+  "trend": null
+ },
+ {
+  "statusId": "2095575223110361451",
+  "author": "TIME",
+  "text": "Democrats claim the conservative-led court’s latest rulings show it’s pandering to politics instead of law",
+  "trend": null
+ },
+ {
+  "statusId": "2095824224455700560",
+  "author": "TheEconomist",
+  "text": "It is not surprising that a merger between Japan’s two main opposition parties has crumbled. The shambles will mean less pressure on the country’s government and more room for upstart populist parties",
+  "trend": null
+ },
+ {
+  "statusId": "2095776327005610141",
+  "author": "FT",
+  "text": "Trump-linked companies race to secure deals for Venezuela’s oil",
+  "trend": null
+ },
+ {
+  "statusId": "2095500732858253443",
+  "author": "Razer",
+  "text": "Ok. We're hyped.",
+  "trend": null
+ },
+ {
+  "statusId": "2095772409571762496",
+  "author": "FT",
+  "text": "More stock ownership, weaker monetary policy? \nhttps://\nft.trib.al/evOXRos  | opinion",
+  "trend": null
+ },
+ {
+  "statusId": "2095595464741544085",
+  "author": "FT",
+  "text": "The co-founder of Apollo Global Management is the first person to initiate a legal battle with US lawmakers over their probe into the federal government’s handling of the Epstein case. \nhttps://\nft.trib.al/9w3vMzR",
+  "trend": null
+ }
+]

@@ -1,0 +1,174 @@
+{
+  "granite-97m:fp32": [
+    {
+      "tau": 0.86,
+      "rule": "best",
+      "window": 400,
+      "hidden": 6447,
+      "correct": 1645,
+      "wrong": 2184,
+      "unjudged": 2618,
+      "rate": 0.4539821139356383,
+      "precision": 0.4296160877513711,
+      "unjudged_share": 0.40608034744842564
+    },
+    {
+      "tau": 0.88,
+      "rule": "best",
+      "window": 400,
+      "hidden": 4652,
+      "correct": 1363,
+      "wrong": 1359,
+      "unjudged": 1930,
+      "rate": 0.3275825646081262,
+      "precision": 0.5007347538574578,
+      "unjudged_share": 0.41487532244196046
+    },
+    {
+      "tau": 0.9,
+      "rule": "best",
+      "window": 400,
+      "hidden": 2989,
+      "correct": 1055,
+      "wrong": 679,
+      "unjudged": 1255,
+      "rate": 0.2104781353425815,
+      "precision": 0.6084198385236448,
+      "unjudged_share": 0.41987286717965877
+    },
+    {
+      "tau": 0.92,
+      "rule": "best",
+      "window": 400,
+      "hidden": 1697,
+      "correct": 700,
+      "wrong": 313,
+      "unjudged": 684,
+      "rate": 0.11949862685726358,
+      "precision": 0.6910167818361304,
+      "unjudged_share": 0.4030642309958751
+    },
+    {
+      "tau": 0.94,
+      "rule": "best",
+      "window": 400,
+      "hidden": 877,
+      "correct": 407,
+      "wrong": 110,
+      "unjudged": 360,
+      "rate": 0.06175621435110203,
+      "precision": 0.7872340425531915,
+      "unjudged_share": 0.4104903078677309
+    },
+    {
+      "tau": 0.95,
+      "rule": "best",
+      "window": 400,
+      "hidden": 634,
+      "correct": 316,
+      "wrong": 72,
+      "unjudged": 246,
+      "rate": 0.04464474332793465,
+      "precision": 0.8144329896907216,
+      "unjudged_share": 0.38801261829652994
+    },
+    {
+      "tau": 0.96,
+      "rule": "best",
+      "window": 400,
+      "hidden": 440,
+      "correct": 224,
+      "wrong": 44,
+      "unjudged": 172,
+      "rate": 0.030983733539891558,
+      "precision": 0.835820895522388,
+      "unjudged_share": 0.39090909090909093
+    }
+  ],
+  "gte-ml-base:q8": [
+    {
+      "tau": 0.86,
+      "rule": "best",
+      "window": 400,
+      "hidden": 964,
+      "correct": 525,
+      "wrong": 107,
+      "unjudged": 332,
+      "rate": 0.06788254348285332,
+      "precision": 0.8306962025316456,
+      "unjudged_share": 0.34439834024896265
+    },
+    {
+      "tau": 0.88,
+      "rule": "best",
+      "window": 400,
+      "hidden": 687,
+      "correct": 399,
+      "wrong": 56,
+      "unjudged": 232,
+      "rate": 0.048376874867967046,
+      "precision": 0.8769230769230769,
+      "unjudged_share": 0.33770014556040756
+    },
+    {
+      "tau": 0.9,
+      "rule": "best",
+      "window": 400,
+      "hidden": 475,
+      "correct": 279,
+      "wrong": 29,
+      "unjudged": 167,
+      "rate": 0.03344834870783748,
+      "precision": 0.9058441558441559,
+      "unjudged_share": 0.35157894736842105
+    },
+    {
+      "tau": 0.92,
+      "rule": "best",
+      "window": 400,
+      "hidden": 325,
+      "correct": 200,
+      "wrong": 17,
+      "unjudged": 108,
+      "rate": 0.022885712273783537,
+      "precision": 0.9216589861751152,
+      "unjudged_share": 0.3323076923076923
+    },
+    {
+      "tau": 0.94,
+      "rule": "best",
+      "window": 400,
+      "hidden": 210,
+      "correct": 135,
+      "wrong": 8,
+      "unjudged": 67,
+      "rate": 0.014787691007675515,
+      "precision": 0.9440559440559441,
+      "unjudged_share": 0.319047619047619
+    },
+    {
+      "tau": 0.95,
+      "rule": "best",
+      "window": 400,
+      "hidden": 173,
+      "correct": 114,
+      "wrong": 7,
+      "unjudged": 52,
+      "rate": 0.012182240687275544,
+      "precision": 0.9421487603305785,
+      "unjudged_share": 0.30057803468208094
+    },
+    {
+      "tau": 0.96,
+      "rule": "best",
+      "window": 400,
+      "hidden": 131,
+      "correct": 91,
+      "wrong": 4,
+      "unjudged": 36,
+      "rate": 0.00922470248574044,
+      "precision": 0.9578947368421052,
+      "unjudged_share": 0.2748091603053435
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>dedup inference host</title>
+<!--
+  Offscreen document: an extension-origin page whose ONLY job is to host the inference
+  worker. It exists because of a measured constraint, not by preference -- x.com's CSP
+  sets connect-src without huggingface.co, so a worker on the page origin can start and
+  then never download the model. Here the extension's own CSP applies, so both the HF
+  fetch and WebGPU work.
+-->
+<script type="module" src="offscreen.js"></script>
