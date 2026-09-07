@@ -40,3 +40,9 @@ data/benchmark_results_partial.json
 # tweet dataset), so the gold stays inspectable and re-derivable without this repo
 # redistributing other people's posts. Re-collect it with data/capture.py.
 data/posts.jsonl
+
+# Store build output and the bundled model weights (157MB, over GitHub's file limit).
+# scripts/build-store.sh reassembles both; see store/README.md for where the model comes from.
+dist-store/
+dist-store.zip
+store/models/

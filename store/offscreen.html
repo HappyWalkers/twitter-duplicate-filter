@@ -1,0 +1,11 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>dedup inference host</title>
+<!--
+  Offscreen document: an extension-origin page whose only job is to host the inference
+  worker. It exists because of a platform constraint, not preference. A worker created
+  from a content script belongs to the page origin (x.com) and is governed by that
+  page's CSP; here the extension's own CSP applies, which is what lets the bundled
+  ONNX Runtime WebAssembly and WebGPU initialise at all.
+-->
+<script type="module" src="offscreen.js"></script>

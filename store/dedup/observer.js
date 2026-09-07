@@ -168,6 +168,7 @@ function schedule() {
 export function start(opts = {}) {
   enabled = opts.enabled !== false
   debugScores = !!opts.debugScores
+  if (opts.threshold) store.threshold = opts.threshold
   // Observe documentElement, NOT document.body: the host content script runs at
   // document_start, where <body> does not exist yet and observe(null) throws. This was
   // intermittent -- a slow page load let body appear first and the bug hid -- which is
@@ -182,6 +183,10 @@ export function start(opts = {}) {
     // between a quiet timeline and a model that never started, and a UI showing that
     // number needs to tell those apart.
     stats: () => ({ ...store.stats(), embedded: embeddedCount, embedErrors: embedErrors }),
+    /** Applies to comparisons made from now on. Posts already placed keep their
+     *  cluster -- re-clustering the whole window would make posts appear and disappear
+     *  under the reader mid-scroll, which is worse than waiting for a reload. */
+    setThreshold(v) { if (v) store.threshold = v },
     setEnabled(v) {
       enabled = v
       if (!v) {

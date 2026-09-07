@@ -1,0 +1,47 @@
+/**
+ * Content script. Starts the timeline observer and nothing else.
+ *
+ * Runs in the ISOLATED world at document_start. It needs chrome.runtime to reach the
+ * offscreen document where inference happens, which the page's main world cannot use,
+ * so this is the only place the observer can live.
+ *
+ * Deliberately does NOT fight other extensions. Control Panel for Twitter marks posts
+ * it hides with .HiddenTweet and this skips those, so the two cooperate when both are
+ * installed: CPFT owns .HiddenTweet, we own .CpftDup, CSS unions them, and neither side
+ * reads the other's bookkeeping.
+ */
+const KEY = 'dedupEnabled'
+const TAU = 'dedupThreshold'
+
+async function boot() {
+  let enabled = true
+  // Default matches config.js MODEL.threshold: ~95% of folds correct.
+  let threshold = 0.89
+  try {
+    const stored = await chrome.storage.local.get([KEY, TAU])
+    enabled = stored[KEY] !== false
+    threshold = stored[TAU] || threshold
+  } catch {
+    // Storage can be unavailable during an extension update; default to on rather than
+    // silently doing nothing.
+  }
+
+  const mod = await import(chrome.runtime.getURL('dedup/observer.js'))
+  const api = mod.start({ enabled, threshold })
+
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== 'local') return
+    if (KEY in changes) api.setEnabled(changes[KEY].newValue !== false)
+    if (TAU in changes) api.setThreshold(changes[TAU].newValue)
+  })
+
+  // Publish stats for the popup. Polling rather than pushing on every mutation: the
+  // observer fires on each timeline change, which on an active feed is many times a
+  // second, and a storage write per change would be pure overhead for a number nobody
+  // reads unless the popup is open.
+  setInterval(() => {
+    try { chrome.storage.local.set({ lastStats: api.stats() }) } catch {}
+  }, 2000)
+}
+
+boot().catch((err) => console.error('[timeline-dedup] failed to start', err))
