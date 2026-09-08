@@ -118,6 +118,10 @@ function publishStats() {
   el.setAttribute('data-cpftdup-model', MODEL.id)
   el.setAttribute('data-cpftdup-embedded', String(embeddedCount))
   el.setAttribute('data-cpftdup-embed-errors', String(embedErrors))
+  // Posts recalled from an earlier session. Published so a test can prove cross-session
+  // memory actually reached IndexedDB and came back, which no in-page number otherwise
+  // distinguishes from a fresh start.
+  el.setAttribute('data-cpftdup-remembered', String(s.remembered || 0))
   el.setAttribute('data-cpftdup-ready', '1')
   // Ids of the posts we believe are collapsed. Without this, "store says 1 collapsed,
   // DOM shows 0 .CpftDup" is unfalsifiable: it reads identically whether the duplicate
