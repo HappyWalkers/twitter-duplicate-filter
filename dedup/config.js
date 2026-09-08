@@ -45,10 +45,23 @@ export const MODEL = {
   prompt: '',
   dim: 384,
 
-  // Calibrated on the shipped algorithm (greedy assignment against representatives in a
-  // 400-post window), scored only over labeller-ADJUDICATED pairs, on 30.3M scored pairs
-  // across 343 macro-scoreable stories. At 0.89: 1.96% of posts collapse at 95.1%
-  // precision (176 correct / 9 wrong of the 185 judged).
+  // Calibrated on the shipped algorithm, scored only over labeller-ADJUDICATED pairs, on
+  // 30.3M scored pairs across 343 macro-scoreable stories. With windowSize 0 (compare
+  // against every post this session) 0.94 folds 1.57% of posts at 91.7% precision.
+  //
+  // The window is not just a memory bound -- it is an accuracy device, and removing it
+  // costs more than it gives. Measured at tau 0.89: a 400-post window folds 1.96% at
+  // 95.1%; 1600 folds 2.37% at 89.9%; unbounded folds 2.55% at 88.2%. Precision falls
+  // monotonically as the window grows while the fold rate barely moves, because each new
+  // post is being compared against thousands more representatives and buys thousands more
+  // chances to match one of them spuriously. Unbounded cannot reach 95% at ANY threshold;
+  // it plateaus near 92% even at 0.96.
+  //
+  // Temporal proximity is real evidence: posts about one story arrive close together.
+  // Restore the window by setting TUNING.windowSize back to 400 and this to 0.89.
+  // (Caveat on the magnitude: the corpus is in capture order, where a trend page's posts
+  // are adjacent, so the window's edge is probably overstated -- but every window size
+  // measured ranks the same way, so the direction is not in doubt.)
   //
   // Two earlier values were wrong, each for a different reason worth remembering:
   //
@@ -64,7 +77,7 @@ export const MODEL = {
   // The lesson for anyone retuning this: a precision figure is only as trustworthy as the
   // share of collapses actually judged, so read `unjudged_share` in collapse_sim.json
   // before believing the headline.
-  threshold: 0.89,
+  threshold: 0.94,
 
   downloadMB: 130,
   licence: 'MIT',
@@ -79,8 +92,8 @@ export const MODEL = {
     pooledAuc: 0.9174,     // rank 2 of 8
     bestF1: 0.3159,        // rank 1 of 8
     greedyAri: 0.2001,     // rank 1 of 8 -- this metric matches what ships
-    collapseRate: 0.0196,  // share of timeline hidden at tau
-    collapsePrecision: 0.951,
+    collapseRate: 0.0157,  // share of timeline hidden at tau, windowSize 0
+    collapsePrecision: 0.917,
     msPerPost: 2.6,        // real WebGPU, NVIDIA Blackwell adapter
     note: 'Statistically indistinguishable from gte-multilingual-base, and now that ' +
           'is a conclusion rather than a lack of power: paired bootstrap over 343 ' +
@@ -130,9 +143,15 @@ export const ALTERNATES = {
 }
 
 export const TUNING = {
-  /** Rolling window of posts held for comparison. X recycles DOM nodes aggressively,
-   *  so this is keyed by status id and is the real memory bound. */
-  windowSize: 400,
+  /** Rolling window of posts held for comparison, or 0 for no window.
+   *
+   *  Now 0. The window existed to bound memory, but it was also throwing away matches:
+   *  on the labelled corpus a 400-post window caught only 62.3% of true duplicate pairs,
+   *  because the median gap between two posts about the same story is 237 posts and the
+   *  90th percentile is 954. 800 would have reached 86%, 1600 reached 97.4%. Keeping the
+   *  whole session costs roughly 1.7KB per post -- 17MB after 10,000 posts -- which is
+   *  cheaper than the recall it was quietly costing. */
+  windowSize: 0,
   /** Embedding requests are coalesced into one worker round trip. */
   batchMax: 32,
   batchWindowMs: 25,

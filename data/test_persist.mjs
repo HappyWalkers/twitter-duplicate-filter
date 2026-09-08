@@ -22,10 +22,10 @@ const cos = (a, b) => { let s = 0; for (let i = 0; i < a.length; i++) s += a[i] 
 console.log('quantisation')
 {
   const v = unit(1.7)
-  const { b, s } = quantise(v)
-  const r = dequantise(b, s)
+  const { q, s } = quantise(v)
+  const r = dequantise(q, s)
   ok(Math.abs(cos(v, r) - 1) < 1e-3, `int8 round-trip preserves direction (cos=${cos(v, r).toFixed(5)})`)
-  ok(b.length < 700, `encodes to ${b.length} bytes, not ~8KB of JSON floats`)
+  ok(q.byteLength === 384, `${q.byteLength} bytes per post, vs 1536 as float32`)
 }
 
 console.log('\nnever hide behind an invisible representative')
@@ -72,23 +72,54 @@ console.log('\nsame author is still exempt across sessions')
      'an author repeating themselves is not folded into their own earlier post')
 }
 
-console.log('\npersistence bounds')
+console.log('\npersistence: age-bounded, no entry cap')
 {
-  const mem = new Map()
-  const fake = {
-    get: async (k) => (mem.has(k) ? { [k]: mem.get(k) } : {}),
-    set: async (o) => { for (const [k, v] of Object.entries(o)) mem.set(k, v) },
-    remove: async (k) => { mem.delete(k) },
+  // Stand-in for the service worker's IndexedDB store.
+  const rows = new Map()
+  let ttlCutoff = 0
+  const transport = async (msg) => {
+    if (msg.type === 'dedup-remember') { for (const r of msg.rows) rows.set(r.id, r); return { ok: true } }
+    if (msg.type === 'dedup-recall') {
+      const live = [...rows.values()].filter((r) => r.t >= ttlCutoff)
+      for (const [id, r] of rows) if (r.t < ttlCutoff) rows.delete(id)
+      return { ok: true, rows: live }
+    }
+    if (msg.type === 'dedup-forget') { rows.clear(); return { ok: true } }
+    return { ok: false }
   }
-  const p = new Persistence(fake)
-  for (let i = 0; i < 20; i++) p.remember(`s${i}`, unit(i + 1), `a${i}`)
+
+  const p = new Persistence(transport)
+  for (let i = 0; i < 25000; i++) p.remember(`s${i}`, unit((i % 97) + 1), `a${i % 50}`)
   await p.flush()
-  const p2 = new Persistence(fake)
-  const back = await p2.load()
-  ok(back.length === 20, `restores what it stored (${back.length}/20)`)
+  ok(rows.size === 25000, `stores 25,000 posts with no entry cap (${rows.size})`)
+
+  const back = await new Persistence(transport).load()
+  ok(back.length === 25000, `restores all of them (${back.length})`)
   ok(cos(back.find((e) => e.statusId === 's5').vec, unit(6)) > 0.999, 'vectors survive the round trip')
-  await p2.clear()
-  ok((await new Persistence(fake).load()).length === 0, 'clear() erases everything')
+
+  // Age is the only bound.
+  const now = Date.now()
+  for (const r of rows.values()) if (Number(r.id.slice(1)) < 10000) r.t = now - 8 * 24 * 3600 * 1000
+  ttlCutoff = now - 7 * 24 * 3600 * 1000
+  const after = await new Persistence(transport).load()
+  ok(after.length === 15000, `expiry drops only the aged-out rows (${after.length} left of 25000)`)
+  ok(rows.size === 15000, 'and prunes them from the store, so age really is the bound')
+
+  await new Persistence(transport).clear()
+  ok(rows.size === 0, 'clear() erases everything')
+}
+
+console.log('\nno in-session window')
+{
+  const s2 = new ClusterStore(0.99)
+  for (let i = 0; i < 3000; i++) s2.add(`p${i}`, unit(i + 1), `a${i}`)
+  ok(s2.posts.size === 3000, `keeps all 3000 posts in session, no 400-post eviction (${s2.posts.size})`)
+  // The whole point: a match 3000 posts back is still found. Asserting on clusterId, not
+  // on size -- sin(seed*i) aliases every 710 seeds, so this fixture genuinely produces
+  // repeated vectors and the cluster legitimately has more than two members.
+  const late = s2.add('late', unit(1), 'zed')
+  ok(late.clusterId === 'p0', 'a duplicate 3000 posts later still matches its original')
+  ok(late.isRepresentative === false, 'and folds into it rather than starting a new story')
 }
 
 console.log(fails ? `\n${fails} FAILED` : '\nall passed')

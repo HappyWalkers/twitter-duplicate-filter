@@ -34,13 +34,12 @@ wording matters, because vague answers are the most common cause of a rejection 
 > the extension is not able to contact any website, and you can verify that in DevTools.
 >
 > To keep recognising a story after you reload, it remembers a compressed fingerprint of
-> posts you have scrolled past — never the text itself, capped at 4,000 posts, expiring
-> after a week, stored only on your own computer, and erasable from the popup at any
-> time.
+> posts you have scrolled past — never the text itself. Entries expire after a week, are
+> stored only on your own computer, and can be erased from the popup at any time.
 >
 > **It is tuned to under-fold rather than over-fold.** A missed duplicate costs you one
 > redundant post. A wrong fold hides something you wanted and you would never know. The
-> default folds only when it is right about 19 times in 20, measured on 14,201
+> default folds only when it is right about 9 times in 10, measured on 14,201
 > hand-labelled posts, and a Sensitivity control in the popup lets you trade that for
 > more folding if you prefer.
 >
@@ -67,7 +66,7 @@ wording matters, because vague answers are the most common cause of a rejection 
 | Permission | Justification to paste |
 |---|---|
 | `offscreen` | Creates a hidden extension page that hosts the machine-learning model used to compare posts. Required because a worker created from a content script belongs to the x.com origin and is governed by that site's content security policy, which prevents the model's WebAssembly runtime from initialising. The offscreen document runs on the extension's own origin, where it can. |
-| `storage` | Stores the user's on/off preference, sensitivity setting, two popup counters, and a local cache of numeric fingerprints of recently-seen posts so duplicates are still recognised after a page reload. The fingerprints are not the post text and are capped at 4,000 entries expiring after 7 days; the user can erase them from the popup. Nothing is transmitted or synced. |
+| `storage` | Stores the user's on/off preference, sensitivity setting, two popup counters, and a local IndexedDB cache of numeric fingerprints of recently-seen posts so duplicates are still recognised after a page reload. The fingerprints are not the post text, entries expire after 7 days, and the user can erase them from the popup. Nothing is transmitted or synced. |
 | Host access to `x.com`, `twitter.com` | The extension's entire function is to collapse duplicate posts on the user's timeline, so it must read post text on those sites. It runs nowhere else. |
 | Remote code | **No.** All code ships in the package. The model file is data, not executable code, and it is bundled rather than downloaded — the extension declares no host permissions and makes no network requests. |
 
@@ -83,7 +82,7 @@ because an inaccurate disclosure is the kind of thing that gets an extension pul
 
 If a reviewer asks: post text is used in memory to compute similarity and discarded; only
 an irreversible 384-byte numeric fingerprint, the post id and the author handle are cached
-locally, capped and expiring, and erasable from the popup.
+locally, expiring after 7 days, and erasable from the popup.
 
 **Privacy policy URL**
 `https://github.com/HappyWalkers/twitter-duplicate-filter/blob/main/store/PRIVACY.md`

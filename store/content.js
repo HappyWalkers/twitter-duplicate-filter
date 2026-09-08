@@ -16,7 +16,7 @@ const TAU = 'dedupThreshold'
 async function boot() {
   let enabled = true
   // Default matches config.js MODEL.threshold: ~95% of folds correct.
-  let threshold = 0.89
+  let threshold = 0.94
   try {
     const stored = await chrome.storage.local.get([KEY, TAU])
     enabled = stored[KEY] !== false
@@ -36,7 +36,7 @@ async function boot() {
     // "Forget" erases the stored copy, but this tab still holds one in memory and would
     // flush it straight back on the next timer -- which looks exactly like the button not
     // working. Drop the in-memory copy too, so the erase is real without a reload.
-    if ('dedupCache' in changes && !changes.dedupCache.newValue) api.forgetAll()
+    if ('dedupForgetAt' in changes) api.forgetAll()
   })
 
   // Publish stats for the popup. Polling rather than pushing on every mutation: the

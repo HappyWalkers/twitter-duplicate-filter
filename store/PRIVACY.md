@@ -44,12 +44,15 @@ That last item deserves a plain description, because it is a record of your read
   into the original post, but it is derived from it: given a candidate piece of text, it
   can be checked for a match. Treat it as a record of what you read, because that is
   what it is.
-* It is capped at **4,000 posts** and each entry **expires after 7 days**.
-* **You can erase it at any time** — click the extension icon and press *Forget
+* There is **no cap on how many** are kept. Each entry **expires 7 days** after it was
+  recorded, and age is the only thing that removes it automatically.
+* It is stored in the extension's own IndexedDB database, not in x.com's storage, so the
+  site cannot read it.
+* **You can erase all of it at any time** — click the extension icon and press *Forget
   remembered posts*. The count above the button tells you how many are held.
 
-Post text itself is held **in memory only**, for at most the most recent 400 posts, and is
-discarded when the tab is closed. It is never written to disk.
+Post text itself is held **in memory only**, for every post seen since the tab was opened,
+and is discarded when the tab is closed. It is never written to disk.
 
 ## Permissions, and why each is needed
 

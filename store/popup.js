@@ -40,9 +40,9 @@ chrome.storage.onChanged.addListener((c, area) => {
 const TAU = 'dedupThreshold'
 const sel = document.getElementById('tau')
 const NOTE = {
-  '0.89': 'About 19 in 20 folds are correct. Folds rarely on a quiet timeline — roughly one post in 300.',
-  '0.85': 'About 9 in 10 folds are correct. Folds roughly one post in 190.',
-  '0.80': 'About 6 in 7 folds are correct. Folds roughly one post in 110 — most useful during big news.',
+  '0.94': 'About 9 in 10 folds are correct. The most accurate setting available while every post this session is compared against every other.',
+  '0.92': 'About 9 in 10 folds are correct, and folds a little more often.',
+  '0.89': 'About 7 in 8 folds are correct. Folds most often — best during big news, likelier to fold something you wanted.',
 }
 function note() { document.getElementById('note').textContent = NOTE[sel.value] || '' }
 
@@ -61,23 +61,25 @@ sel.addEventListener('change', () => {
  * user gets a count and a way to erase it in the same place they turn the feature on.
  * A privacy control the user cannot find is not a control.
  */
-const CACHE_KEY = 'dedupCache'
 const forget = document.getElementById('forget')
 
-function showRemembered(raw) {
-  const n = raw && Array.isArray(raw.e) ? raw.e.length : 0
-  document.getElementById('remembered').textContent = n
+function showRemembered(n) {
+  document.getElementById('remembered').textContent = n.toLocaleString()
   forget.disabled = n === 0
 }
 
-chrome.storage.local.get(CACHE_KEY).then((s) => showRemembered(s[CACHE_KEY]))
-chrome.storage.onChanged.addListener((c, area) => {
-  if (area === 'local' && CACHE_KEY in c) showRemembered(c[CACHE_KEY].newValue)
-})
+// The count lives in the service worker's IndexedDB now, so ask it rather than reading
+// chrome.storage -- which no longer holds the cache at all.
+const askCount = () => chrome.runtime.sendMessage({ type: 'dedup-count' })
+  .then((r) => showRemembered(r?.n || 0)).catch(() => showRemembered(0))
+askCount()
 
 forget.addEventListener('click', async () => {
-  await chrome.storage.local.remove(CACHE_KEY)
-  showRemembered(null)
+  await chrome.runtime.sendMessage({ type: 'dedup-forget' })
+  // Tell open tabs to drop their in-memory copy too, otherwise the next flush writes it
+  // straight back and the button looks broken.
+  await chrome.storage.local.set({ dedupForgetAt: Date.now() })
+  showRemembered(0)
   forget.textContent = 'Forgotten'
   // Open tabs drop their in-memory copy too (content.js watches this key), so the erase
   // is complete and the count will not creep back on the next flush.

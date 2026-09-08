@@ -22,8 +22,18 @@ export class ClusterStore {
     this.posts = new Map()
     /** clusterId -> {repId, members, live, exactKeys} */
     this.clusters = new Map()
-    /** insertion order of LIVE ids, for windowing (prior posts are bounded separately) */
+    /** insertion order of LIVE ids */
     this.order = []
+    /**
+     * Representatives in insertion order, as a flat array of {id, vec, author}.
+     *
+     * Kept alongside `clusters` purely for the matching scan. With no window there can be
+     * tens of thousands of representatives and this loop runs for every new post, so the
+     * cost of iterating a Map and doing a `posts.get()` per entry stops being negligible:
+     * a flat array keeps the hot path to an indexed walk over objects that are already
+     * adjacent. Insertion order is preserved, so first-match semantics are unchanged.
+     */
+    this.reps = []
   }
 
   /**
@@ -38,6 +48,7 @@ export class ClusterStore {
       this.posts.set(statusId, { vec, clusterId: statusId, author, prior: true })
       this.clusters.set(statusId,
         { repId: statusId, members: [statusId], live: [], exactKeys: new Set() })
+      this.reps.push({ id: statusId, vec, author, clusterId: statusId })
     }
   }
 
@@ -66,21 +77,28 @@ export class ClusterStore {
       }
     }
 
-    // Tier 2: nearest representative above threshold, first match wins.
+    // Tier 2: first representative above threshold wins. Inlined rather than calling
+    // cosine() per candidate, and bailing out of the dot product early is deliberately
+    // NOT done -- a partial sum says nothing about the final one for signed vectors.
     if (!hit && vec) {
-      for (const [cid, c] of this.clusters) {
-        const rep = this.posts.get(c.repId)
-        if (!rep?.vec) continue
+      const t = this.threshold
+      const reps = this.reps
+      for (let r = 0; r < reps.length; r++) {
+        const rep = reps[r]
         // Self-threads and reply chains are legitimately repetitive; collapsing an
         // author against their own earlier post hides a thread, not a duplicate.
         if (TUNING.exemptSameAuthor && rep.author && rep.author === author) continue
-        if (ClusterStore.cosine(vec, rep.vec) >= this.threshold) { hit = cid; break }
+        const b = rep.vec
+        let sum = 0
+        for (let i = 0; i < vec.length; i++) sum += vec[i] * b[i]
+        if (sum >= t) { hit = rep.clusterId; break }
       }
     }
 
     if (!hit) {
       hit = statusId          // this post becomes its own representative
       this.clusters.set(hit, { repId: statusId, members: [], live: [], exactKeys: new Set() })
+      this.reps.push({ id: statusId, vec, author, clusterId: hit })
     }
     const c = this.clusters.get(hit)
     // A cluster restored from disk has no member on screen. Folding into it would make
@@ -114,11 +132,20 @@ export class ClusterStore {
     }
   }
 
-  /** Drop the oldest posts once the window is exceeded. A cluster whose representative
-   *  is evicted keeps its remaining members but stops accepting new ones -- preferable
-   *  to promoting a new representative, which would silently change what later posts
-   *  are compared against mid-session. */
+  /** Drop the oldest posts once the window is exceeded.
+   *
+   *  Disabled by default (TUNING.windowSize = 0). A window was originally imposed to
+   *  bound memory, but it was also silently discarding matches: measured on the labelled
+   *  corpus, a 400-post window caught only 62% of true duplicate pairs, because the median
+   *  distance between two posts about one story is 237 posts and the 90th percentile is
+   *  954. Keeping everything for the session catches ~100% of them.
+   *
+   *  Set windowSize > 0 to re-enable. A cluster whose representative is evicted keeps its
+   *  remaining members but stops accepting new ones -- preferable to promoting a new
+   *  representative, which would silently change what later posts are compared against
+   *  mid-session. */
   evict() {
+    if (!TUNING.windowSize) return
     while (this.order.length > TUNING.windowSize) {
       const id = this.order.shift()
       const p = this.posts.get(id)
