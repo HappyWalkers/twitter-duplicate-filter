@@ -18,12 +18,27 @@ import { MODEL, TUNING } from './config.js'
 export class ClusterStore {
   constructor(threshold = MODEL.threshold) {
     this.threshold = threshold
-    /** statusId -> {vec, clusterId, author} */
+    /** statusId -> {vec, clusterId, author, prior} */
     this.posts = new Map()
-    /** clusterId -> {repId, members: string[]} */
+    /** clusterId -> {repId, members, live, exactKeys} */
     this.clusters = new Map()
-    /** insertion order of ids, for windowing */
+    /** insertion order of LIVE ids, for windowing (prior posts are bounded separately) */
     this.order = []
+  }
+
+  /**
+   * Seed posts remembered from earlier sessions. They can be matched against but are not
+   * on screen, so they are tracked separately from live ones.
+   *
+   * @param {Array<{statusId:string, vec:Float32Array, author:string}>} entries
+   */
+  seedPrior(entries) {
+    for (const { statusId, vec, author } of entries) {
+      if (!vec || this.posts.has(statusId)) continue
+      this.posts.set(statusId, { vec, clusterId: statusId, author, prior: true })
+      this.clusters.set(statusId,
+        { repId: statusId, members: [statusId], live: [], exactKeys: new Set() })
+    }
   }
 
   static cosine(a, b) {
@@ -65,13 +80,21 @@ export class ClusterStore {
 
     if (!hit) {
       hit = statusId          // this post becomes its own representative
-      this.clusters.set(hit, { repId: statusId, members: [], exactKeys: new Set() })
+      this.clusters.set(hit, { repId: statusId, members: [], live: [], exactKeys: new Set() })
     }
     const c = this.clusters.get(hit)
+    // A cluster restored from disk has no member on screen. Folding into it would make
+    // this post disappear with no chip to expand -- the user would lose the story
+    // entirely and have no way to notice. So the first live post to rejoin a remembered
+    // cluster BECOMES its representative and stays visible; only the ones after it fold.
+    // Cross-session memory therefore turns "seen ten times" into "seen once", never into
+    // "never seen".
+    if (!c.live.length) c.repId = statusId
     c.members.push(statusId)
+    c.live.push(statusId)
     if (exactKey) c.exactKeys.add(exactKey)
 
-    this.posts.set(statusId, { vec, clusterId: hit, author })
+    this.posts.set(statusId, { vec, clusterId: hit, author, prior: false })
     this.order.push(statusId)
     this.evict()
     return this.view(hit, statusId)
@@ -83,8 +106,11 @@ export class ClusterStore {
     return {
       clusterId,
       isRepresentative: c.repId === statusId,
-      size: c.members.length,
-      members: c.members,
+      // Counts only posts present in THIS session: the chip promises "+N similar" and
+      // expanding must reveal exactly N. Counting remembered posts would promise more
+      // than the page can show.
+      size: c.live.length,
+      members: c.live,
     }
   }
 
@@ -101,6 +127,9 @@ export class ClusterStore {
       const c = this.clusters.get(p.clusterId)
       if (c) {
         c.members = c.members.filter((m) => m !== id)
+        c.live = c.live.filter((m) => m !== id)
+        // Keep the cluster while any remembered member remains: it is still a valid
+        // thing for a future post to match against.
         if (!c.members.length) this.clusters.delete(p.clusterId)
       }
     }
@@ -111,17 +140,20 @@ export class ClusterStore {
   duplicateIds() {
     const out = []
     for (const c of this.clusters.values()) {
-      if (c.members.length < 2) continue
-      for (const id of c.members) if (id !== c.repId) out.push(id)
+      if (c.live.length < 2) continue
+      for (const id of c.live) if (id !== c.repId) out.push(id)
     }
     return out
   }
 
   stats() {
     let multi = 0, collapsed = 0
+    let prior = 0
     for (const c of this.clusters.values()) {
-      if (c.members.length > 1) { multi++; collapsed += c.members.length - 1 }
+      if (c.live.length > 1) { multi++; collapsed += c.live.length - 1 }
+      if (!c.live.length) prior++
     }
-    return { posts: this.posts.size, clusters: this.clusters.size, multi, collapsed }
+    return { posts: this.posts.size - prior, clusters: this.clusters.size - prior,
+             multi, collapsed, remembered: prior }
   }
 }

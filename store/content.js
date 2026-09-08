@@ -33,6 +33,10 @@ async function boot() {
     if (area !== 'local') return
     if (KEY in changes) api.setEnabled(changes[KEY].newValue !== false)
     if (TAU in changes) api.setThreshold(changes[TAU].newValue)
+    // "Forget" erases the stored copy, but this tab still holds one in memory and would
+    // flush it straight back on the next timer -- which looks exactly like the button not
+    // working. Drop the in-memory copy too, so the erase is real without a reload.
+    if ('dedupCache' in changes && !changes.dedupCache.newValue) api.forgetAll()
   })
 
   // Publish stats for the popup. Polling rather than pushing on every mutation: the

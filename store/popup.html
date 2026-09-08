@@ -23,6 +23,11 @@
   select { font: inherit; color: var(--fg); background: var(--bg); border: 1px solid var(--line);
            border-radius: 6px; padding: 3px 6px; }
   .note { margin: 6px 0 0; font-size: 11px; line-height: 1.4; }
+  button { width: 100%; margin-top: 10px; padding: 7px; font: inherit; cursor: pointer;
+           color: var(--fg); background: transparent; border: 1px solid var(--line);
+           border-radius: 8px; }
+  button:hover { border-color: #f4212e; color: #f4212e; }
+  button:disabled { opacity: .5; cursor: default; border-color: var(--line); color: var(--muted); }
   footer { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
 </style>
 
@@ -51,6 +56,12 @@
   <span>Folded away</span>
   <span class="stat" id="collapsed">–</span>
 </div>
+
+<div class="row">
+  <span>Remembered posts <span class="muted">on this device</span></span>
+  <span class="stat" id="remembered">–</span>
+</div>
+<button id="forget" type="button">Forget remembered posts</button>
 
 <footer id="foot">Runs on your device. Nothing is uploaded.</footer>
 <script src="popup.js"></script>

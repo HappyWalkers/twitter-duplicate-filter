@@ -21,7 +21,7 @@ export function offscreenTransport(texts) {
     const timer = setTimeout(() => done(reject, new Error('offscreen timeout')), 60_000)
 
     try {
-      chrome.runtime.sendMessage({ type: 'cpftdup-embed', texts }, (resp) => {
+      chrome.runtime.sendMessage({ type: 'dedup-embed', texts }, (resp) => {
         clearTimeout(timer)
         if (chrome.runtime.lastError) {
           return done(reject, new Error(chrome.runtime.lastError.message))

@@ -87,7 +87,7 @@ async function cpftDupEnsureOffscreen() {
 }
 
 chrome.runtime.onMessage.addListener((msg, sender, respond) => {
-  if (msg?.type !== 'cpftdup-embed') return
+  if (msg?.type !== 'dedup-embed') return
   ;(async () => {
     try {
       await cpftDupEnsureOffscreen()

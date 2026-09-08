@@ -54,3 +54,32 @@ sel.addEventListener('change', () => {
   chrome.storage.local.set({ [TAU]: Number(sel.value) })
   note()
 })
+
+/* Remembered posts.
+ *
+ * Cross-session memory means the extension keeps a record of what has been read, so the
+ * user gets a count and a way to erase it in the same place they turn the feature on.
+ * A privacy control the user cannot find is not a control.
+ */
+const CACHE_KEY = 'dedupCache'
+const forget = document.getElementById('forget')
+
+function showRemembered(raw) {
+  const n = raw && Array.isArray(raw.e) ? raw.e.length : 0
+  document.getElementById('remembered').textContent = n
+  forget.disabled = n === 0
+}
+
+chrome.storage.local.get(CACHE_KEY).then((s) => showRemembered(s[CACHE_KEY]))
+chrome.storage.onChanged.addListener((c, area) => {
+  if (area === 'local' && CACHE_KEY in c) showRemembered(c[CACHE_KEY].newValue)
+})
+
+forget.addEventListener('click', async () => {
+  await chrome.storage.local.remove(CACHE_KEY)
+  showRemembered(null)
+  forget.textContent = 'Forgotten'
+  // Open tabs drop their in-memory copy too (content.js watches this key), so the erase
+  // is complete and the count will not creep back on the next flush.
+  document.getElementById('foot').textContent = 'Erased from this device.'
+})

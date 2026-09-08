@@ -19,12 +19,14 @@ import { MODEL, TUNING } from './config.js'
 import { Embedder } from './embedder.js'
 import { ClusterStore } from './cluster.js'
 import { offscreenTransport } from './transport.js'
+import { Persistence } from './persist.js'
 
 const ARTICLE = 'article[data-testid="tweet"]'
 const MARK = 'data-cpftdup'          // stamped so a post is processed once per id
 
 const embedder = new Embedder(offscreenTransport)
 const store = new ClusterStore(MODEL.threshold)
+const persist = new Persistence()
 let enabled = true
 let debugScores = false
 // Count of posts that received a REAL vector. This is the only trustworthy signal that
@@ -144,7 +146,8 @@ async function scan() {
 
   await Promise.all(pending.map(async (p) => {
     const vec = await embedder.embed(p.text)
-    if (vec) embeddedCount++; else embedErrors++
+    if (vec) { embeddedCount++; persist.remember(p.statusId, vec, p.author) }
+    else embedErrors++
     // vec === null means the model is unavailable. Fail OPEN: the post is simply not
     // clustered, so nothing collapses. A dead model must never blank the feed.
     const info = store.add(p.statusId, vec, p.author, p.exactKey)
@@ -168,6 +171,7 @@ function schedule() {
 export function start(opts = {}) {
   enabled = opts.enabled !== false
   debugScores = !!opts.debugScores
+  if (opts.threshold) store.threshold = opts.threshold
   // Observe documentElement, NOT document.body: the host content script runs at
   // document_start, where <body> does not exist yet and observe(null) throws. This was
   // intermittent -- a slow page load let body appear first and the bug hid -- which is
@@ -176,12 +180,33 @@ export function start(opts = {}) {
   mo.observe(document.documentElement, { childList: true, subtree: true })
   publishStats()          // mark presence immediately, before the first embed resolves
   schedule()
+
+  // Restore what earlier sessions saw. Deliberately not awaited: the timeline should
+  // start deduplicating immediately rather than waiting on storage, and a post embedded
+  // before the restore lands simply misses the cross-session match once.
+  if (opts.remember !== false) {
+    persist.load()
+      .then((prior) => { if (prior.length) { store.seedPrior(prior); repaint(); publishStats() } })
+      .catch(() => {})
+  }
+  // Flush on the way out as well as on the timer: a tab closed 9 seconds into the debounce
+  // would otherwise lose everything it just learned.
+  addEventListener('pagehide', () => persist.flush(), { capture: true })
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') persist.flush()
+  })
   return {
     stop() { mo.disconnect() },
     // Include the embed counters, not just cluster shape: "0 collapsed" is ambiguous
     // between a quiet timeline and a model that never started, and a UI showing that
     // number needs to tell those apart.
     stats: () => ({ ...store.stats(), embedded: embeddedCount, embedErrors: embedErrors }),
+    /** Applies to comparisons made from now on. Posts already placed keep their
+     *  cluster -- re-clustering the whole window would make posts appear and disappear
+     *  under the reader mid-scroll, which is worse than waiting for a reload. */
+    setThreshold(v) { if (v) store.threshold = v },
+    forgetAll: () => persist.clear(),
+    rememberedCount: () => persist.size,
     setEnabled(v) {
       enabled = v
       if (!v) {

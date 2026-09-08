@@ -19,7 +19,7 @@
  * slowdown that looks like a working GPU (measured: 1339 ms/post emulated vs 2.6 real).
  */
 import { pipeline, env } from '@huggingface/transformers'
-import { MODEL } from '../dedup/config.js'
+import { MODEL } from '../../dedup/config.js'
 
 // Local only. allowRemoteModels=false is the load-bearing line: without it a missing or
 // misnamed local file silently falls back to a Hugging Face fetch, which would fail at

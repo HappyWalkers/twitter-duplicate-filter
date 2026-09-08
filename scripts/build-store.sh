@@ -16,8 +16,11 @@ cp store/manifest.json store/content.js store/background.js \
    store/offscreen.html store/offscreen.js \
    store/popup.html store/popup.js store/dedup.css "$OUT/"
 cp -r store/icons "$OUT/"
+# ONE source of truth for the dedup modules. store/ previously kept its own copy and the
+# two silently diverged (the threshold setter existed in one, the stats change in the
+# other); copying from dedup/ at build time makes that impossible.
 mkdir -p "$OUT/dedup"
-cp store/dedup/*.js "$OUT/dedup/"
+cp dedup/*.js "$OUT/dedup/"
 
 # The bundled model. This is the bulk of the package and the reason it needs no host
 # permissions: nothing is fetched at runtime.
