@@ -37,11 +37,20 @@ wording matters, because vague answers are the most common cause of a rejection 
 > posts you have scrolled past — never the text itself. Entries expire after a week, are
 > stored only on your own computer, and can be erased from the popup at any time.
 >
+> **It remembers across reloads.** Once you have been shown a story, posts about it are
+> collapsed behind a "seen before" control next time — including the same post served to
+> you again days later. Memory is kept on your device for a week and can be erased from
+> the popup at any time.
+>
 > **It is tuned to under-fold rather than over-fold.** A missed duplicate costs you one
 > redundant post. A wrong fold hides something you wanted and you would never know. The
 > default folds only when it is right about 9 times in 10, measured on 14,201
 > hand-labelled posts, and a Sensitivity control in the popup lets you trade that for
 > more folding if you prefer.
+>
+> **Nothing but the model decides.** There are no keyword lists, no blocklists, and no
+> rules about images, authors or post length. Every fold is one decision: are these two
+> posts about the same thing?
 >
 > **It earns its keep during big news, not on a quiet timeline.** When one story is
 > everywhere, roughly a third of what you scroll past is a repeat and the folding is
@@ -111,11 +120,13 @@ one with the group expanded, so a reviewer can see that nothing is destroyed.
 
 ## Before you submit
 
-1. **Set expectations in the listing, not in support email.** The measured fold rate on
-   a home timeline is ~0.3% of posts at the default and ~0.9% at the most eager setting,
-   against ~2% across the mixed corpus and far more during breaking news. The description
-   above says so deliberately: a user who installs expecting constant folding and sees
-   none will leave a one-star review, and that is much more expensive than the honesty.
+1. **Set expectations in the listing, not in support email.** On a quiet Following feed
+   the model folds very little -- measured well under 1% of posts -- because a personal
+   timeline genuinely repeats itself less than a trending page does. Most of what a user
+   notices day to day will come from the cross-session memory ("seen before") rather than
+   from two posts on one screen. The description above says this deliberately: someone who
+   installs expecting constant folding and sees none leaves a one-star review, and that is
+   far more expensive than the honesty.
 2. **Package size is 116MB zipped.** Under the 2GB limit, but expect a slower review than
    a small extension, and a visible download for users. Almost all of it is the model.
 3. **Register as a developer** ($5 one-time) at

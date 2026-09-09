@@ -40,6 +40,8 @@ That last item deserves a plain description, because it is a record of your read
 
 * It stores, per post, a **numeric fingerprint** of the post's text, the post's id, and
   the author's handle. It does **not** store the text itself, images, or links.
+* This memory is what lets a post you have already been shown collapse behind a "seen
+  before" control on a later visit.
 * The fingerprint is a 384-number vector compressed to 384 bytes. It is not reversible
   into the original post, but it is derived from it: given a candidate piece of text, it
   can be checked for a match. Treat it as a record of what you read, because that is

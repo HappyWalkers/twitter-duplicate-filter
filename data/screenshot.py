@@ -27,6 +27,10 @@ COOKIES = Path("/tmp/x_cookies.json")
 async def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--wait", type=int, default=300, help="seconds to hunt for a duplicate")
+    ap.add_argument("--warm", action="store_true",
+                    help="just browse and remember, take no shots -- run this first so the "
+                         "next run has a memory to collapse against")
+    ap.add_argument("--keep-profile", action="store_true", default=True)
     ap.add_argument("--url", default="https://x.com/home")
     args = ap.parse_args()
 
@@ -48,37 +52,61 @@ async def main():
         await page.goto(args.url, wait_until="domcontentloaded", timeout=60000)
         await page.wait_for_timeout(8000)
 
-        left = args.wait
-        while left > 0:
-            n = await page.evaluate("document.querySelectorAll('.CpftDupChip').length")
-            if n:
-                break
-            await page.evaluate("window.scrollBy(0, window.innerHeight * 0.8)")
-            await page.wait_for_timeout(2500)
-            left -= 2.5
+        # Browse, then RELOAD in the same session and shoot the collapsed state.
+        #
+        # Two passes in one browser, not two runs: closing the context can beat the
+        # debounced flush to disk, so a fresh run may start with an empty memory and
+        # nothing to collapse. Reloading keeps the service worker (and its IndexedDB)
+        # alive across the boundary, which is also exactly what a reader does.
+        for _ in range(8):
+            await page.evaluate("window.scrollBy(0, window.innerHeight)")
+            await page.wait_for_timeout(1600)
+        await page.wait_for_timeout(13000)          # past the 10s flush debounce
+        seen1 = await page.evaluate(
+            "document.documentElement.getAttribute('data-cpftdup-posts')")
+        print(f"pass 1: {seen1} posts remembered")
 
+        await page.reload(wait_until="domcontentloaded")
+        await page.wait_for_timeout(12000)
+
+        # Do NOT scroll hunting for a control after the reload. The remembered posts are
+        # the ones at the top, already collapsed by the time the page settles, and
+        # scrolling past them lets X recycle their cells -- the control is found and then
+        # gone before the shutter. Settle, then shoot.
+        await page.wait_for_timeout(4000)
         chips = await page.evaluate("document.querySelectorAll('.CpftDupChip').length")
         if not chips:
             stats = await page.evaluate(
-                "document.documentElement.getAttribute('data-cpftdup-posts')")
-            print(f"no duplicate group appeared after scrolling {stats} posts.")
-            print("Not a bug -- at tau=0.89 only ~2% of posts fold, so a quiet timeline")
-            print("may simply not contain one. Re-run during a breaking news cycle, or")
-            print("browse a trending topic page where the same story repeats.")
+                "document.documentElement.getAttribute('data-cpftdup-remembered')")
+            print(f"nothing collapsed after the reload ({stats} posts remembered).")
+            print("The page served different posts the second time; re-run, or use a URL")
+            print("whose results are stable between loads.")
             await ctx.close()
             return 1
 
-        # Bring the chip into view and frame it near the top, where a reviewer looks.
-        await page.evaluate("""() => {
-            const c = document.querySelector('.CpftDupChip')
-            c.scrollIntoView({block: 'center'})
-        }""")
-        await page.wait_for_timeout(1200)
+        # Re-query rather than trusting the poll: X re-renders constantly, so a chip that
+        # existed a moment ago may already be gone. Retry a few times before giving up.
+        placed = False
+        for _ in range(10):
+            placed = await page.evaluate("""() => {
+                const c = document.querySelector('.CpftDupChip')
+                if (!c) return false
+                c.scrollIntoView({block: 'center'})
+                return true
+            }""")
+            if placed:
+                break
+            await page.wait_for_timeout(1500)
+        if not placed:
+            print("a control appeared during scrolling but was gone by capture time; re-run")
+            await ctx.close()
+            return 1
+        await page.wait_for_timeout(1500)
         await page.screenshot(path=str(OUT / "screenshot-1-collapsed.png"))
         print(f"wrote {OUT/'screenshot-1-collapsed.png'}")
 
-        await page.evaluate("document.querySelector('.CpftDupChip').click()")
-        await page.wait_for_timeout(900)
+        await page.evaluate("document.querySelector('.CpftDupChip')?.click()")
+        await page.wait_for_timeout(1200)
         await page.screenshot(path=str(OUT / "screenshot-2-expanded.png"))
         print(f"wrote {OUT/'screenshot-2-expanded.png'}")
         await ctx.close()
