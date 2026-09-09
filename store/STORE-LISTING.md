@@ -104,17 +104,25 @@ locally, expiring after 7 days, and erasable from the popup.
 |---|---|---|
 | Store icon | 128×128 PNG | `store/icons/icon128.png` |
 | Small promo tile | 440×280 PNG | `store/store-assets/promo-440x280.png` |
-| Screenshots | 1–5, **1280×800** or 640×400 | **you must capture these** — see below |
+| Screenshots | 1–5, **1280×800** or 640×400 | `store/store-assets/screenshot-*.png` |
 
-Screenshots are the one thing that cannot be generated from the repo, because they have
-to show real folded posts. Capture them with:
+Screenshots are the one asset that has to come from a real timeline, so they are captured
+by hand and then formatted:
 
 ```
-python data/screenshot.py            # writes store/store-assets/screenshot-*.png
+python scripts/format-screenshots.py <capture-1.png> <capture-2.png>
 ```
 
-Take at least one showing a collapsed group with its "+N similar posts" chip, and ideally
-one with the group expanded, so a reviewer can see that nothing is destroyed.
+A desktop capture is 2559x1492, which is 1.715:1 against the store's 1.6:1 — so it must be
+**cropped, not scaled**. Squashing a 1.715 image into a 1.6 frame stretches every face and
+letterform vertically, which reads as subtly wrong without being obviously so. The script
+crops from full height, trimming the right margin, so the navigation, timeline and sidebar
+all survive.
+
+It writes both a clean and a captioned version of each. Upload whichever pair you prefer —
+captioned generally converts better, because a reviewer scanning a listing has seconds to
+work out what the extension does and the "seen before" control is small at store size.
+Upload the collapsed shot first: it is the one shown on the search card.
 
 ---
 
