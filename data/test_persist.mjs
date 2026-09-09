@@ -120,5 +120,41 @@ console.log('\nno in-session window')
   ok(late.isRepresentative === false, 'and folds into it rather than starting a new story')
 }
 
+console.log('\nrenderSeen is idempotent (DOM guard)')
+{
+  // Mirrors the real DOM shape: the chip is inserted BEFORE the post, so it becomes the
+  // first child. A guard that looks at the first child therefore passes on every later
+  // scan and adds another chip each time.
+  const mk = () => {
+    const kids = []
+    return {
+      children: kids,
+      firstElementChild: null,
+      querySelector: (sel) => sel.includes('CpftDupSeenChip')
+        ? kids.find((k) => k.cls.includes('CpftDupSeenChip')) || null : null,
+      insertBefore(node) { kids.unshift(node); this.firstElementChild = kids[0] },
+      appendChild(node) { kids.push(node); this.firstElementChild = kids[0] },
+    }
+  }
+  const item = mk()
+  const post = { cls: [], attrs: {} }
+  item.appendChild(post); item.firstElementChild = post
+
+  const renderSeen = (item) => {
+    if (item.querySelector(':scope > .CpftDupSeenChip')) return 'skipped'
+    const first = item.firstElementChild
+    if (!first) return 'no first'
+    first.cls.push('CpftDupSeen')
+    item.insertBefore({ cls: ['CpftDupChip', 'CpftDupSeenChip'] })
+    return 'rendered'
+  }
+  ok(renderSeen(item) === 'rendered', 'first pass renders the control')
+  ok(renderSeen(item) === 'skipped', 'second pass does nothing')
+  ok(renderSeen(item) === 'skipped', 'third pass does nothing')
+  ok(item.children.filter((k) => k.cls.includes('CpftDupSeenChip')).length === 1,
+     `exactly one control exists (${item.children.filter((k) => k.cls.includes('CpftDupSeenChip')).length})`)
+  ok(!post.cls.includes('CpftDupSeenChip'), 'and the post itself was never treated as a chip')
+}
+
 console.log(fails ? `\n${fails} FAILED` : '\nall passed')
 process.exit(fails ? 1 : 0)

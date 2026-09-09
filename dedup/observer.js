@@ -88,8 +88,14 @@ function ensureSeenStyle(statusId) {
  *  display:none, so a chip inside it would be invisible and the post would be gone with no
  *  way to bring it back. */
 function renderSeen(item, statusId) {
+  // Guard on the CHIP's presence, not on the first child. Once the chip is inserted it
+  // IS the first child, so a first-child check passes on the next pass and every scan
+  // marks the previous chip collapsed and inserts another -- chips pile up without limit
+  // on a timeline whose MutationObserver fires several times a second, and the control
+  // the reader is aiming at is replaced underneath them.
+  if (item.querySelector(':scope > .CpftDupSeenChip')) return
   const first = item.firstElementChild
-  if (!first || first.classList.contains('CpftDupSeen')) return
+  if (!first) return
   first.classList.add('CpftDupSeen')
   first.setAttribute('data-cpftdup-seen', statusId)
   ensureSeenStyle(statusId)
