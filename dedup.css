@@ -33,3 +33,14 @@ html[class*="CpftDupOpen-"] .CpftDup[data-cpftdup-of] { display: revert !importa
   position: absolute; top: 2px; right: 2px;
   font: 10px/1 monospace; color: rgb(249, 24, 128); pointer-events: none;
 }
+
+/* --- "already seen" ---------------------------------------------------------
+   A post the reader met in an earlier session. Collapsed like a duplicate, but the
+   control sits on the CELL rather than inside the collapsed element: the collapsed
+   element is display:none, so a chip within it would be invisible and the post would
+   vanish with no way to bring it back. */
+.CpftDupSeen { display: none !important; }
+/* Matching on the attribute alone would reveal EVERY seen post as soon as any one was
+   expanded. There is no CSS way to compare a class to an attribute value, so the rule is
+   generated per post by observer.js instead -- see ensureSeenStyle(). */
+.CpftDupSeenChip { margin: 4px 16px 10px; }

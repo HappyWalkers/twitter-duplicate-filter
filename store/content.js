@@ -12,6 +12,7 @@
  */
 const KEY = 'dedupEnabled'
 const TAU = 'dedupThreshold'
+const SEEN = 'dedupHideSeen'
 
 async function boot() {
   let enabled = true
@@ -22,9 +23,13 @@ async function boot() {
   // popup's dropdown showed blank because the value matches no option.
   const PRESETS = [0.94, 0.92, 0.89]
   let threshold = 0.94
+  // Off by default: it hides posts outright, and a reader who has not asked for that
+  // should never have content disappear on an upgrade.
+  let hideSeen = false
   try {
-    const stored = await chrome.storage.local.get([KEY, TAU])
+    const stored = await chrome.storage.local.get([KEY, TAU, SEEN])
     enabled = stored[KEY] !== false
+    hideSeen = stored[SEEN] === true
     if (PRESETS.includes(stored[TAU])) threshold = stored[TAU]
     else if (stored[TAU]) chrome.storage.local.remove(TAU)   // stale: fall back to default
   } catch {
@@ -33,7 +38,7 @@ async function boot() {
   }
 
   const mod = await import(chrome.runtime.getURL('dedup/observer.js'))
-  const api = mod.start({ enabled, threshold })
+  const api = mod.start({ enabled, threshold, hideSeen })
 
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== 'local') return
@@ -44,6 +49,7 @@ async function boot() {
     // "Forget" erases the stored copy, but this tab still holds one in memory and would
     // flush it straight back on the next timer -- which looks exactly like the button not
     // working. Drop the in-memory copy too, so the erase is real without a reload.
+    if (SEEN in changes) api.setHideSeen(changes[SEEN].newValue === true)
     if ('dedupForgetAt' in changes) api.forgetAll()
   })
 

@@ -49,6 +49,36 @@ export class Persistence {
     this.buffer = []
     this.seen = new Set()          // ids already stored or queued, so we never re-send
     this.timer = undefined
+    /** Ids seen in EARLIER sessions -- the basis for "already seen", which is identity
+     *  rather than similarity and so is tracked separately from the vectors. */
+    this.priorSeen = new Set()
+    this.seenBuffer = []
+    this.seenTimer = undefined
+  }
+
+  /** @returns {Promise<Set<string>>} ids seen before this session */
+  async loadSeen() {
+    const r = await this.send({ type: 'dedup-seen-list' })
+    this.priorSeen = new Set(r?.ok ? r.ids : [])
+    return this.priorSeen
+  }
+
+  /** Record that a post was on screen. Takes every post with an id, including ones the
+   *  model never sees -- short posts are precisely the viral ones a reader meets again. */
+  markSeen(statusId) {
+    if (this.priorSeen.has(statusId) || this.seenBuffer.includes(statusId)) return
+    this.seenBuffer.push(statusId)
+    if (this.seenTimer === undefined) {
+      this.seenTimer = setTimeout(() => this.flushSeen(), FLUSH_MS)
+    }
+  }
+
+  async flushSeen() {
+    if (this.seenTimer !== undefined) { clearTimeout(this.seenTimer); this.seenTimer = undefined }
+    if (!this.seenBuffer.length) return
+    const ids = this.seenBuffer
+    this.seenBuffer = []
+    await this.send({ type: 'dedup-seen-add', ids })
   }
 
   /** @returns {Promise<Array<{statusId, vec, author}>>} */
@@ -76,6 +106,8 @@ export class Persistence {
     if (this.timer === undefined) this.timer = setTimeout(() => this.flush(), FLUSH_MS)
   }
 
+  async flushAll() { await Promise.all([this.flush(), this.flushSeen()]) }
+
   async flush() {
     if (this.timer !== undefined) { clearTimeout(this.timer); this.timer = undefined }
     if (!this.buffer.length) return
@@ -90,6 +122,8 @@ export class Persistence {
   async clear() {
     this.buffer = []
     this.seen = new Set()
+    this.priorSeen = new Set()
+    this.seenBuffer = []
     await this.send({ type: 'dedup-forget' })
   }
 

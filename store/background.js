@@ -76,6 +76,15 @@ chrome.runtime.onMessage.addListener((msg, sender, respond) => {
  * --------------------------------------------------------------------------- */
 const DB_NAME = 'dedup'
 const STORE = 'posts'
+/** Ids of posts that have been on screen, with no vector attached.
+ *
+ * Separate from STORE because it answers a different question. STORE remembers what a post
+ * MEANS, for finding other posts about the same story. This remembers only that a post was
+ * SEEN, which is identity, not similarity -- and it must cover posts the model never
+ * touches, including ones below the text-length floor. "plane cake" is ten characters and
+ * is never embedded, yet it is exactly the kind of viral post a reader sees over and over.
+ */
+const SEEN = 'seen'
 /** Weekly. A month is a one-line change, but see the cost: a heavy reader at ~5k
  *  posts/day reaches ~35k posts in a week (13MB on disk, ~58MB of tab memory once
  *  recalled) and ~150k in a month (~58MB disk, ~250MB memory). Memory in the tab, not
@@ -86,10 +95,15 @@ let dbPromise
 function db() {
   if (!dbPromise) {
     dbPromise = new Promise((resolve, reject) => {
-      const req = indexedDB.open(DB_NAME, 1)
-      req.onupgradeneeded = () => {
-        const s = req.result.createObjectStore(STORE, { keyPath: 'id' })
-        s.createIndex('t', 't')          // for the age sweep and the recall range
+      const req = indexedDB.open(DB_NAME, 2)
+      req.onupgradeneeded = (ev) => {
+        const db = req.result
+        if (!db.objectStoreNames.contains(STORE)) {
+          db.createObjectStore(STORE, { keyPath: 'id' }).createIndex('t', 't')
+        }
+        if (!db.objectStoreNames.contains(SEEN)) {
+          db.createObjectStore(SEEN, { keyPath: 'id' }).createIndex('t', 't')
+        }
       }
       req.onsuccess = () => resolve(req.result)
       req.onerror = () => reject(req.error)
@@ -98,11 +112,11 @@ function db() {
   return dbPromise
 }
 
-const tx = async (mode, fn) => {
+const tx = async (mode, fn, store = STORE) => {
   const d = await db()
   return new Promise((resolve, reject) => {
-    const t = d.transaction(STORE, mode)
-    const out = fn(t.objectStore(STORE))
+    const t = d.transaction(store, mode)
+    const out = fn(t.objectStore(store))
     t.oncomplete = () => resolve(out?.result ?? out)
     t.onerror = () => reject(t.error)
     t.onabort = () => reject(t.error)
@@ -142,8 +156,28 @@ chrome.runtime.onMessage.addListener((msg, _sender, respond) => {
     return true
   }
   if (msg?.type === 'dedup-forget') {
-    tx('readwrite', (s) => s.clear())
+    Promise.all([tx('readwrite', (s) => s.clear()), tx('readwrite', (s) => s.clear(), SEEN)])
       .then(() => respond({ ok: true })).catch((e) => respond({ ok: false, error: String(e) }))
+    return true
+  }
+  if (msg?.type === 'dedup-seen-add') {
+    tx('readwrite', (s) => { const t = Date.now(); for (const id of msg.ids) s.put({ id, t }) }, SEEN)
+      .then(() => respond({ ok: true })).catch((e) => respond({ ok: false, error: String(e) }))
+    return true
+  }
+  if (msg?.type === 'dedup-seen-list') {
+    // Same age bound as the vectors, pruned on read for the same reason.
+    const cutoff = Date.now() - TTL_MS
+    db().then((d) => new Promise((res, rej) => {
+      const t = d.transaction(SEEN, 'readwrite'); const st = t.objectStore(SEEN); const ids = []
+      st.index('t').openCursor().onsuccess = (e) => {
+        const c = e.target.result
+        if (!c) return
+        if (c.value.t < cutoff) c.delete(); else ids.push(c.value.id)
+        c.continue()
+      }
+      t.oncomplete = () => res(ids); t.onerror = () => rej(t.error)
+    })).then((ids) => respond({ ok: true, ids })).catch(() => respond({ ok: false, ids: [] }))
     return true
   }
   if (msg?.type === 'dedup-count') {

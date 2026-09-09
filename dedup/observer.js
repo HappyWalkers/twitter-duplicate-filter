@@ -34,6 +34,8 @@ let debugScores = false
 // document's traffic, so "0 huggingface requests" is a measurement gap, not evidence.
 let embeddedCount = 0
 let embedErrors = 0
+let hideSeen = false
+let seenCollapsed = 0
 
 /** Pull the fields we need out of one rendered post. Returns null for anything we must
  *  not touch (ads, unavailable posts, posts CPFT already hid). */
@@ -49,9 +51,57 @@ function extract(article) {
   if (!m) return null
 
   const text = article.querySelector('div[data-testid="tweetText"]')?.innerText || ''
-  if (text.trim().length < TUNING.minTextLength) return null   // too short to judge
+  // Short posts are still RETURNED, flagged rather than dropped: they cannot be judged
+  // for similarity, but "already seen" works on identity and a ten-character viral post
+  // is exactly the kind a reader meets over and over.
+  const tooShort = text.trim().length < TUNING.minTextLength
 
-  return { item, statusId: m[2], author: m[1], text }
+  return { item, statusId: m[2], author: m[1], text, tooShort }
+}
+
+/** One reveal rule per collapsed post.
+ *
+ *  CSS cannot compare a class name to an attribute value, so a single static rule would
+ *  reveal every seen post the moment any one of them was expanded. Injecting one narrow
+ *  rule per post keeps expansion local. Rules are tiny and bounded by what is on screen.
+ */
+const seenStyles = new Set()
+function ensureSeenStyle(statusId) {
+  if (seenStyles.has(statusId)) return
+  seenStyles.add(statusId)
+  let el = document.getElementById('cpftdup-seen-styles')
+  if (!el) {
+    el = document.createElement('style')
+    el.id = 'cpftdup-seen-styles'
+    document.head?.appendChild(el)
+  }
+  el.sheet?.insertRule(
+    `html.CpftDupOpen-${CSS.escape(statusId)} .CpftDupSeen[data-cpftdup-seen="${statusId}"]` +
+    `{display:revert !important}`, el.sheet.cssRules.length)
+}
+
+/** Collapse a post the reader has already met in an earlier session, leaving a control in
+ *  its place. The chip goes on the ITEM, not on the collapsed element, because the
+ *  collapsed element is display:none -- a chip inside it would be invisible and the post
+ *  would be gone with no way to bring it back. */
+function renderSeen(item, statusId) {
+  const first = item.firstElementChild
+  if (!first || first.classList.contains('CpftDupSeen')) return
+  first.classList.add('CpftDupSeen')
+  first.setAttribute('data-cpftdup-seen', statusId)
+  ensureSeenStyle(statusId)
+  const chip = document.createElement('button')
+  chip.className = 'CpftDupChip CpftDupSeenChip'
+  chip.type = 'button'
+  chip.textContent = '⌄ seen before'
+  chip.addEventListener('click', (e) => {
+    e.stopPropagation(); e.preventDefault()
+    document.documentElement.classList.toggle(`CpftDupOpen-${statusId}`)
+    chip.setAttribute('aria-expanded',
+      document.documentElement.classList.contains(`CpftDupOpen-${statusId}`) ? 'true' : 'false')
+  })
+  item.appendChild(chip)
+  seenCollapsed++
 }
 
 function render(item, info, statusId) {
@@ -90,6 +140,9 @@ function repaint() {
   for (const article of document.querySelectorAll(ARTICLE)) {
     const info = extract(article)
     if (!info) continue
+    persist.markSeen(info.statusId)
+    if (hideSeen && persist.priorSeen.has(info.statusId)) { renderSeen(info.item, info.statusId); continue }
+    if (info.tooShort) continue          // trackable, but not judgeable
     const known = store.posts.get(info.statusId)
     if (known && !known.prior) render(info.item, store.view(known.clusterId, info.statusId), info.statusId)
   }
@@ -116,6 +169,7 @@ function publishStats() {
   // memory actually reached IndexedDB and came back, which no in-page number otherwise
   // distinguishes from a fresh start.
   el.setAttribute('data-cpftdup-remembered', String(s.remembered || 0))
+  el.setAttribute('data-cpftdup-seen-collapsed', String(seenCollapsed))
   el.setAttribute('data-cpftdup-ready', '1')
   // Ids of the posts we believe are collapsed. Without this, "store says 1 collapsed,
   // DOM shows 0 .CpftDup" is unfalsifiable: it reads identically whether the duplicate
@@ -131,6 +185,9 @@ async function scan() {
   for (const article of document.querySelectorAll(ARTICLE)) {
     const info = extract(article)
     if (!info) continue
+    persist.markSeen(info.statusId)
+    if (hideSeen && persist.priorSeen.has(info.statusId)) { renderSeen(info.item, info.statusId); continue }
+    if (info.tooShort) continue          // trackable, but not judgeable
     const known = store.posts.get(info.statusId)
     if (known) {
       // A post remembered from an earlier session is NOT already handled -- it has a
@@ -173,6 +230,7 @@ function schedule() {
 export function start(opts = {}) {
   enabled = opts.enabled !== false
   debugScores = !!opts.debugScores
+  hideSeen = !!opts.hideSeen
   if (opts.threshold) store.threshold = opts.threshold
   // Observe documentElement, NOT document.body: the host content script runs at
   // document_start, where <body> does not exist yet and observe(null) throws. This was
@@ -190,12 +248,13 @@ export function start(opts = {}) {
     persist.load()
       .then((prior) => { if (prior.length) { store.seedPrior(prior); repaint(); publishStats() } })
       .catch(() => {})
+    persist.loadSeen().then(() => schedule()).catch(() => {})
   }
   // Flush on the way out as well as on the timer: a tab closed 9 seconds into the debounce
   // would otherwise lose everything it just learned.
-  addEventListener('pagehide', () => persist.flush(), { capture: true })
+  addEventListener('pagehide', () => persist.flushAll(), { capture: true })
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'hidden') persist.flush()
+    if (document.visibilityState === 'hidden') persist.flushAll()
   })
   return {
     stop() { mo.disconnect() },
@@ -207,6 +266,14 @@ export function start(opts = {}) {
      *  cluster -- re-clustering the whole window would make posts appear and disappear
      *  under the reader mid-scroll, which is worse than waiting for a reload. */
     setThreshold(v) { if (v) store.threshold = v },
+    setHideSeen(v) {
+      hideSeen = !!v
+      if (!hideSeen) {
+        for (const el of document.querySelectorAll('.CpftDupSeen')) el.classList.remove('CpftDupSeen')
+        for (const el of document.querySelectorAll('.CpftDupSeenChip')) el.remove()
+        seenCollapsed = 0
+      } else schedule()
+    },
     forgetAll: () => persist.clear(),
     rememberedCount: () => persist.size,
     setEnabled(v) {
