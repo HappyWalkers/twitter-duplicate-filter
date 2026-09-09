@@ -92,9 +92,6 @@ export class ClusterStore {
       const reps = this.reps
       for (let r = 0; r < reps.length; r++) {
         const rep = reps[r]
-        // Self-threads and reply chains are legitimately repetitive; collapsing an
-        // author against their own earlier post hides a thread, not a duplicate.
-        if (TUNING.exemptSameAuthor && rep.author && rep.author === author) continue
         const b = rep.vec
         let sum = 0
         for (let i = 0; i < vec.length; i++) sum += vec[i] * b[i]

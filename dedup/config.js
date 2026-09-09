@@ -158,9 +158,17 @@ export const TUNING = {
   /** Consecutive transport failures before muting, and how long to mute for. */
   breakerTrips: 5,
   breakerMuteMs: 30_000,
-  /** Never collapse a post whose author matches the representative's -- self-threads
-   *  and reply chains are legitimately repetitive, not duplicates. */
-  exemptSameAuthor: true,
+  // There was a same-author exemption here, on the theory that self-threads and reply
+  // chains are legitimately repetitive. It was removed after measuring what it actually
+  // blocked: of the same-author pairs scoring above threshold, 115 were the same story
+  // and 9 were not -- 92.7% precision, indistinguishable from the general rate. It was
+  // costing ~115 correct folds and protecting against nothing, because the concern it
+  // encoded applies at LOW similarity (a thread's parts are related but worded
+  // differently) while the comparison only ever happens at 0.94 and above, where the
+  // texts are near-identical. Observed live: one account posting the same 271-character
+  // post three times, left unfolded by this rule.
+  //
+  // It was also the last rule-based override in the path -- grouping is the model's.
   // There is deliberately no rule-based signal here. An exact-media-match pre-pass was
   // tried and removed: 29 pairs caught out of 4.3M (recall 0.004), and because it
   // bypassed the threshold its errors were bounded by nothing. Grouping is the model's
