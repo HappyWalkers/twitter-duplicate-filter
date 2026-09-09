@@ -35,7 +35,7 @@ export class Embedder {
 
   cacheSet(t, v) {
     this.cache.set(t, v)
-    if (this.cache.size > TUNING.windowSize * 2) {
+    if (this.cache.size > TUNING.cacheMax) {
       const oldest = this.cache.keys().next().value
       if (oldest !== undefined) this.cache.delete(oldest)
     }

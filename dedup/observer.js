@@ -34,7 +34,6 @@ let debugScores = false
 // document's traffic, so "0 huggingface requests" is a measurement gap, not evidence.
 let embeddedCount = 0
 let embedErrors = 0
-let hideSeen = false
 let seenCollapsed = 0
 
 /** Pull the fields we need out of one rendered post. Returns null for anything we must
@@ -51,12 +50,14 @@ function extract(article) {
   if (!m) return null
 
   const text = article.querySelector('div[data-testid="tweetText"]')?.innerText || ''
-  // Short posts are still RETURNED, flagged rather than dropped: they cannot be judged
-  // for similarity, but "already seen" works on identity and a ten-character viral post
-  // is exactly the kind a reader meets over and over.
-  const tooShort = text.trim().length < TUNING.minTextLength
+  // Empty only. There is no minimum length: a length cutoff is a rule deciding what may
+  // be judged, and the model is what judges here. "plane cake" is ten characters and is a
+  // post a reader meets over and over; a floor of 15 made it invisible to the extension
+  // entirely. Measured on the corpus, removing the floor changes nothing (2.42% folded at
+  // 92.7% precision either way), so it was costing that case for no gain.
+  if (!text.trim()) return null
 
-  return { item, statusId: m[2], author: m[1], text, tooShort }
+  return { item, statusId: m[2], author: m[1], text }
 }
 
 /** One reveal rule per collapsed post.
@@ -80,10 +81,12 @@ function ensureSeenStyle(statusId) {
     `{display:revert !important}`, el.sheet.cssRules.length)
 }
 
-/** Collapse a post the reader has already met in an earlier session, leaving a control in
- *  its place. The chip goes on the ITEM, not on the collapsed element, because the
- *  collapsed element is display:none -- a chip inside it would be invisible and the post
- *  would be gone with no way to bring it back. */
+/** Collapse a post whose story the model has already placed in a cluster from an earlier
+ *  session, leaving a control in its place.
+ *
+ *  The chip goes on the ITEM, not on the collapsed element: the collapsed element is
+ *  display:none, so a chip inside it would be invisible and the post would be gone with no
+ *  way to bring it back. */
 function renderSeen(item, statusId) {
   const first = item.firstElementChild
   if (!first || first.classList.contains('CpftDupSeen')) return
@@ -107,6 +110,12 @@ function renderSeen(item, statusId) {
 function render(item, info, statusId) {
   const first = item.firstElementChild
   if (!first) return
+  // A story carried over from an earlier session has already been shown, so every post in
+  // it now is a repeat -- including the identical post served again, which the model
+  // scores against its own remembered vector at 1.0. Those collapse individually, each
+  // with its own control, because there is no representative on screen to hang one on.
+  if (info?.fromMemory) { renderSeen(item, statusId); return }
+
   const dup = info && !info.isRepresentative && info.size > 1
   first.classList.toggle('CpftDup', !!dup)
 
@@ -140,9 +149,6 @@ function repaint() {
   for (const article of document.querySelectorAll(ARTICLE)) {
     const info = extract(article)
     if (!info) continue
-    persist.markSeen(info.statusId)
-    if (hideSeen && persist.priorSeen.has(info.statusId)) { renderSeen(info.item, info.statusId); continue }
-    if (info.tooShort) continue          // trackable, but not judgeable
     const known = store.posts.get(info.statusId)
     if (known && !known.prior) render(info.item, store.view(known.clusterId, info.statusId), info.statusId)
   }
@@ -185,9 +191,6 @@ async function scan() {
   for (const article of document.querySelectorAll(ARTICLE)) {
     const info = extract(article)
     if (!info) continue
-    persist.markSeen(info.statusId)
-    if (hideSeen && persist.priorSeen.has(info.statusId)) { renderSeen(info.item, info.statusId); continue }
-    if (info.tooShort) continue          // trackable, but not judgeable
     const known = store.posts.get(info.statusId)
     if (known) {
       // A post remembered from an earlier session is NOT already handled -- it has a
@@ -230,7 +233,6 @@ function schedule() {
 export function start(opts = {}) {
   enabled = opts.enabled !== false
   debugScores = !!opts.debugScores
-  hideSeen = !!opts.hideSeen
   if (opts.threshold) store.threshold = opts.threshold
   // Observe documentElement, NOT document.body: the host content script runs at
   // document_start, where <body> does not exist yet and observe(null) throws. This was
@@ -248,13 +250,12 @@ export function start(opts = {}) {
     persist.load()
       .then((prior) => { if (prior.length) { store.seedPrior(prior); repaint(); publishStats() } })
       .catch(() => {})
-    persist.loadSeen().then(() => schedule()).catch(() => {})
   }
   // Flush on the way out as well as on the timer: a tab closed 9 seconds into the debounce
   // would otherwise lose everything it just learned.
-  addEventListener('pagehide', () => persist.flushAll(), { capture: true })
+  addEventListener('pagehide', () => persist.flush(), { capture: true })
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'hidden') persist.flushAll()
+    if (document.visibilityState === 'hidden') persist.flush()
   })
   return {
     stop() { mo.disconnect() },
@@ -266,14 +267,6 @@ export function start(opts = {}) {
      *  cluster -- re-clustering the whole window would make posts appear and disappear
      *  under the reader mid-scroll, which is worse than waiting for a reload. */
     setThreshold(v) { if (v) store.threshold = v },
-    setHideSeen(v) {
-      hideSeen = !!v
-      if (!hideSeen) {
-        for (const el of document.querySelectorAll('.CpftDupSeen')) el.classList.remove('CpftDupSeen')
-        for (const el of document.querySelectorAll('.CpftDupSeenChip')) el.remove()
-        seenCollapsed = 0
-      } else schedule()
-    },
     forgetAll: () => persist.clear(),
     rememberedCount: () => persist.size,
     setEnabled(v) {

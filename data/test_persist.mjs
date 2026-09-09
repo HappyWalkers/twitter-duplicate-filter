@@ -28,26 +28,33 @@ console.log('quantisation')
   ok(q.byteLength === 384, `${q.byteLength} bytes per post, vs 1536 as float32`)
 }
 
-console.log('\nnever hide behind an invisible representative')
+console.log('\na story already shown is collapsed on sight')
 {
   const s = new ClusterStore(0.5)
   const a = unit(2.1)
-  // Remembered from a previous session; nothing on screen.
+  // Remembered from a previous session: the reader has already been shown this story.
   s.seedPrior([{ statusId: 'old1', vec: a, author: 'alice' }])
 
   const first = s.add('new1', a, 'bob')
-  ok(first.isRepresentative === true, 'first live post rejoining a remembered story stays VISIBLE')
-  ok(first.size === 1, 'and reports size 1, so no chip claims hidden posts that do not exist')
+  ok(first.fromMemory === true, 'a post matching a remembered story is marked fromMemory')
+  ok(first.isRepresentative === false, 'and is NOT promoted to visible representative')
 
   const second = s.add('new2', a, 'carol')
-  ok(second.isRepresentative === false, 'the SECOND live post folds')
-  ok(second.size === 2, 'chip counts live posts only')
-  // The cluster keeps the remembered post's id as its key even after a live post takes
-  // over as representative -- the id is only a handle, and re-keying would mean rewriting
-  // every member's clusterId for a cosmetic gain.
-  ok(second.clusterId === first.clusterId, 'both live posts land in the same cluster')
-  ok(s.view(second.clusterId, 'new1').members.length === 2,
-     'members are the live ones, not the remembered one')
+  ok(second.fromMemory === true, 'so is the next one')
+  ok(s.view(second.clusterId, 'new2').members.length === 2, 'both are tracked as live members')
+}
+
+console.log('\nthe same post served again is a duplicate of itself')
+{
+  const s = new ClusterStore(0.5)
+  const v = unit(7.7)
+  s.seedPrior([{ statusId: 'viral1', vec: v, author: 'ramin' }])
+  const back = s.promote('viral1')
+  ok(back.fromMemory === true, 'a remembered post reappearing is marked fromMemory')
+  ok(s.stats().posts === 1, 'it still counts as a post seen this session')
+  // This is the "plane cake" case: nothing else on the page resembles it, and it is not
+  // similar to another post -- it is the identical post, which the model scores against
+  // its own stored vector at 1.0.
 }
 
 console.log('\nremembered posts still do their job')
@@ -55,8 +62,12 @@ console.log('\nremembered posts still do their job')
   const s = new ClusterStore(0.5)
   s.seedPrior([{ statusId: 'old1', vec: unit(3.3), author: 'alice' }])
   const joined = s.add('new1', unit(3.3), 'bob')
-  ok(s.clusters.get(joined.clusterId).repId === 'new1',
-     'live post takes over the remembered cluster as representative')
+  // The remembered post stays the representative -- it is off screen, and the whole point
+  // is that this story has already been shown, so the new post collapses rather than
+  // taking over as a fresh first sighting.
+  ok(s.clusters.get(joined.clusterId).repId === 'old1',
+     'the remembered post remains the cluster representative')
+  ok(joined.fromMemory === true, 'and the new post is marked as an already-shown story')
   ok(s.posts.get('old1').prior === true, 'remembered post is marked prior')
   ok(s.stats().remembered >= 0, 'stats expose how many stories are remembered')
 }
@@ -86,15 +97,14 @@ console.log('\nremembered posts that reappear on screen')
   // more of the timeline became invisible.
   const back = s.promote('old1')
   ok(back !== null, 'a remembered post that reappears can be promoted')
-  ok(back.isRepresentative === true, 'and becomes the visible representative of its story')
+  ok(back.fromMemory === true, 'and is collapsed, because its story was already shown')
   ok(s.stats().posts === 1, `and is counted as seen this session (${s.stats().posts})`)
   ok(s.posts.get('old1').prior === false, 'and is no longer marked prior')
 
   const dup = s.add('new1', v, 'bob')
-  ok(dup.isRepresentative === false && dup.size === 2,
-     'a later post about that story then folds into it')
+  ok(dup.fromMemory === true, 'a later post about that story is collapsed too')
   ok(s.stats().posts === 2, `both count toward posts seen (${s.stats().posts})`)
-  ok(s.stats().collapsed === 1, `one is reported collapsed (${s.stats().collapsed})`)
+  ok(s.stats().collapsed === 2, `both are reported collapsed (${s.stats().collapsed})`)
 }
 
 console.log('\nno in-session window')

@@ -46,7 +46,11 @@ export class ClusterStore {
     for (const { statusId, vec, author } of entries) {
       if (!vec || this.posts.has(statusId)) continue
       this.posts.set(statusId, { vec, clusterId: statusId, author, prior: true })
-      this.clusters.set(statusId, { repId: statusId, members: [statusId], live: [] })
+      // fromMemory marks a story the reader has already been shown, in an earlier
+      // session. Any post landing in it now is a repeat -- including the very same post
+      // served again, which is a duplicate of itself at similarity 1.0.
+      this.clusters.set(statusId,
+        { repId: statusId, members: [statusId], live: [], fromMemory: true })
       this.reps.push({ id: statusId, vec, author, clusterId: statusId })
     }
   }
@@ -105,13 +109,6 @@ export class ClusterStore {
       this.reps.push({ id: statusId, vec, author, clusterId: hit })
     }
     const c = this.clusters.get(hit)
-    // A cluster restored from disk has no member on screen. Folding into it would make
-    // this post disappear with no chip to expand -- the user would lose the story
-    // entirely and have no way to notice. So the first live post to rejoin a remembered
-    // cluster BECOMES its representative and stays visible; only the ones after it fold.
-    // Cross-session memory therefore turns "seen ten times" into "seen once", never into
-    // "never seen".
-    if (!c.live.length) c.repId = statusId
     c.members.push(statusId)
     c.live.push(statusId)
 
@@ -140,9 +137,6 @@ export class ClusterStore {
     const c = this.clusters.get(p.clusterId)
     if (!c) return null
     p.prior = false
-    // Same rule as add(): the first live post in a remembered cluster becomes its
-    // visible representative, so nothing is ever folded behind something off-screen.
-    if (!c.live.length) c.repId = statusId
     c.live.push(statusId)
     this.order.push(statusId)
     return this.view(p.clusterId, statusId)
@@ -153,6 +147,7 @@ export class ClusterStore {
     if (!c) return null
     return {
       clusterId,
+      fromMemory: !!c.fromMemory,
       isRepresentative: c.repId === statusId,
       // Counts only posts present in THIS session: the chip promises "+N similar" and
       // expanding must reveal exactly N. Counting remembered posts would promise more
@@ -206,7 +201,12 @@ export class ClusterStore {
   stats() {
     let multi = 0, collapsed = 0, remembered = 0
     for (const c of this.clusters.values()) {
-      if (c.live.length > 1) { multi++; collapsed += c.live.length - 1 }
+      // A story already shown in an earlier session hides ALL of its posts, not all but
+      // one: there is no representative left to keep visible, so counting live-1 here
+      // would under-report what the reader actually stops seeing.
+      if (c.fromMemory) collapsed += c.live.length
+      else if (c.live.length > 1) collapsed += c.live.length - 1
+      if (c.live.length > 1) multi++
       if (!c.live.length) remembered++
     }
     // `order` holds exactly the ids seen on screen this session. Deriving the count from

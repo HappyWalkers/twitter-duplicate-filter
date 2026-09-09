@@ -90,11 +90,3 @@ forget.addEventListener('click', async () => {
   document.getElementById('foot').textContent = 'Erased from this device.'
 })
 
-/* "Already seen" is a different question from "duplicate": identity rather than
- * similarity. It catches what the model structurally cannot -- the same viral post served
- * again days later, including short ones the model never embeds. Off by default because it
- * hides content outright. */
-const SEEN = 'dedupHideSeen'
-const hideseen = document.getElementById('hideseen')
-chrome.storage.local.get(SEEN).then((s) => { hideseen.checked = s[SEEN] === true })
-hideseen.addEventListener('change', () => chrome.storage.local.set({ [SEEN]: hideseen.checked }))

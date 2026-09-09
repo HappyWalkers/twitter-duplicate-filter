@@ -152,6 +152,12 @@ export const TUNING = {
    *  whole session costs roughly 1.7KB per post -- 17MB after 10,000 posts -- which is
    *  cheaper than the recall it was quietly costing. */
   windowSize: 0,
+  /** Upper bound on the text -> vector cache, so repeated renders of the same post are
+   *  not re-embedded. Independent of windowSize: it used to be windowSize * 2, and when
+   *  the window was disabled (0) that became "evict whenever size > 0" -- the cache threw
+   *  away every entry the moment it was written and every re-render paid for a fresh
+   *  embed. A resource bound, not a rule about what may be compared. */
+  cacheMax: 5000,
   /** Embedding requests are coalesced into one worker round trip. */
   batchMax: 32,
   batchWindowMs: 25,
@@ -173,11 +179,10 @@ export const TUNING = {
   // tried and removed: 29 pairs caught out of 4.3M (recall 0.004), and because it
   // bypassed the threshold its errors were bounded by nothing. Grouping is the model's
   // job alone, so every fold is governed by `threshold` and covered by the calibration.
-  /** Posts shorter than this are never clustered. Kept at 15 after measuring, not by
-   *  intuition: short reactions ("Fetterman is finished", "Says boo Carter") are the
-   *  largest class of genuine false collapses, so raising the floor looked obviously
-   *  right -- but at tau=0.75 it buys nothing (precision 93.4% at 15 chars, 93.5% at
-   *  30, 92.8% at 40) while cutting the posts folded by 40%. The threshold is already
-   *  doing that work. Enforced in observer.js extract(). */
-  minTextLength: 15,
+  // There is no minimum post length. There was one, at 15 characters, and it was the last
+  // rule deciding what the model is allowed to judge. Measured at the shipped settings,
+  // removing it changes nothing -- 2.42% folded at 92.7% precision with or without -- and
+  // it was making short viral posts ("plane cake", ten characters) invisible to the
+  // extension, which are exactly the posts a reader meets again and again. Only genuinely
+  // empty text is skipped now, because there is nothing to embed.
 }
