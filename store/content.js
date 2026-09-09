@@ -15,12 +15,18 @@ const TAU = 'dedupThreshold'
 
 async function boot() {
   let enabled = true
-  // Default matches config.js MODEL.threshold: ~95% of folds correct.
+  // Default matches config.js MODEL.threshold. PRESETS is the whitelist: an older build
+  // offered 0.89/0.85/0.80, and those values survive in storage across an update. Without
+  // this check a user who once chose "Eager" would silently keep running at 0.80 -- a
+  // threshold this build never offers and whose precision it does not claim -- while the
+  // popup's dropdown showed blank because the value matches no option.
+  const PRESETS = [0.94, 0.92, 0.89]
   let threshold = 0.94
   try {
     const stored = await chrome.storage.local.get([KEY, TAU])
     enabled = stored[KEY] !== false
-    threshold = stored[TAU] || threshold
+    if (PRESETS.includes(stored[TAU])) threshold = stored[TAU]
+    else if (stored[TAU]) chrome.storage.local.remove(TAU)   // stale: fall back to default
   } catch {
     // Storage can be unavailable during an extension update; default to on rather than
     // silently doing nothing.
@@ -32,7 +38,9 @@ async function boot() {
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== 'local') return
     if (KEY in changes) api.setEnabled(changes[KEY].newValue !== false)
-    if (TAU in changes) api.setThreshold(changes[TAU].newValue)
+    if (TAU in changes && PRESETS.includes(changes[TAU].newValue)) {
+      api.setThreshold(changes[TAU].newValue)
+    }
     // "Forget" erases the stored copy, but this tab still holds one in memory and would
     // flush it straight back on the next timer -- which looks exactly like the button not
     // working. Drop the in-memory copy too, so the erase is real without a reload.

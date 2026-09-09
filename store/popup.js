@@ -46,8 +46,12 @@ const NOTE = {
 }
 function note() { document.getElementById('note').textContent = NOTE[sel.value] || '' }
 
+// Same whitelist as content.js: a value from an older build must not leave the dropdown
+// blank while quietly staying in effect.
+const PRESETS = ['0.94', '0.92', '0.89']
 chrome.storage.local.get(TAU).then((s) => {
-  sel.value = String(s[TAU] || 0.89)
+  const v = String(s[TAU] ?? '')
+  sel.value = PRESETS.includes(v) ? v : '0.94'
   note()
 })
 sel.addEventListener('change', () => {
