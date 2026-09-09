@@ -103,7 +103,11 @@ function renderSeen(item, statusId) {
     chip.setAttribute('aria-expanded',
       document.documentElement.classList.contains(`CpftDupOpen-${statusId}`) ? 'true' : 'false')
   })
-  item.appendChild(chip)
+  // Before the post, not after it. Appending puts the control last, which looks right
+  // while the post is hidden (the chip is all there is) and wrong the moment it is
+  // expanded -- the control ends up beneath the post it belongs to, and the reader has to
+  // scroll past the whole thing to collapse it again.
+  item.insertBefore(chip, first)
   seenCollapsed++
 }
 

@@ -43,4 +43,6 @@ html[class*="CpftDupOpen-"] .CpftDup[data-cpftdup-of] { display: revert !importa
 /* Matching on the attribute alone would reveal EVERY seen post as soon as any one was
    expanded. There is no CSS way to compare a class to an attribute value, so the rule is
    generated per post by observer.js instead -- see ensureSeenStyle(). */
-.CpftDupSeenChip { margin: 4px 16px 10px; }
+/* Sits above the post it controls, so it stays in the same place whether the post is
+   collapsed or expanded. */
+.CpftDupSeenChip { display: block; margin: 8px 16px; }
