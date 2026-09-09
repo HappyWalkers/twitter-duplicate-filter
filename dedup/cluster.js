@@ -124,6 +124,33 @@ export class ClusterStore {
     return this.view(hit, statusId)
   }
 
+  /**
+   * A remembered post has appeared on screen: make it a live member of its own cluster.
+   *
+   * Without this, cross-session memory silently disables the extension as it fills up.
+   * seedPrior() puts remembered posts into `posts`, and the observer used to treat
+   * anything in `posts` as already handled -- so every post the reader had seen before
+   * was skipped entirely: not counted, not embedded, and unable to form or join a
+   * cluster. After a few sessions most of the timeline was invisible to it.
+   *
+   * No re-embedding: the vector came back from storage with the post, so this is
+   * bookkeeping only.
+   */
+  promote(statusId) {
+    const p = this.posts.get(statusId)
+    if (!p) return null
+    if (!p.prior) return this.view(p.clusterId, statusId)
+    const c = this.clusters.get(p.clusterId)
+    if (!c) return null
+    p.prior = false
+    // Same rule as add(): the first live post in a remembered cluster becomes its
+    // visible representative, so nothing is ever folded behind something off-screen.
+    if (!c.live.length) c.repId = statusId
+    c.live.push(statusId)
+    this.order.push(statusId)
+    return this.view(p.clusterId, statusId)
+  }
+
   view(clusterId, statusId) {
     const c = this.clusters.get(clusterId)
     if (!c) return null
@@ -180,13 +207,15 @@ export class ClusterStore {
   }
 
   stats() {
-    let multi = 0, collapsed = 0
-    let prior = 0
+    let multi = 0, collapsed = 0, remembered = 0
     for (const c of this.clusters.values()) {
       if (c.live.length > 1) { multi++; collapsed += c.live.length - 1 }
-      if (!c.live.length) prior++
+      if (!c.live.length) remembered++
     }
-    return { posts: this.posts.size - prior, clusters: this.clusters.size - prior,
-             multi, collapsed, remembered: prior }
+    // `order` holds exactly the ids seen on screen this session. Deriving the count from
+    // posts.size minus remembered clusters double-counted every remembered post that
+    // reappeared, which is the sort of arithmetic that makes a counter quietly wrong.
+    return { posts: this.order.length, clusters: this.clusters.size - remembered,
+             multi, collapsed, remembered }
   }
 }

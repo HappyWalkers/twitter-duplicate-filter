@@ -109,6 +109,29 @@ console.log('\npersistence: age-bounded, no entry cap')
   ok(rows.size === 0, 'clear() erases everything')
 }
 
+console.log('\nremembered posts that reappear on screen')
+{
+  const s = new ClusterStore(0.5)
+  const v = unit(9.1)
+  s.seedPrior([{ statusId: 'old1', vec: v, author: 'alice' }])
+
+  // The regression this guards: the observer used to treat anything in `posts` as
+  // already handled, so a remembered post reappearing was skipped entirely -- never
+  // counted, never able to represent or join a cluster. As the cache filled, more and
+  // more of the timeline became invisible.
+  const back = s.promote('old1')
+  ok(back !== null, 'a remembered post that reappears can be promoted')
+  ok(back.isRepresentative === true, 'and becomes the visible representative of its story')
+  ok(s.stats().posts === 1, `and is counted as seen this session (${s.stats().posts})`)
+  ok(s.posts.get('old1').prior === false, 'and is no longer marked prior')
+
+  const dup = s.add('new1', v, 'bob')
+  ok(dup.isRepresentative === false && dup.size === 2,
+     'a later post about that story then folds into it')
+  ok(s.stats().posts === 2, `both count toward posts seen (${s.stats().posts})`)
+  ok(s.stats().collapsed === 1, `one is reported collapsed (${s.stats().collapsed})`)
+}
+
 console.log('\nno in-session window')
 {
   const s2 = new ClusterStore(0.99)

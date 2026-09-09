@@ -91,7 +91,7 @@ function repaint() {
     const info = extract(article)
     if (!info) continue
     const known = store.posts.get(info.statusId)
-    if (known) render(info.item, store.view(known.clusterId, info.statusId), info.statusId)
+    if (known && !known.prior) render(info.item, store.view(known.clusterId, info.statusId), info.statusId)
   }
 }
 
@@ -131,9 +131,13 @@ async function scan() {
   for (const article of document.querySelectorAll(ARTICLE)) {
     const info = extract(article)
     if (!info) continue
-    if (store.posts.has(info.statusId)) {
-      render(info.item, store.view(store.posts.get(info.statusId).clusterId, info.statusId),
-        info.statusId)
+    const known = store.posts.get(info.statusId)
+    if (known) {
+      // A post remembered from an earlier session is NOT already handled -- it has a
+      // vector but no place on screen yet. Promote it instead of skipping it.
+      const view = known.prior ? store.promote(info.statusId)
+                               : store.view(known.clusterId, info.statusId)
+      render(info.item, view, info.statusId)
       continue
     }
     if (article.getAttribute(MARK) === info.statusId) continue   // already queued
