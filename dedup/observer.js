@@ -51,13 +51,7 @@ function extract(article) {
   const text = article.querySelector('div[data-testid="tweetText"]')?.innerText || ''
   if (text.trim().length < TUNING.minTextLength) return null   // too short to judge
 
-  // Exact signal: the opaque media id in pbs.twimg.com/media/<KEY>. Same image posted
-  // by different accounts yields the same key.
-  let exactKey = null
-  const img = article.querySelector('img[src*="twimg.com/media/"]')
-  if (img) exactKey = img.src.match(/\/media\/([A-Za-z0-9_-]+)/)?.[1] || null
-
-  return { item, statusId: m[2], author: m[1], text, exactKey }
+  return { item, statusId: m[2], author: m[1], text }
 }
 
 function render(item, info, statusId) {
@@ -154,7 +148,7 @@ async function scan() {
     else embedErrors++
     // vec === null means the model is unavailable. Fail OPEN: the post is simply not
     // clustered, so nothing collapses. A dead model must never blank the feed.
-    const info = store.add(p.statusId, vec, p.author, p.exactKey)
+    const info = store.add(p.statusId, vec, p.author)
     if (info) render(p.item, info, p.statusId)
   }))
   repaint()      // a late arrival can turn an existing post into a representative

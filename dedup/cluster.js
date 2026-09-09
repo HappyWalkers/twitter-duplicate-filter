@@ -20,7 +20,7 @@ export class ClusterStore {
     this.threshold = threshold
     /** statusId -> {vec, clusterId, author, prior} */
     this.posts = new Map()
-    /** clusterId -> {repId, members, live, exactKeys} */
+    /** clusterId -> {repId, members, live} */
     this.clusters = new Map()
     /** insertion order of LIVE ids */
     this.order = []
@@ -46,8 +46,7 @@ export class ClusterStore {
     for (const { statusId, vec, author } of entries) {
       if (!vec || this.posts.has(statusId)) continue
       this.posts.set(statusId, { vec, clusterId: statusId, author, prior: true })
-      this.clusters.set(statusId,
-        { repId: statusId, members: [statusId], live: [], exactKeys: new Set() })
+      this.clusters.set(statusId, { repId: statusId, members: [statusId], live: [] })
       this.reps.push({ id: statusId, vec, author, clusterId: statusId })
     }
   }
@@ -61,23 +60,31 @@ export class ClusterStore {
   /**
    * @returns {{clusterId:string, isRepresentative:boolean, size:number}|null}
    *   null when the post cannot be placed (no vector) -- caller must not collapse.
+   *
+   * The model is the ONLY thing that groups posts. There was once a rule-based pre-pass
+   * that joined posts sharing an identical image (the opaque key in
+   * pbs.twimg.com/media/<KEY>), on the theory that much of X's duplication is mechanical.
+   * It was removed, for two reasons worth keeping written down:
+   *
+   *   * It did almost nothing -- 29 pairs caught out of 4.3M measured, recall 0.004.
+   *   * It bypassed the threshold, so its mistakes were unbounded by any calibration. A
+   *     quote-tweet's <article> contains the QUOTED post's image, so every quote-tweet of
+   *     one source inherited that source's key and folded together regardless of what it
+   *     actually said. "Welcome to the singularity" was hidden behind an OpenAI
+   *     announcement it scored 0.36 against, on a threshold of 0.94.
+   *
+   * Removing it also makes the shipped behaviour match the calibration: collapse_sim.py
+   * only ever modelled the vector path, so rule-based folds were extra ones no measured
+   * precision figure covered.
    */
-  add(statusId, vec, author, exactKey = null) {
+  add(statusId, vec, author) {
     const known = this.posts.get(statusId)
     if (known) return this.view(known.clusterId, statusId)
-    if (!vec && !exactKey) return null
+    if (!vec) return null
 
     let hit = null
 
-    // Tier 1: exact signal (identical media). Free and precise (0.714) but almost no
-    // recall (0.005 measured), so it is a cheap pre-pass, never the mechanism.
-    if (TUNING.useExactSignals && exactKey) {
-      for (const [cid, c] of this.clusters) {
-        if (c.exactKeys && c.exactKeys.has(exactKey)) { hit = cid; break }
-      }
-    }
-
-    // Tier 2: first representative above threshold wins. Inlined rather than calling
+    // First representative above threshold wins. Inlined rather than calling
     // cosine() per candidate, and bailing out of the dot product early is deliberately
     // NOT done -- a partial sum says nothing about the final one for signed vectors.
     if (!hit && vec) {
@@ -97,7 +104,7 @@ export class ClusterStore {
 
     if (!hit) {
       hit = statusId          // this post becomes its own representative
-      this.clusters.set(hit, { repId: statusId, members: [], live: [], exactKeys: new Set() })
+      this.clusters.set(hit, { repId: statusId, members: [], live: [] })
       this.reps.push({ id: statusId, vec, author, clusterId: hit })
     }
     const c = this.clusters.get(hit)
@@ -110,7 +117,6 @@ export class ClusterStore {
     if (!c.live.length) c.repId = statusId
     c.members.push(statusId)
     c.live.push(statusId)
-    if (exactKey) c.exactKeys.add(exactKey)
 
     this.posts.set(statusId, { vec, clusterId: hit, author, prior: false })
     this.order.push(statusId)

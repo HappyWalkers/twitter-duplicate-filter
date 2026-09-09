@@ -161,11 +161,10 @@ export const TUNING = {
   /** Never collapse a post whose author matches the representative's -- self-threads
    *  and reply chains are legitimately repetitive, not duplicates. */
   exemptSameAuthor: true,
-  /** Tier-1 exact-signal pre-pass. Measured recall is 0.004 (29 of 4.3M agreed pairs),
-   *  so this is nearly worthless on its own and must never be the primary mechanism --
-   *  but it is free, precise (0.707), and catches identical reposted media before the
-   *  model runs. Kept small and clearly secondary for that reason. */
-  useExactSignals: true,
+  // There is deliberately no rule-based signal here. An exact-media-match pre-pass was
+  // tried and removed: 29 pairs caught out of 4.3M (recall 0.004), and because it
+  // bypassed the threshold its errors were bounded by nothing. Grouping is the model's
+  // job alone, so every fold is governed by `threshold` and covered by the calibration.
   /** Posts shorter than this are never clustered. Kept at 15 after measuring, not by
    *  intuition: short reactions ("Fetterman is finished", "Says boo Carter") are the
    *  largest class of genuine false collapses, so raising the floor looked obviously

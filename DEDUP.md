@@ -131,8 +131,26 @@ puzzle carrying three story ids.
 
 Three things were measured and **rejected**: raising the 15-char minimum (no precision
 gain, −40% coverage), best-match assignment instead of first-match (+1 point, not worth
-diverging from what the benchmark scores), and tier-1 exact signals as a primary mechanism
-(recall 0.004 — kept only as a free pre-pass).
+diverging from what the benchmark scores), and rule-based exact-match signals of any kind
+(see below).
+
+### No rule-based signals
+
+The design originally paired the model with a cheap exact-match pre-pass: X serves images
+from `pbs.twimg.com/media/<KEY>`, so posts sharing an identical image could be grouped by
+string equality before spending any model compute. It shipped, and has been removed.
+
+It caught **29 pairs out of 4.3 million** — recall 0.004. And because it joined clusters
+without consulting the threshold, its errors were bounded by no calibration at all. Live
+testing found the failure: a quote-tweet's `<article>` contains the *quoted* post's image,
+so every quote-tweet of one source inherited that source's media key and folded together
+regardless of its own text. A four-word reaction was hidden behind an OpenAI announcement
+it scored **0.36** against, on a threshold of **0.94**.
+
+Removing it also closed a gap between what ships and what is measured: `collapse_sim.py`
+only ever simulated the vector path, so rule-based folds were extra ones that no reported
+precision figure covered. Grouping is now the model's job alone, and every fold is
+governed by τ.
 
 ## Architecture
 
@@ -142,8 +160,7 @@ x.com page
 └─ isolated world ── content.js
      └─ dedup/observer.js
           ├─ MutationObserver on documentElement
-          ├─ TIER 1  exact signals (media key) — free, no model
-          ├─ TIER 2  chrome.runtime → background.js
+          ├─ embed via chrome.runtime → background.js
           │            └─ chrome.offscreen ({reasons:['WORKERS']})
           │                 └─ offscreen.html   ← extension origin: HF fetch + WebGPU allowed
           │                      └─ Worker(dedup-worker.bundle.js) → transformers.js → ORT
